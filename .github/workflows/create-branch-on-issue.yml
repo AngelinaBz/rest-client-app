@@ -1,0 +1,59 @@
+name: Create branch on issue creation
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+
+jobs:
+  create-branch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Determine branch type
+        id: set-type
+        run: |
+          if [[ "${{ contains(github.event.issue.labels.*.name, 'feature') }}" == "true" ]]; then
+            echo "BRANCH_TYPE=feat" >> $GITHUB_ENV
+          elif [[ "${{ contains(github.event.issue.labels.*.name, 'bugfix') }}" == "true" ]]; then
+            echo "BRANCH_TYPE=fix" >> $GITHUB_ENV
+          elif [[ "${{ contains(github.event.issue.labels.*.name, 'documentation') }}" == "true" ]]; then
+            echo "BRANCH_TYPE=docs" >> $GITHUB_ENV
+          else
+            echo "No valid label found (feature, bugfix, documentation)"
+            exit 1
+          fi
+
+      - name: Extract sprint number from milestone
+        id: sprint
+        run: |
+          MILESTONE_TITLE="${{ github.event.issue.milestone.title }}"
+          echo "🎯 Milestone title: $MILESTONE_TITLE"
+
+          SPRINT=$(echo "$MILESTONE_TITLE" | grep -o '[0-9]\+')
+          if [ -z "$SPRINT" ]; then
+            echo "Could not extract sprint number from milestone"
+            exit 1
+          fi
+
+          echo "SPRINT=$SPRINT" >> $GITHUB_OUTPUT
+
+      - name: Build branch name
+        id: vars
+        run: |
+          BRANCH_NAME="${BRANCH_TYPE}/RSS-${{ steps.sprint.outputs.SPRINT }}_${{ github.event.issue.number }}"
+          echo "Branch name: $BRANCH_NAME"
+          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_OUTPUT
+
+      - name: Checkout repository from develop
+        uses: actions/checkout@v4
+        with:
+          ref: develop
+
+      - name: Create and push branch
+        run: |
+          git fetch origin develop
+          git checkout -b ${{ steps.vars.outputs.BRANCH_NAME }} origin/develop
+          git push origin ${{ steps.vars.outputs.BRANCH_NAME }}

@@ -1,0 +1,13 @@
+reviewers:
+  - AngelinaBz
+  - hasanozbakir
+  - pambaka
+
+numberOfReviewers: 1
+
+addReviewers: true
+
+useAssigneeAsReviewer: false
+
+reviewersToAdd:
+  - HelgaZhizhka
