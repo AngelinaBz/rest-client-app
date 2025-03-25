@@ -11,9 +11,9 @@ body:
         ## 🐞 Branch naming convention
         Use the following format for branch naming:
         ```
-        bugfix/RSS-REST-<sprint-number>_<issue-number>
+        bugfix/RSS-<sprint-number>_<issue-number>
         ```
-        Example: `bugfix/RSS-REST-3_145`
+        Example: `bugfix/RSS-3_145`
 
   - type: input
     attributes:

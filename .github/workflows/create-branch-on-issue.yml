@@ -19,8 +19,16 @@ jobs:
             echo "BRANCH_TYPE=feat" >> $GITHUB_ENV
           elif [[ "${{ contains(github.event.issue.labels.*.name, 'bugfix') }}" == "true" ]]; then
             echo "BRANCH_TYPE=fix" >> $GITHUB_ENV
+          elif [[ "${{ contains(github.event.issue.labels.*.name, 'refactor') }}" == "true" ]]; then
+            echo "BRANCH_TYPE=refactor" >> $GITHUB_ENV
+          elif [[ "${{ contains(github.event.issue.labels.*.name, 'style') }}" == "true" ]]; then
+            echo "BRANCH_TYPE=style" >> $GITHUB_ENV
           elif [[ "${{ contains(github.event.issue.labels.*.name, 'documentation') }}" == "true" ]]; then
             echo "BRANCH_TYPE=docs" >> $GITHUB_ENV
+          elif [[ "${{ contains(github.event.issue.labels.*.name, 'test') }}" == "true" ]]; then
+            echo "BRANCH_TYPE=test" >> $GITHUB_ENV
+          elif [[ "${{ contains(github.event.issue.labels.*.name, 'configuration') }}" == "true" ]]; then
+            echo "BRANCH_TYPE=chore" >> $GITHUB_ENV
           else
             echo "No valid label found (feature, bugfix, documentation)"
             exit 1

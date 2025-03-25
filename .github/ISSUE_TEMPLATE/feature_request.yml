@@ -11,9 +11,9 @@ body:
         ## 🚀 Branch naming convention
         Use the following format for branch naming:
         ```
-        feature/RSS-REST-<sprint-number>_<issue-number>
+        feat/RSS-<sprint-number>_<issue-number>
         ```
-        Example: `feature/RSS-REST-2_123`
+        Example: `feat/RSS-2_123`
 
   - type: input
     attributes:
