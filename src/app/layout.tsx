@@ -21,7 +21,11 @@ const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AntdRegistry>{children}</AntdRegistry>
+        <AntdRegistry>
+          <header>Header here</header>
+          <main>{children}</main>
+          <footer>Footer here</footer>
+        </AntdRegistry>
       </body>
     </html>
   );
