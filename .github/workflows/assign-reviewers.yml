@@ -1,15 +1,16 @@
-name: Assign reviewers on PR
+name: Review Assign
 
 on:
   pull_request:
     types: [opened, ready_for_review]
 
 jobs:
-  assign_reviewers:
+  assign:
     runs-on: ubuntu-latest
     steps:
-      - name: Assign reviewers
-        uses: kentaro-m/auto-assign-action@v1.2.5
+      - uses: hkusu/review-assign-action@v1
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          configuration-path: '.github/auto_assign.yml'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          assignees: ${{ github.actor }}
+          reviewers: AngelinaBz, hasanozbakir, pambaka
+          max-num-of-reviewers: 2
