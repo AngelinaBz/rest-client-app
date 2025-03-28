@@ -1,7 +1,7 @@
-import { ReactNode } from 'react';
 import { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
+import { RootLayoutProps } from '@/types';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -11,10 +11,6 @@ export const metadata: Metadata = {
   icons: {
     icon: 'icon.png',
   },
-};
-
-type RootLayoutProps = {
-  children: ReactNode;
 };
 
 const RootLayout = ({ children }: RootLayoutProps) => {
