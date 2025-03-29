@@ -2,5 +2,8 @@
   "MainPage": {
     "title": "Main Page",
     "link": "Example of using a Link from i18n"
+  },
+  "LocaleSwitcher": {
+    "locale": "{locale, select, ru {Russian} en {English} other {Other}}"
   }
 }
