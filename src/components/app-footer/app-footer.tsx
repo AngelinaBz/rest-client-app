@@ -15,7 +15,7 @@ const AppFooter = (): React.JSX.Element => {
       <Space className={styles['footer-container']} size="large" align="center">
         <Link
           className={styles['footer-link']}
-          href="https://github.com/AngelinaBz/rest-client-app/issues"
+          href="https://github.com/AngelinaBz/rest-client-app"
           target="_blank"
           rel="noopener noreferrer"
         >
