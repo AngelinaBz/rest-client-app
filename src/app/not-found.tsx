@@ -1,3 +1,5 @@
+'use client';
+
 import { Routes } from '@/types/routes';
 import { Result, Button } from 'antd';
 import Link from 'next/link';
