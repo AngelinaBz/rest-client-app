@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import { RootLayoutProps } from '@/types';
+import { AppFooter } from '@/components/app-footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -20,7 +21,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
         <AntdRegistry>
           <header>Header here</header>
           <main>{children}</main>
-          <footer>Footer here</footer>
+          <AppFooter />
         </AntdRegistry>
       </body>
     </html>
