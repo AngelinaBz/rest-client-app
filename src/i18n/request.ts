@@ -13,11 +13,7 @@ const requestConfig = getRequestConfig(async ({ requestLocale }) => {
       messages: (await import(`../../messages/${locale}.json`)).default,
     };
   } catch (error) {
-    console.error('Error with app', error);
-    return {
-      locale: routing.defaultLocale,
-      messages: {},
-    };
+    throw new Error('Error with app: ' + error);
   }
 });
 
