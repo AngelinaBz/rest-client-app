@@ -1,8 +1,8 @@
 'use client';
 
-import { ERROR_MAP, Status } from '@/types';
 import { Result, Button } from 'antd';
 import { useEffect } from 'react';
+import { ERROR_MAP, Status } from '@/types';
 
 type ErrorPageProps = {
   error: Error;
