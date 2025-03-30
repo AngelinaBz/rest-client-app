@@ -1,21 +1,15 @@
 'use client';
 
 import { Result, Button } from 'antd';
-import { useEffect } from 'react';
 import { ERROR_MAP, Status } from '@/types';
 
 type ErrorPageProps = {
-  error: Error;
   reset: () => void;
 };
 
-export default function ErrorPage({ error, reset }: ErrorPageProps) {
+export default function ErrorPage({ reset }: ErrorPageProps) {
   const status = Status[500];
   const meta = ERROR_MAP[status];
-
-  useEffect(() => {
-    console.error(error);
-  }, [error]);
 
   return (
     <Result
