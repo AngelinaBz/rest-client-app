@@ -2,7 +2,6 @@
 
 import { GithubOutlined } from '@ant-design/icons';
 import { Layout, Space, Typography } from 'antd';
-import Image from 'next/image';
 import styles from './app-footer.module.css';
 
 const { Footer } = Layout;
@@ -35,12 +34,10 @@ const AppFooter = (): React.JSX.Element => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Image
+          <img
             className={styles['footer-logo']}
             src="https://raw.githubusercontent.com/rolling-scopes-school/tasks/master/react/assets/rss-logo.svg"
             alt="RS School Logo"
-            width={32}
-            height={32}
           />
         </Link>
       </Space>
