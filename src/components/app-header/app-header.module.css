@@ -1,0 +1,21 @@
+:global(.ant-layout-header).header {
+  background-color: var(--secondary-bg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: backgroud-color 0.3s ease;
+}
+
+.logo {
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+:global(.ant-layout-header).sticky {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: var(--hover);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}

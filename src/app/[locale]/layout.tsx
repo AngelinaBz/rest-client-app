@@ -6,7 +6,7 @@ import { AntdRegistry } from '@ant-design/nextjs-registry';
 import { routing } from '@/i18n/routing';
 import { RootLayoutProps } from '@/types';
 import { AppFooter } from '@/components/app-footer';
-import '../global.css';
+import { AppHeader } from '@/components/app-header';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -29,7 +29,7 @@ const RootLayout = async ({ children, params }: RootLayoutProps) => {
       <body className={inter.className}>
         <AntdRegistry>
           <NextIntlClientProvider>
-            <header>Header here</header>
+            <AppHeader />
             <main className="main">{children}</main>
             <AppFooter />
           </NextIntlClientProvider>
