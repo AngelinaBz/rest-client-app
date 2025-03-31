@@ -1,18 +1,18 @@
 :global(.ant-layout-footer).footer {
   background-color: var(--secondary-bg);
   color: var(--text);
-  height: 65px;
+  height: 4rem;
   display: flex;
   justify-content: center;
 }
 
 :global(.anticon).footer-logo {
-  font-size: 30px;
-  color: var(--accent);
+  font-size: 2rem;
+  color: var(--text);
 }
 
 img.footer-logo {
-  width: 30px;
+  width: 2rem;
   border-radius: 50%;
 }
 
