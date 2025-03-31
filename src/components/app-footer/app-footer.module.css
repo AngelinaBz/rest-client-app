@@ -1,10 +1,22 @@
-.footer {
+:global(.ant-layout-footer).footer {
+  background-color: var(--secondary-bg);
+  color: var(--text);
+  height: 65px;
   display: flex;
   justify-content: center;
 }
 
-.footer-logo {
-  font-size: 24px;
-  width: 24px;
+:global(.anticon).footer-logo {
+  font-size: 30px;
+  color: var(--accent);
+}
+
+img.footer-logo {
+  width: 30px;
   border-radius: 50%;
+}
+
+.footer-logo:hover,
+.footer-logo:focus {
+  opacity: 0.5;
 }

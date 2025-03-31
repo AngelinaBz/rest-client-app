@@ -1,0 +1,28 @@
+:root {
+  --primary-bg: #ffffff;
+  --secondary-bg: #f7f7f8;
+  --text: #000000;
+  --accent: #007aff;
+  --hover: #e5e5e5;
+  --icons: #ff6f00;
+  --borders: #d1d5db;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.dark {
+  --primary-bg: #1e1e1e;
+  --secondary-bg: #2c2c2c;
+  --text: #ffffff;
+  --hover: #3a3a3a;
+  --borders: #4a4a4a;
+}
+
+body {
+  background-color: var(--primary-bg);
+  color: var(--text);
+  margin: 0;
+  padding: 0;
+}
