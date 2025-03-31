@@ -8,3 +8,5 @@ export type RootLayoutProps = {
 export type Params = {
   locale: string;
 };
+
+export { ERROR_MAP, Status } from './error-page-status-types';

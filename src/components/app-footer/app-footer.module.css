@@ -1,0 +1,10 @@
+.footer {
+  display: flex;
+  justify-content: center;
+}
+
+.footer-logo {
+  font-size: 24px;
+  width: 24px;
+  border-radius: 50%;
+}
