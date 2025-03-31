@@ -4,8 +4,8 @@ import { Button, Layout, Space } from 'antd';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import LocaleSwitcher from '../locale-switcher/locale-switcher';
-import styles from './app-header.module.css';
 import { Routes } from '@/types/routes';
+import styles from './app-header.module.css';
 
 const { Header } = Layout;
 
@@ -13,7 +13,11 @@ const AppHeader = (): React.JSX.Element => {
   const [isSticky, setIsSticky] = useState(false);
 
   useEffect(() => {
-    setIsSticky(false);
+    const handleScroll = () => {
+      setIsSticky(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
@@ -30,7 +34,7 @@ const AppHeader = (): React.JSX.Element => {
         align="center"
       >
         <Link href="/signin">
-          <Button type="link" color="blue" variant="filled">
+          <Button type="link" color="blue" variant="outlined">
             Sign In
           </Button>
         </Link>
