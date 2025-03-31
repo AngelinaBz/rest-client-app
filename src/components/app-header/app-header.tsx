@@ -26,13 +26,13 @@ const AppHeader = (): React.JSX.Element => {
         REST Client
       </Link>
 
-      <LocaleSwitcher />
-
       <Space
         className={styles['header-container']}
         size="middle"
         align="center"
       >
+        <LocaleSwitcher />
+
         <Link href="/signin">
           <Button type="link" color="blue" variant="outlined">
             Sign In
