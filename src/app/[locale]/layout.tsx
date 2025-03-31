@@ -1,6 +1,9 @@
 import { Metadata } from 'next';
+import { NextIntlClientProvider, hasLocale } from 'next-intl';
+import { notFound } from 'next/navigation';
 import { Inter } from 'next/font/google';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
+import { routing } from '@/i18n/routing';
 import { RootLayoutProps } from '@/types';
 import { AppFooter } from '@/components/app-footer';
 
@@ -14,14 +17,21 @@ export const metadata: Metadata = {
   },
 };
 
-const RootLayout = ({ children }: RootLayoutProps) => {
+const RootLayout = async ({ children, params }: RootLayoutProps) => {
+  const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body className={inter.className}>
         <AntdRegistry>
-          <header>Header here</header>
-          <main>{children}</main>
-          <AppFooter />
+          <NextIntlClientProvider>
+            <header>Header here</header>
+            <main>{children}</main>
+            <AppFooter />
+          </NextIntlClientProvider>
         </AntdRegistry>
       </body>
     </html>
