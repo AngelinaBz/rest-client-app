@@ -7,6 +7,7 @@ import { routing } from '@/i18n/routing';
 import { RootLayoutProps } from '@/types';
 import { AppFooter } from '@/components/app-footer';
 import { AppHeader } from '@/components/app-header';
+import '../global.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
