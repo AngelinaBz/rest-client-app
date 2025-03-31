@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 export type RootLayoutProps = {
   children: ReactNode;
-  params: Params;
+  params: Promise<Params>;
 };
 
 export type Params = {
