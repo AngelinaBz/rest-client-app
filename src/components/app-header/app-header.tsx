@@ -14,10 +14,11 @@ const { Header } = Layout;
 const AppHeader = (): React.JSX.Element => {
   const [isSticky, setIsSticky] = useState(false);
   const t = useTranslations('Header');
+  const STICKY_THRESHOLD = 50;
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsSticky(window.scrollY > 50);
+      setIsSticky(window.scrollY > STICKY_THRESHOLD);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
