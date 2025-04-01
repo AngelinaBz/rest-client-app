@@ -1,6 +1,8 @@
 'use client';
 
-import { Button, Layout, Space } from 'antd';
+import { useTranslations } from 'next-intl';
+import { Button, Layout, Space, Tooltip } from 'antd';
+import { UserAddOutlined, UserOutlined } from '@ant-design/icons';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import LocaleSwitcher from '../locale-switcher/locale-switcher';
@@ -11,6 +13,7 @@ const { Header } = Layout;
 
 const AppHeader = (): React.JSX.Element => {
   const [isSticky, setIsSticky] = useState(false);
+  const t = useTranslations('Header');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,14 +36,22 @@ const AppHeader = (): React.JSX.Element => {
       >
         <LocaleSwitcher />
 
-        <Link href="/signin">
-          <Button type="link" color="blue" variant="outlined">
-            Sign In
-          </Button>
+        <Link href={Routes.SIGN_UP}>
+          <Tooltip title={t('signin')}>
+            <Button
+              size="large"
+              type="link"
+              color="blue"
+              variant="outlined"
+              icon={<UserOutlined />}
+            />
+          </Tooltip>
         </Link>
 
-        <Link href="/signup">
-          <Button type="primary">Sign Up</Button>
+        <Link href={Routes.SIGN_UP}>
+          <Tooltip title={t('signup')}>
+            <Button size="large" type="primary" icon={<UserAddOutlined />} />
+          </Tooltip>
         </Link>
       </Space>
     </Header>

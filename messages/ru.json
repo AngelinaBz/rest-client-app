@@ -5,5 +5,9 @@
   },
   "LocaleSwitcher": {
     "locale": "{locale, select, ru {Русский} en {Английский} other {Другой}}"
+  },
+  "Header": {
+    "signin": "Войти",
+    "signup": "Зарегистрироваться"
   }
 }
