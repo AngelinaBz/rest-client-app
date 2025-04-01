@@ -1,0 +1,1 @@
+export const STICKY_THRESHOLD = 50;

@@ -1,12 +1,13 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
 import { Button, Layout, Space, Tooltip } from 'antd';
 import { UserAddOutlined, LoginOutlined } from '@ant-design/icons';
-import { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
+import { useEffect, useState } from 'react';
 import LocaleSwitcher from '../locale-switcher/locale-switcher';
 import { Routes } from '@/types/routes';
+import { STICKY_THRESHOLD } from '@/utils/constants';
 import styles from './app-header.module.css';
 
 const { Header } = Layout;
@@ -14,7 +15,6 @@ const { Header } = Layout;
 const AppHeader = (): React.JSX.Element => {
   const [isSticky, setIsSticky] = useState(false);
   const t = useTranslations('Header');
-  const STICKY_THRESHOLD = 50;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,11 +30,7 @@ const AppHeader = (): React.JSX.Element => {
         REST Client
       </Link>
 
-      <Space
-        className={styles['header-container']}
-        size="middle"
-        align="center"
-      >
+      <Space className={styles['icon-container']} size="middle" align="center">
         <LocaleSwitcher />
 
         <Link href={Routes.SIGN_IN}>
