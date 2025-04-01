@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import { Button, Layout, Space, Tooltip } from 'antd';
 import { UserAddOutlined, LoginOutlined } from '@ant-design/icons';
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import LocaleSwitcher from '../locale-switcher/locale-switcher';
 import { Routes } from '@/types/routes';
 import styles from './app-header.module.css';
@@ -36,7 +36,7 @@ const AppHeader = (): React.JSX.Element => {
       >
         <LocaleSwitcher />
 
-        <Link href={Routes.SIGN_UP}>
+        <Link href={Routes.SIGN_IN}>
           <Tooltip title={t('signin')}>
             <Button
               size="large"

@@ -1,6 +1,5 @@
 :global(.ant-layout-header).header {
   background-color: var(--secondary-bg);
-  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
