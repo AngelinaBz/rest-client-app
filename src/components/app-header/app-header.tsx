@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { Button, Layout, Space, Tooltip } from 'antd';
-import { UserAddOutlined, UserOutlined } from '@ant-design/icons';
+import { UserAddOutlined, LoginOutlined } from '@ant-design/icons';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import LocaleSwitcher from '../locale-switcher/locale-switcher';
@@ -43,7 +43,7 @@ const AppHeader = (): React.JSX.Element => {
               type="link"
               color="blue"
               variant="outlined"
-              icon={<UserOutlined />}
+              icon={<LoginOutlined />}
             />
           </Tooltip>
         </Link>
