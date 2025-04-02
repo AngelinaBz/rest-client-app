@@ -2,7 +2,6 @@
 
 import { Routes } from '@/types/routes';
 import { Result, Button } from 'antd';
-import Link from 'next/link';
 import { ERROR_MAP, Status } from '@/types';
 
 const NotFoundPage = () => {
@@ -15,9 +14,9 @@ const NotFoundPage = () => {
       title={meta.title}
       subTitle={meta.subTitle}
       extra={
-        <Link href={Routes.MAIN} passHref>
-          <Button type="primary">Back Home</Button>
-        </Link>
+        <Button type="primary" href={Routes.MAIN}>
+          Back Home
+        </Button>
       }
     />
   );
