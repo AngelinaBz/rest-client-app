@@ -4,6 +4,9 @@
   height: 4rem;
   display: flex;
   justify-content: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 :global(.anticon).footer-logo {
