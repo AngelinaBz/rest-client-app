@@ -1,7 +1,17 @@
 {
   "MainPage": {
-    "title": "Main Page",
-    "link": "Example of using a Link from i18n"
+    "title": "Restful Client Application",
+    "description": "Our Project",
+    "teamTitle": "Our Team",
+    "teamDescription": "Our Team",
+    "schoolTitle": "About Rolling Scopes School",
+    "schoolDescription": "About school"
+  },
+  "Team": {
+    "teamMember1Name": "Angelina Bezik",
+    "teamMember2Name": "Tatiana Telegina",
+    "teamMember3Name": "Hasan Ozbakir",
+    "teamMemberRole": "Frontend Developer"
   },
   "LocaleSwitcher": {
     "locale": "{locale, select, ru {Russian} en {English} other {Other}}"

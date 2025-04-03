@@ -1,7 +1,17 @@
 {
   "MainPage": {
-    "title": "Главная страница",
-    "link": "Пример использования Link из i18n"
+    "title": "Restful Client приложение",
+    "description": "Наш проект",
+    "teamTitle": "Наша Команда",
+    "teamDescription": "Наша Команда",
+    "schoolTitle": "Про Rolling Scopes School",
+    "schoolDescription": "О школе"
+  },
+  "Team": {
+    "teamMember1Name": "Ангелина Безик",
+    "teamMember2Name": "Татьяна Телегина",
+    "teamMember3Name": "Хасан Озбакир",
+    "teamMemberRole": "Frontend разработчик"
   },
   "LocaleSwitcher": {
     "locale": "{locale, select, ru {Русский} en {Английский} other {Другой}}"
