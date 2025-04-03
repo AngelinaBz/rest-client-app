@@ -12,7 +12,7 @@ const MainContent = () => {
 
   return (
     <div className={styles.main}>
-      <Title>{t('title')}</Title>
+      <Title>Restful Client</Title>
       <Paragraph>{t('description')}</Paragraph>
       <Title level={2}>{t('teamTitle')}</Title>
       <Paragraph>{t('teamDescription')}</Paragraph>

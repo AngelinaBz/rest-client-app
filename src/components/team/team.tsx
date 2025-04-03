@@ -4,7 +4,6 @@ import { useTranslations } from 'next-intl';
 import { Avatar, Card, Col, Row } from 'antd';
 import { UserOutlined, GithubOutlined, MailOutlined } from '@ant-design/icons';
 import { TeamMember } from '@/types';
-import styles from './team.module.css';
 
 const Team = () => {
   const t = useTranslations('Team');
@@ -30,12 +29,11 @@ const Team = () => {
   ];
 
   return (
-    <Row justify="space-around" gutter={16}>
+    <Row justify="center" gutter={16}>
       {teamMembers.map((member, index) => (
-        <Col span={8} key={index}>
+        <Col span={6} key={index}>
           <Card
             hoverable
-            className={styles.card}
             actions={[
               <a
                 href={member.github}
@@ -56,7 +54,7 @@ const Team = () => {
             ]}
           >
             <Card.Meta
-              avatar={<Avatar size={64} icon={<UserOutlined />} />}
+              avatar={<Avatar size="large" icon={<UserOutlined />} />}
               title={member.name}
               description={member.role}
             />
