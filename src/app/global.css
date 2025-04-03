@@ -1,7 +1,7 @@
 :root {
   --primary-bg: #fafafa;
   --secondary-bg: #f0f0f1;
-  --text: #141414 ;
+  --text: #141414;
   --accent: #007aff;
   --hover: #e5e5e5;
   --icons: #ff6f00;
@@ -25,4 +25,10 @@ body {
   color: var(--text);
   margin: 0;
   padding: 0;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
