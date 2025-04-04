@@ -64,6 +64,7 @@
     "body": "Тело запроса",
     "code": "Код",
     "send": "Отправить",
+    "sendRequest": "Отправить запрос",
     "response": "Ответ: ",
     "noResponseYet": "Ответ пока не получен.",
     "invalidUrlMessage": "Неверный URL. Пожалуйста, введите корректный адрес HTTP или HTTPS.",
