@@ -6,13 +6,6 @@
   max-width: 1200px;
 }
 
-.main-section {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  width: 100%;
-}
-
 .title-section {
   display: flex;
   flex-direction: row;
@@ -22,14 +15,6 @@
   gap: 20px;
   width: 100%;
   border-bottom: 1px solid var(--borders);
-}
-
-.title-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  max-width: 450px;
 }
 
 .main-img {

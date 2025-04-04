@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { Button, Typography } from 'antd';
+import { Button, Typography, Flex } from 'antd';
 import Team from '../team/team';
 import styles from './main-content.module.css';
 import { Routes } from '@/types/routes';
@@ -14,24 +14,43 @@ const MainContent = () => {
   return (
     <div className={styles['main-container']}>
       <section className={styles['title-section']}>
-        <div className={styles['title-container']}>
+        <Flex
+          vertical
+          align="flex-start"
+          justify="space-between"
+          style={{
+            maxWidth: '450px',
+          }}
+        >
           <Title>{t('title')}</Title>
           <Paragraph>{t('description')}</Paragraph>
           <Button type="primary" href={Routes.SIGN_IN} target="_blank">
             {t('button')}
           </Button>
-        </div>
+        </Flex>
         <img alt="rest-img" src="main.png" className={styles['main-img']} />
       </section>
-      <section className={styles['main-section']}>
+      <Flex
+        vertical
+        justify="flex-start"
+        style={{
+          width: '100%',
+        }}
+      >
         <Title level={2}>{t('teamTitle')}</Title>
         <Paragraph>{t('teamDescription')}</Paragraph>
         <Team />
-      </section>
-      <section className={styles['main-section']}>
+      </Flex>
+      <Flex
+        vertical
+        justify="flex-start"
+        style={{
+          width: '100%',
+        }}
+      >
         <Title level={2}>{t('schoolTitle')}</Title>
         <Paragraph>{t('schoolDescription')}</Paragraph>
-      </section>
+      </Flex>
     </div>
   );
 };
