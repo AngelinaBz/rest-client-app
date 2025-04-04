@@ -1,8 +1,9 @@
 {
   "MainPage": {
-    "description": "Our Project",
+    "description": "Restful Client is a powerful application for working with APIs, designed for developers. It provides an interface for working with HTTP methods, setting headers, and executing requests, similar to Postman, but with a focus on simplicity and functionality. You can easily save and manage the history of your requests and ensure security through authorization and authentication.",
     "teamTitle": "Our Team",
     "teamDescription": "Our Team",
+    "button": "Get started",
     "schoolTitle": "About Rolling Scopes School",
     "schoolDescription": "About school"
   },
