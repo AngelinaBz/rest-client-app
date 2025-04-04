@@ -1,11 +1,12 @@
 {
   "MainPage": {
-    "description": "Restful Client is a powerful application for working with APIs, designed for developers. It provides an interface for working with HTTP methods, setting headers, and executing requests, similar to Postman, but with a focus on simplicity and functionality. You can easily save and manage the history of your requests and ensure security through authorization and authentication.",
+    "title": "Powerful application for working with APIs",
+    "description": "Restful Client provides an interface for working with HTTP methods, setting headers, and executing requests, similar to Postman, but with a focus on simplicity and functionality. You can easily save and manage the history of your requests and ensure security through authorization and authentication.",
     "teamTitle": "Our Team",
-    "teamDescription": "Our Team",
+    "teamDescription": "We are a dedicated team of developers, who strive to create powerful and user-friendly applications. Our diverse backgrounds and experiences allow us to approach problems creatively and collaborate effectively. Together, we are committed to delivering the best solutions for our users.",
     "button": "Get started",
-    "schoolTitle": "About Rolling Scopes School",
-    "schoolDescription": "About school"
+    "schoolTitle": "The Rolling Scopes School",
+    "schoolDescription": "The Rolling Scopes is an independent international community of developers, founded in 2013. Currently, many developers around the world know that RS School participate in our events and activities. At RS School the principle of PAY IT FORWARD works. RS School shares knowledge with students for free now, hoping that in the future they will return as mentors and pass on their knowledge to the next generation of students in the same way."
   },
   "Team": {
     "teamMember1Name": "Angelina Bezik",
