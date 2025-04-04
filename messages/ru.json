@@ -48,5 +48,22 @@
       "minLength": "Минимальная длина пароля {length} символов",
       "charError": "Пароль должен включать:"
     }
+  },
+  "RestfulClient": {
+    "title": "REST-клиент",
+    "urlInputPlaceholder": "Введите URL запроса",
+    "headers": "Заголовки: ",
+    "addHeader": "Добавить заголовок",
+    "deleteHeader": "Удалить заголовок",
+    "headerKeyPlaceholder": "Ключ заголовка",
+    "headerValuePlaceholder": "Значение заголовка",
+    "plainText": "Обычный текст",
+    "requestBody": "Тело запроса: ",
+    "requestBodyPlaceholder": "Введите тело запроса...",
+    "sendRequest": "Отправить запрос",
+    "response": "Ответ: ",
+    "noResponseYet": "Ответ пока не получен.",
+    "invalidUrlMessage": "Неверный URL. Пожалуйста, введите корректный адрес HTTP или HTTPS.",
+    "unknownErrorMessage": "Произошла неизвестная ошибка."
   }
 }
