@@ -5,5 +5,22 @@
   },
   "LocaleSwitcher": {
     "locale": "{locale, select, ru {Русский} en {Английский} other {Другой}}"
+  },
+  "RestfulClient": {
+    "title": "REST-клиент",
+    "urlInputPlaceholder": "Введите URL запроса",
+    "headers": "Заголовки: ",
+    "addHeader": "Добавить заголовок",
+    "deleteHeader": "Удалить заголовок",
+    "headerKeyPlaceholder": "Ключ заголовка",
+    "headerValuePlaceholder": "Значение заголовка",
+    "plainText": "Обычный текст",
+    "requestBody": "Тело запроса: ",
+    "requestBodyPlaceholder": "Введите тело запроса...",
+    "sendRequest": "Отправить запрос",
+    "response": "Ответ: ",
+    "noResponseYet": "Ответ пока не получен.",
+    "invalidUrlMessage": "Неверный URL. Пожалуйста, введите корректный адрес HTTP или HTTPS.",
+    "unknownErrorMessage": "Произошла неизвестная ошибка."
   }
 }
