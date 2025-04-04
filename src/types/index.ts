@@ -9,11 +9,4 @@ export type Params = {
   locale: string;
 };
 
-export type TeamMember = {
-  name: string;
-  role: string;
-  github: string;
-  mail: string;
-};
-
 export { ERROR_MAP, Status } from './error-page-status-types';

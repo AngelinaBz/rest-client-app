@@ -30,7 +30,7 @@ const RootLayout = async ({ children, params }: RootLayoutProps) => {
         <AntdRegistry>
           <NextIntlClientProvider>
             <header>Header here</header>
-            <main>{children}</main>
+            <main className="main">{children}</main>
             <AppFooter />
           </NextIntlClientProvider>
         </AntdRegistry>

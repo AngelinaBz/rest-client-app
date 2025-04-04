@@ -3,30 +3,12 @@
 import { useTranslations } from 'next-intl';
 import { Avatar, Card, Col, Row } from 'antd';
 import { UserOutlined, GithubOutlined, MailOutlined } from '@ant-design/icons';
-import { TeamMember } from '@/types';
+import { TeamMember } from '@/types/team';
+import { getTeamMembers } from '@/helpers/getTeamMember';
 
 const Team = () => {
   const t = useTranslations('Team');
-  const teamMembers: TeamMember[] = [
-    {
-      name: t('teamMember1Name'),
-      role: t('teamMemberRole'),
-      github: 'https://github.com/AngelinaBz',
-      mail: 'angelina1337bz@gmail.com',
-    },
-    {
-      name: t('teamMember2Name'),
-      role: t('teamMemberRole'),
-      github: 'https://github.com/pambaka',
-      mail: 'tanya.pambaka@gmail.com',
-    },
-    {
-      name: t('teamMember3Name'),
-      role: t('teamMemberRole'),
-      github: 'https://github.com/hasanozbakir',
-      mail: 'hasan.h.ozbakir@gmail.com',
-    },
-  ];
+  const teamMembers: TeamMember[] = getTeamMembers(t);
 
   return (
     <Row justify="center" gutter={16}>

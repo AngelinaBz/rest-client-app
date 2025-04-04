@@ -9,10 +9,10 @@
     "schoolDescription": "The Rolling Scopes is an independent international community of developers, founded in 2013. Anyone can study at RS School, regardless of age, employment, or location. Developers from various companies and countries contribute to the training. At RS School the principle of PAY IT FORWARD works. RS School shares knowledge with students for free now, hoping that in the future they will return as mentors and pass on their knowledge to the next generation of students in the same way."
   },
   "Team": {
-    "teamMember1Name": "Angelina Bezik",
-    "teamMember2Name": "Tatiana Telegina",
-    "teamMember3Name": "Hasan Ozbakir",
-    "teamMemberRole": "Frontend Developer"
+    "name1": "Angelina Bezik",
+    "name2": "Tatiana Telegina",
+    "name3": "Hasan Ozbakir",
+    "role": "Frontend Developer"
   },
   "LocaleSwitcher": {
     "locale": "{locale, select, ru {Russian} en {English} other {Other}}"
