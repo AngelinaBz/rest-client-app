@@ -7,13 +7,12 @@ import { ReactNode } from 'react';
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import { Link } from '@/i18n/navigation';
 import { Routes } from '@/types/routes';
+import { FORM, FormType } from '@/types/form';
 
-type Props = { formType: 'signIn' | 'signUp' };
+type FormComponentProps = { formType: FormType };
 
-const FormComponent = ({ formType }: Props): ReactNode => {
+const FormComponent = ({ formType }: FormComponentProps): ReactNode => {
   const t = useTranslations('Form');
-
-  const routeKey = formType === 'signIn' ? 'SIGN_UP' : 'SIGN_IN';
 
   const wrapperColSpan = 19;
   const labelColSpan = 4;
@@ -39,7 +38,7 @@ const FormComponent = ({ formType }: Props): ReactNode => {
       size={'large'}
     >
       <Form.Item label={t('email')} name="email" rules={[{ required: true }]}>
-        <Input className={styles.input} />
+        <Input />
       </Form.Item>
 
       <Form.Item
@@ -67,7 +66,9 @@ const FormComponent = ({ formType }: Props): ReactNode => {
           <Typography.Paragraph style={{ margin: '0' }}>
             {t(`accountMessage.${formType}`)}
           </Typography.Paragraph>
-          <Link href={`${Routes[routeKey]}`}>
+          <Link
+            href={formType === FORM.signIn ? Routes.SIGN_UP : Routes.SIGN_IN}
+          >
             {t(`accountAction.${formType}`)}
           </Link>
         </Flex>
