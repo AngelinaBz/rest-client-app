@@ -28,7 +28,7 @@ const MainContent = () => {
             {t('button')}
           </Button>
         </Flex>
-        <img alt="rest-img" src="main.png" className={styles['main-img']} />
+        <img alt="main-image" src="main.png" className={styles['main-img']} />
       </section>
       <Flex
         vertical
