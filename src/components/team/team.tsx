@@ -18,7 +18,7 @@ const Team = () => {
             hoverable
             actions={[
               <a
-                href={member.github}
+                href={`https://github.com/${member.github}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 key="github"

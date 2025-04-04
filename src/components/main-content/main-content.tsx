@@ -5,6 +5,7 @@ import { Button, Typography, Flex } from 'antd';
 import Team from '../team/team';
 import styles from './main-content.module.css';
 import { Routes } from '@/types/routes';
+import { Link } from '@/i18n/navigation';
 
 const { Title, Paragraph } = Typography;
 
@@ -24,11 +25,15 @@ const MainContent = () => {
         >
           <Title>{t('title')}</Title>
           <Paragraph>{t('description')}</Paragraph>
-          <Button type="primary" href={Routes.SIGN_IN} target="_blank">
-            {t('button')}
-          </Button>
+          <Link href={Routes.SIGN_IN}>
+            <Button type="primary">{t('button')}</Button>
+          </Link>
         </Flex>
-        <img alt="main-image" src="main.png" className={styles['main-img']} />
+        <img
+          alt={t('imageAlt')}
+          src="main.png"
+          className={styles['main-img']}
+        />
       </section>
       <Flex
         vertical

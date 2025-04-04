@@ -7,19 +7,19 @@ export const getTeamMembers = (
     {
       name: t(TeamMemberKeys.name1),
       role: t(TeamMemberKeys.role),
-      github: 'https://github.com/AngelinaBz',
+      github: 'AngelinaBz',
       mail: 'angelina1337bz@gmail.com',
     },
     {
       name: t(TeamMemberKeys.name2),
       role: t(TeamMemberKeys.role),
-      github: 'https://github.com/pambaka',
+      github: 'pambaka',
       mail: 'tanya.pambaka@gmail.com',
     },
     {
       name: t(TeamMemberKeys.name3),
       role: t(TeamMemberKeys.role),
-      github: 'https://github.com/hasanozbakir',
+      github: 'hasanozbakir',
       mail: 'hasan.h.ozbakir@gmail.com',
     },
   ];
