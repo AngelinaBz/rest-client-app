@@ -1,5 +1,6 @@
 'use client';
 
+import { throttle } from 'throttle-ts';
 import { Button, Layout, Space, Tooltip } from 'antd';
 import { UserAddOutlined, LoginOutlined } from '@ant-design/icons';
 import { useTranslations } from 'next-intl';
@@ -14,12 +15,13 @@ const { Header } = Layout;
 
 const AppHeader = (): React.JSX.Element => {
   const [isSticky, setIsSticky] = useState(false);
-  const t = useTranslations('Form.accountAction');
+  const t = useTranslations('Form');
 
   useEffect(() => {
-    const handleScroll = () => {
+    const [handleScroll] = throttle(() => {
       setIsSticky(window.scrollY > STICKY_THRESHOLD);
-    };
+    }, 100);
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
