@@ -17,5 +17,21 @@
   },
   "LocaleSwitcher": {
     "locale": "{locale, select, ru {Русский} en {Английский} other {Другой}}"
+  },
+  "Form": {
+    "hidePassword": "Скрыть пароль",
+    "email": "Эл. почта",
+    "password": "Пароль",
+    "showPassword": "Показать пароль",
+    "signIn": "Войти",
+    "signUp": "Зарегистрироваться",
+    "accountMessage": {
+      "signIn": "У вас еще нет учётной записи?",
+      "signUp": "У вас уже есть учётная запись?"
+    },
+    "accountAction": {
+      "signIn": "Зарегистрироваться",
+      "signUp": "Войти"
+    }
   }
 }
