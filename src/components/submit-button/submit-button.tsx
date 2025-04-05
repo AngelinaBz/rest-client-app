@@ -10,7 +10,7 @@ const SubmitButton = ({ onClick }: SubmitButtonProps) => {
 
   return (
     <Button type="primary" onClick={onClick}>
-      {t('sendRequest')}
+      {t('send')}
     </Button>
   );
 };

@@ -1,9 +1,8 @@
-import { Flex, Input, Select, Typography } from 'antd';
+import { Card, Flex, Input, Select } from 'antd';
 import { useState } from 'react';
 import { useTranslations } from 'use-intl';
 
 const { TextArea } = Input;
-const { Title } = Typography;
 
 type BodyEditorProps = {
   body: string;
@@ -15,10 +14,7 @@ const BodyEditor = ({ body, setBody }: BodyEditorProps) => {
   const t = useTranslations('RestfulClient');
 
   return (
-    <Flex vertical gap="small">
-      <Title level={5} style={{ margin: '0' }}>
-        {t('requestBody')}
-      </Title>
+    <Card title={t('requestBody')} size="small">
       <Flex align="start" gap={'small'}>
         <Select
           value={type}
@@ -29,14 +25,14 @@ const BodyEditor = ({ body, setBody }: BodyEditorProps) => {
           <Select.Option value="TEXT">{t('plainText')}</Select.Option>
         </Select>
         <TextArea
-          rows={6}
+          rows={5}
           value={body}
           style={{ width: '100%' }}
           onChange={(e) => setBody(e.target.value)}
           placeholder={t('requestBodyPlaceholder')}
         />
       </Flex>
-    </Flex>
+    </Card>
   );
 };
 
