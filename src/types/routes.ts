@@ -5,18 +5,3 @@ export const Routes = {
   VARIABLES: '/variables',
   HISTORY: '/history',
 } as const;
-
-export type HTTPMethod =
-  | 'GET'
-  | 'POST'
-  | 'PUT'
-  | 'PATCH'
-  | 'DELETE'
-  | 'HEAD'
-  | 'OPTIONS';
-
-export type RestfulClientParams = {
-  method: HTTPMethod;
-  url: string;
-  body?: string;
-};

@@ -36,7 +36,9 @@ const HeadersEditor = ({ headers, setHeaders }: HeadersEditorProps) => {
   return (
     <Flex vertical gap="small">
       <Flex align="baseline" justify="space-between">
-        <Title level={4}>{t('headers')}</Title>
+        <Title level={5} style={{ margin: '0' }}>
+          {t('headers')}
+        </Title>
         <Button onClick={addHeader} type="dashed">
           + {t('addHeader')}
         </Button>

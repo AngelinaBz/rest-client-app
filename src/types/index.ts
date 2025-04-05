@@ -11,7 +11,15 @@ export type Params = {
 
 export { ERROR_MAP, Status } from './error-page-status-types';
 
-export const HTTP_METHODS = ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'] as const;
+export const HTTP_METHODS = [
+  'GET',
+  'POST',
+  'PUT',
+  'DELETE',
+  'PATCH',
+  'HEAD',
+  'OPTIONS',
+] as const;
 
 export type HttpMethod = (typeof HTTP_METHODS)[number];
 
