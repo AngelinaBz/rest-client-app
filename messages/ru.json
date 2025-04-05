@@ -45,7 +45,7 @@
     "plainText": "Обычный текст",
     "requestBody": "Тело запроса: ",
     "requestBodyPlaceholder": "Введите тело запроса...",
-    "sendRequest": "Отправить запрос",
+    "send": "Отправить",
     "response": "Ответ: ",
     "noResponseYet": "Ответ пока не получен.",
     "invalidUrlMessage": "Неверный URL. Пожалуйста, введите корректный адрес HTTP или HTTPS.",

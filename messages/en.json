@@ -45,7 +45,7 @@
     "plainText": "Plain Text",
     "requestBody": "Request Body: ",
     "requestBodyPlaceholder": "Enter request body...",
-    "sendRequest": "Send Request",
+    "send": "Send",
     "response": "Response: ",
     "noResponseYet": "No response yet.",
     "invalidUrlMessage": "Invalid URL. Please enter a valid HTTP or HTTPS address.",
