@@ -25,7 +25,10 @@ const AppHeader = (): React.JSX.Element => {
   }, []);
 
   return (
-    <Header className={`${styles.header} ${isSticky ? styles.sticky : ''}`}>
+    <Header
+      className={`${styles.header} ${isSticky ? styles.sticky : ''}`}
+      style={{ position: 'sticky', top: 0, left: 0, right: 0, zIndex: 1000 }}
+    >
       <Link className={styles.logo} href={Routes.MAIN}>
         REST Client
       </Link>

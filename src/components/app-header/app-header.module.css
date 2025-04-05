@@ -2,7 +2,7 @@
   background-color: var(--secondary-bg);
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
   transition: backgroud-color 0.3s ease;
 }
 
@@ -12,10 +12,6 @@
 }
 
 :global(.ant-layout-header).sticky {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
   background-color: var(--hover);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
