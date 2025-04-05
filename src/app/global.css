@@ -32,9 +32,6 @@ body {
 
 .main {
   flex: 1;
-}
-
-main {
   display: flex;
   flex-direction: column;
   align-items: center;
