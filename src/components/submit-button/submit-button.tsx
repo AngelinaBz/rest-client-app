@@ -9,7 +9,7 @@ const SubmitButton = ({ onClick }: SubmitButtonProps) => {
   const t = useTranslations('RestfulClient');
 
   return (
-    <Button type="primary" onClick={onClick} style={{ width: '100%' }}>
+    <Button type="primary" onClick={onClick}>
       {t('sendRequest')}
     </Button>
   );

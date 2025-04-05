@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
-import { Divider, Flex, Space, Typography } from 'antd';
+import { Card, Flex, Space, Tabs, Typography } from 'antd';
 import { useRequest } from '@/utils/use-request';
 import { HttpMethod, RequestParams, RequestHistoryParams } from '@/types';
 import { MethodSelector } from '../method-selector';
@@ -46,16 +46,33 @@ const RestfulClient = () => {
   };
 
   return (
-    <Space direction="vertical" style={{ width: '96%', margin: '0 auto' }}>
-      <Title level={3}>{t('title')}</Title>
+    <Space
+      direction="vertical"
+      size="small"
+      style={{ width: '96%', margin: '0 auto' }}
+    >
+      <Title level={4}>{t('title')}</Title>
       <Flex gap={'small'}>
         <MethodSelector method={method} setMethod={setMethod} />
         <URLInput url={url} setUrl={setUrl} />
+        <SubmitButton onClick={handleSubmit} />
       </Flex>
-      <HeadersEditor headers={headers} setHeaders={setHeaders} />
-      <BodyEditor body={body} setBody={setBody} />
-      <SubmitButton onClick={handleSubmit} />
-      <Divider />
+
+      <Card size="small">
+        <Tabs defaultActiveKey="headers" type="card" size="small">
+          <Tabs.TabPane tab="Headers" key="headers">
+            <div style={{ height: 200, overflowY: 'auto' }}>
+              <HeadersEditor headers={headers} setHeaders={setHeaders} />
+            </div>
+          </Tabs.TabPane>
+          <Tabs.TabPane tab="Body" key="body">
+            <div style={{ height: 200, overflowY: 'auto' }}>
+              <BodyEditor body={body} setBody={setBody} />
+            </div>
+          </Tabs.TabPane>
+        </Tabs>
+      </Card>
+
       <ResponseViewer response={response} />
     </Space>
   );
