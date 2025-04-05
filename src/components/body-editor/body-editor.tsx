@@ -16,21 +16,26 @@ const BodyEditor = ({ body, setBody }: BodyEditorProps) => {
 
   return (
     <Flex vertical gap="small">
-      <Title level={4}>{t('requestBody')}</Title>
-      <Select
-        value={type}
-        onChange={setType}
-        style={{ marginBottom: 10, width: 100 }}
-      >
-        <Select.Option value="JSON">JSON</Select.Option>
-        <Select.Option value="TEXT">{t('plainText')}</Select.Option>
-      </Select>
-      <TextArea
-        rows={6}
-        value={body}
-        onChange={(e) => setBody(e.target.value)}
-        placeholder={t('requestBodyPlaceholder')}
-      />
+      <Title level={5} style={{ margin: '0' }}>
+        {t('requestBody')}
+      </Title>
+      <Flex align="start" gap={'small'}>
+        <Select
+          value={type}
+          onChange={setType}
+          style={{ marginBottom: 10, width: 100 }}
+        >
+          <Select.Option value="JSON">JSON</Select.Option>
+          <Select.Option value="TEXT">{t('plainText')}</Select.Option>
+        </Select>
+        <TextArea
+          rows={6}
+          value={body}
+          style={{ width: '100%' }}
+          onChange={(e) => setBody(e.target.value)}
+          placeholder={t('requestBodyPlaceholder')}
+        />
+      </Flex>
     </Flex>
   );
 };

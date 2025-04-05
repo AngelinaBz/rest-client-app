@@ -6,18 +6,3 @@ export const Routes = {
   HISTORY: '/history',
   RESTFUL_CLIENT: (method: HTTPMethod) => `/${method}`,
 } as const;
-
-export type HTTPMethod =
-  | 'GET'
-  | 'POST'
-  | 'PUT'
-  | 'PATCH'
-  | 'DELETE'
-  | 'HEAD'
-  | 'OPTIONS';
-
-export type RestfulClientParams = {
-  method: HTTPMethod;
-  url: string;
-  body?: string;
-};
