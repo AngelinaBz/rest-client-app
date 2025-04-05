@@ -6,7 +6,6 @@
   "LocaleSwitcher": {
     "locale": "{locale, select, ru {Russian} en {English} other {Other}}"
   },
-<<<<<<< HEAD
   "Form": {
     "hidePassword": "Hide password",
     "email": "Email",
@@ -22,7 +21,7 @@
       "signIn": "Sign Up",
       "signUp": "Sign In"
     }
-=======
+  },
   "RestfulClient": {
     "title": "Restful Client",
     "urlInputPlaceholder": "Enter request URL",
@@ -39,6 +38,5 @@
     "noResponseYet": "No response yet.",
     "invalidUrlMessage": "Invalid URL. Please enter a valid HTTP or HTTPS address.",
     "unknownErrorMessage": "An unknown error occurred."
->>>>>>> 96d0615 (feat: add restful client page layout storing response to localstorage)
   }
 }
