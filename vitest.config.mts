@@ -14,6 +14,7 @@ export default defineConfig({
         '**/node_modules/**',
         '**/*.test.tsx',
         '**/*.spec.tsx',
+        '**/__mocks__/**',
       ],
     },
   },
