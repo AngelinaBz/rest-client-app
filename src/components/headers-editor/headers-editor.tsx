@@ -1,7 +1,8 @@
 import { DeleteOutlined } from '@ant-design/icons';
-import { Input, Button, Typography, Flex, Tooltip } from 'antd';
+import { Button, Typography, Flex, Tooltip, AutoComplete } from 'antd';
 import { useTranslations } from 'use-intl';
 import type { HeaderType } from '@/types';
+import { headersMap } from '@/utils/headers-map-data';
 
 const { Title } = Typography;
 
@@ -32,15 +33,39 @@ const HeadersEditor = ({
       </Flex>
       {headers.map((header, index) => (
         <Flex key={index} gap="small">
-          <Input
+          <AutoComplete
             placeholder={t('headerKeyPlaceholder')}
             value={header.key}
-            onChange={(e) => updateHeader(index, e.target.value, header.value)}
+            options={Object.keys(headersMap).map((key) => ({ value: key }))}
+            style={{ width: '90%' }}
+            onChange={(value) => updateHeader(index, value, header.value)}
+            filterOption={(inputValue, option) => {
+              if (!option) {
+                return false;
+              }
+              return option.value
+                .toLowerCase()
+                .includes(inputValue.toLowerCase());
+            }}
           />
-          <Input
+          <AutoComplete
             placeholder={t('headerValuePlaceholder')}
             value={header.value}
-            onChange={(e) => updateHeader(index, header.key, e.target.value)}
+            options={
+              headersMap[header.key]
+                ? headersMap[header.key].map((value) => ({ value }))
+                : []
+            }
+            style={{ width: '90%' }}
+            onChange={(value) => updateHeader(index, header.key, value)}
+            filterOption={(inputValue, option) => {
+              if (!option) {
+                return false;
+              }
+              return option.value
+                .toLowerCase()
+                .includes(inputValue.toLowerCase());
+            }}
           />
           {headers.length > 1 && (
             <Tooltip title={t('deleteHeader')}>
