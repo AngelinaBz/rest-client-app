@@ -1,7 +1,9 @@
 'use client';
 
 import { GithubOutlined } from '@ant-design/icons';
-import { Layout, Space, Typography } from 'antd';
+import { Dropdown, Layout, Space, Typography } from 'antd';
+import { useState } from 'react';
+import { gitHubMenuLinks } from '@/utils/github-menu-links';
 import styles from './app-footer.module.css';
 
 const { Footer } = Layout;
@@ -9,18 +11,19 @@ const { Link } = Typography;
 
 const AppFooter = (): React.JSX.Element => {
   const year = new Date().getFullYear().toString();
+  const [open, setOpen] = useState(false);
 
   return (
     <Footer className={styles.footer}>
       <Space className={styles['footer-container']} size="large" align="center">
-        <Link
-          className={styles['footer-link']}
-          href="https://github.com/AngelinaBz/rest-client-app"
-          target="_blank"
-          rel="noopener noreferrer"
+        <Dropdown
+          menu={{ items: gitHubMenuLinks }}
+          trigger={['hover']}
+          open={open}
+          onOpenChange={setOpen}
         >
           <GithubOutlined className={styles['footer-logo']} alt="GitHub logo" />
-        </Link>
+        </Dropdown>
 
         <span>|</span>
 
