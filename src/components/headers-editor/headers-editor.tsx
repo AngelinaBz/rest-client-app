@@ -1,37 +1,24 @@
 import { DeleteOutlined } from '@ant-design/icons';
 import { Input, Button, Typography, Flex, Tooltip } from 'antd';
-import { Dispatch, SetStateAction } from 'react';
 import { useTranslations } from 'use-intl';
+import type { HeaderType } from '@/types';
 
 const { Title } = Typography;
 
-type Header = {
-  key: string;
-  value: string;
-};
-
 type HeadersEditorProps = {
-  headers: Header[];
-  setHeaders: Dispatch<SetStateAction<Header[]>>;
+  headers: HeaderType[];
+  addHeader: () => void;
+  updateHeader: (index: number, key: string, value: string) => void;
+  removeHeader: (index: number) => void;
 };
 
-const HeadersEditor = ({ headers, setHeaders }: HeadersEditorProps) => {
+const HeadersEditor = ({
+  headers,
+  addHeader,
+  updateHeader,
+  removeHeader,
+}: HeadersEditorProps) => {
   const t = useTranslations('RestfulClient');
-
-  const updateHeader = (index: number, key: string, value: string) => {
-    const newHeaders = [...headers];
-    newHeaders[index] = { key, value };
-    setHeaders(newHeaders);
-  };
-
-  const addHeader = () => {
-    setHeaders([...headers, { key: '', value: '' }]);
-  };
-
-  const removeHeader = (index: number) => {
-    const newHeaders = headers.filter((_, idx) => idx !== index);
-    setHeaders(newHeaders);
-  };
 
   return (
     <Flex vertical gap="small">

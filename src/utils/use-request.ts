@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { RequestParams, ResponseData } from '@/types';
 import { useTranslations } from 'next-intl';
+import { isJSON, isValidUrl } from './request-validation';
 
 export const useRequest = () => {
   const [response, setResponse] = useState<ResponseData | null>(null);
@@ -49,13 +50,6 @@ export const useRequest = () => {
       };
 
       setResponse(formattedResponse);
-      saveToHistory({
-        method,
-        url,
-        headers,
-        body,
-        response: formattedResponse,
-      });
     } catch (error) {
       if (error instanceof Error) {
         setResponse({
@@ -74,45 +68,4 @@ export const useRequest = () => {
   };
 
   return { response, sendRequest };
-};
-
-const saveToHistory = ({
-  method,
-  url,
-  headers,
-  body,
-  response,
-}: RequestParams & { response: ResponseData }) => {
-  const history = JSON.parse(localStorage.getItem('requestHistory') || '[]');
-  const newEntry = {
-    method,
-    url,
-    headers,
-    body,
-    response,
-    timestamp: Date.now(),
-  };
-
-  localStorage.setItem(
-    'requestHistory',
-    JSON.stringify([newEntry, ...history])
-  );
-};
-
-const isJSON = (str: string) => {
-  try {
-    JSON.parse(str);
-    return true;
-  } catch {
-    return false;
-  }
-};
-
-const isValidUrl = (url: string) => {
-  try {
-    const parsed = new URL(url);
-    return parsed.protocol === 'http:' || parsed.protocol === 'https:';
-  } catch {
-    return false;
-  }
 };

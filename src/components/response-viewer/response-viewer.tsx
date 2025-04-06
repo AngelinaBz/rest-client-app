@@ -1,3 +1,4 @@
+import React from 'react';
 import { Card } from 'antd';
 import { ResponseData } from '@/types';
 import { useTranslations } from 'use-intl';
@@ -28,4 +29,4 @@ const ResponseViewer = ({ response }: { response: ResponseData | null }) => {
   );
 };
 
-export default ResponseViewer;
+export default React.memo(ResponseViewer);
