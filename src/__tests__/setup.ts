@@ -7,11 +7,6 @@ afterEach(() => {
 });
 
 vi.mock(
-  'next-intl',
-  async () => await import('@/__tests__/__mocks__/next-intl')
-);
-
-vi.mock(
   '@/i18n/navigation',
   async () => await import('@/__tests__/__mocks__/navigation')
 );

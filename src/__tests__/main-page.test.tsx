@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import MainPage from '@/app/[locale]/page';
 import enMessages from '../../messages/en.json';
 import ruMessages from '../../messages/ru.json';
-import { __setLocale } from '@/__tests__/__mocks__/next-intl';
+import { NextIntlClientProvider } from 'next-intl';
 
 vi.mock('@/components/team/team', () => ({
   default: () => <div>Team component</div>,
@@ -15,9 +15,12 @@ describe('MainPage', () => {
   });
 
   it('renders Main Page correctly with en locale', () => {
-    __setLocale('en');
     const message = enMessages;
-    render(<MainPage />);
+    render(
+      <NextIntlClientProvider locale="en" messages={enMessages}>
+        <MainPage />
+      </NextIntlClientProvider>
+    );
 
     expect(screen.getByText(message.MainPage.title)).toBeInTheDocument();
     expect(
@@ -38,9 +41,12 @@ describe('MainPage', () => {
   });
 
   it('renders Main Page correctly with ru locale', () => {
-    __setLocale('ru');
     const message = ruMessages;
-    render(<MainPage />);
+    render(
+      <NextIntlClientProvider locale="ru" messages={message}>
+        <MainPage />
+      </NextIntlClientProvider>
+    );
 
     expect(screen.getByText(message.MainPage.title)).toBeInTheDocument();
     expect(
