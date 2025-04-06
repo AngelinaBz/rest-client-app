@@ -1,49 +1,44 @@
 import dynamic from 'next/dynamic';
-import { useEffect, useState } from 'react';
-import { Card, Flex, Space, Tabs } from 'antd';
+import { useCallback, useState } from 'react';
+import { Card, Flex, Space } from 'antd';
 import { useRequest } from '@/utils/use-request';
-import { HttpMethod, RequestParams, RequestHistoryParams } from '@/types';
+import { HttpMethod } from '@/types';
 import { MethodSelector } from '../method-selector';
 import { URLInput } from '../url-input';
-import { HeadersEditor } from '../headers-editor';
 import { SubmitButton } from '../submit-button';
 import { useTranslations } from 'next-intl';
-import styles from './restful-client-component.module.css';
-import { GeneratedCode } from '../generated-code';
+import { useLocalStorage } from '@/utils/use-localstorage';
+import { useHistoryLocalstorage } from '@/utils/use-history-localstorage';
+import { useHeaders } from '@/utils/useHeaders';
+import { RestClientTabs } from '../rest-client-tabs.tsx';
 
-const BodyEditor = dynamic(() => import('../body-editor'));
-const ResponseViewer = dynamic(() => import('../response-viewer'));
+const ResponseViewer = dynamic(() => import('../response-viewer'), {
+  ssr: false,
+});
 
 const RestfulClient = () => {
   const [method, setMethod] = useState<HttpMethod>('GET');
   const [url, setUrl] = useState('');
-  const [headers, setHeaders] = useState([{ key: '', value: '' }]);
+  const { headers, addHeader, updateHeader, removeHeader } = useHeaders();
   const [body, setBody] = useState('');
   const { response, sendRequest } = useRequest();
-
-  const [history, setHistory] = useState<RequestHistoryParams[]>([]);
+  const [, setRequests] = useLocalStorage();
+  const [, setHistory] = useHistoryLocalstorage();
 
   const t = useTranslations('RestfulClient');
 
-  useEffect(() => {
-    const savedRequests = JSON.parse(localStorage.getItem('requests') || '[]');
-    setHistory(Array.isArray(savedRequests) ? savedRequests : []);
-  }, []);
-
-  const saveRequestToLocalStorage = (request: RequestParams) => {
-    const newHistory = [
-      ...history,
-      { ...request, timestamp: new Date().toISOString() },
-    ];
-    localStorage.setItem('requests', JSON.stringify(newHistory));
-    setHistory(newHistory);
-  };
-
-  const handleSubmit = () => {
-    const request = { method, url, headers, body };
-    saveRequestToLocalStorage(request);
-    sendRequest(request);
-  };
+  const handleSubmit = useCallback(() => {
+    if (url.trim()) {
+      console.log(url);
+      const request = { method, url, headers, body };
+      setRequests(request);
+      setHistory((prevHistory) => {
+        const newHistory = [...prevHistory, request];
+        return newHistory.slice(-10);
+      });
+      sendRequest(request);
+    }
+  }, [method, url, headers, body, sendRequest, setRequests, setHistory]);
 
   return (
     <Space
@@ -60,28 +55,16 @@ const RestfulClient = () => {
       </Card>
 
       <Card size="small">
-        <Tabs defaultActiveKey="headers" type="card" size="small">
-          <Tabs.TabPane tab="Headers" key="headers">
-            <div className={styles['headers-tab']}>
-              <HeadersEditor headers={headers} setHeaders={setHeaders} />
-            </div>
-          </Tabs.TabPane>
-          <Tabs.TabPane tab="Body" key="body">
-            <div className={styles['body-tab']}>
-              <BodyEditor body={body} setBody={setBody} />
-            </div>
-          </Tabs.TabPane>
-          <Tabs.TabPane tab="Code" key="code">
-            <div className={styles['code-tab']}>
-              <GeneratedCode
-                url={url}
-                method={method}
-                headers={headers}
-                body={body}
-              />
-            </div>
-          </Tabs.TabPane>
-        </Tabs>
+        <RestClientTabs
+          headers={headers}
+          addHeader={addHeader}
+          updateHeader={updateHeader}
+          removeHeader={removeHeader}
+          body={body}
+          setBody={setBody}
+          url={url}
+          method={method}
+        />
       </Card>
 
       <ResponseViewer response={response} />

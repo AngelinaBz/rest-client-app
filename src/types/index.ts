@@ -9,6 +9,11 @@ export type Params = {
   locale: string;
 };
 
+export type HeaderType = {
+  key: string;
+  value: string;
+};
+
 export { ERROR_MAP, Status } from './error-page-status-types';
 
 export const HTTP_METHODS = [
