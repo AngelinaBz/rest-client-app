@@ -17,7 +17,7 @@ describe('MainPage', () => {
   it('renders Main Page correctly with en locale', () => {
     const message = enMessages;
     render(
-      <NextIntlClientProvider locale="en" messages={enMessages}>
+      <NextIntlClientProvider locale="en" messages={message}>
         <MainPage />
       </NextIntlClientProvider>
     );
