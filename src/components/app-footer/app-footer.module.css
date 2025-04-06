@@ -9,6 +9,7 @@
 :global(.anticon).footer-logo {
   font-size: 2rem;
   color: var(--text);
+  cursor: pointer;
 }
 
 img.footer-logo {

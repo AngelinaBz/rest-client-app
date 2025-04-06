@@ -3,15 +3,26 @@
 import { GithubOutlined } from '@ant-design/icons';
 import { Dropdown, Layout, Space, Typography } from 'antd';
 import { useState } from 'react';
-import { gitHubMenuLinks } from '@/utils/github-menu-links';
+import { useTranslations } from 'next-intl';
+import { getTeamMembers } from '@/helpers/getTeamMember';
 import styles from './app-footer.module.css';
 
 const { Footer } = Layout;
 const { Link } = Typography;
 
 const AppFooter = (): React.JSX.Element => {
+  const t = useTranslations('Team');
   const year = new Date().getFullYear().toString();
   const [open, setOpen] = useState(false);
+  const teamMembers = getTeamMembers(t);
+  const gitHubMenuLinks = teamMembers.map((member, index) => ({
+    key: index.toString(),
+    label: (
+      <a href={member.github} target="_blank" rel="noopener noreferrer">
+        {member.name}
+      </a>
+    ),
+  }));
 
   return (
     <Footer className={styles.footer}>
