@@ -21,5 +21,20 @@
       "signIn": "Sign Up",
       "signUp": "Sign In"
     }
+  },
+  "Validation": {
+    "email": {
+      "required": "Email is required",
+      "valid": "Please enter a valid email address"
+    },
+    "password": {
+      "required": "Password is required",
+      "digit": "digit",
+      "uppercaseLetter": "uppercase letter",
+      "lowercaseLetter": "lowercase letter",
+      "specialChar": "special character",
+      "minLength": "Minimal password length is {length} characters",
+      "charError": "Password should include:"
+    }
   }
 }

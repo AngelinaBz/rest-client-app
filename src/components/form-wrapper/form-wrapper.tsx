@@ -9,7 +9,7 @@ const FormWrapper = ({ children }: Props) => {
       style={{
         width: '100%',
         maxWidth: '600px',
-        minWidth: '300px',
+        minWidth: '320px',
         borderRadius: '8px',
       }}
     >
