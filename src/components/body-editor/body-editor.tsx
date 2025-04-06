@@ -1,8 +1,7 @@
-import { Card, Flex, Input, Select } from 'antd';
+import { Card, Flex, Select } from 'antd';
 import { useState } from 'react';
+import Editor from '@monaco-editor/react';
 import { useTranslations } from 'use-intl';
-
-const { TextArea } = Input;
 
 type BodyEditorProps = {
   body: string;
@@ -12,6 +11,7 @@ type BodyEditorProps = {
 const BodyEditor = ({ body, setBody }: BodyEditorProps) => {
   const [type, setType] = useState('JSON');
   const t = useTranslations('RestfulClient');
+  const language = type === 'JSON' ? 'json' : 'plaintext';
 
   return (
     <Card title={t('requestBody')} size="small">
@@ -24,12 +24,20 @@ const BodyEditor = ({ body, setBody }: BodyEditorProps) => {
           <Select.Option value="JSON">JSON</Select.Option>
           <Select.Option value="TEXT">{t('plainText')}</Select.Option>
         </Select>
-        <TextArea
-          rows={5}
+        <Editor
+          height="135px"
+          theme="light"
+          defaultLanguage={language}
+          language={language}
           value={body}
-          style={{ width: '100%' }}
-          onChange={(e) => setBody(e.target.value)}
-          placeholder={t('requestBodyPlaceholder')}
+          onChange={(value) => setBody(value || '')}
+          options={{
+            minimap: { enabled: false },
+            fontSize: 14,
+            lineNumbers: 'on',
+            scrollBeyondLastLine: false,
+            wordWrap: 'on',
+          }}
         />
       </Flex>
     </Card>
