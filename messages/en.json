@@ -69,5 +69,10 @@
     "noResponseYet": "No response yet.",
     "invalidUrlMessage": "Invalid URL. Please enter a valid HTTP or HTTPS address.",
     "unknownErrorMessage": "An unknown error occurred."
+  },
+  "Tabs": {
+    "label1": "Headers",
+    "label2": "Body",
+    "label3": "Code"
   }
 }

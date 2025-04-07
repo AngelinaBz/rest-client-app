@@ -69,5 +69,10 @@
     "noResponseYet": "Ответ пока не получен.",
     "invalidUrlMessage": "Неверный URL. Пожалуйста, введите корректный адрес HTTP или HTTPS.",
     "unknownErrorMessage": "Произошла неизвестная ошибка."
+  },
+  "Tabs": {
+    "label1": "Заголовки",
+    "label2": "Тело запроса",
+    "label3": "Код"
   }
 }
