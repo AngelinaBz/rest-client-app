@@ -1,17 +1,9 @@
-import dynamic from 'next/dynamic';
 import { Tabs } from 'antd';
 import { Dispatch, SetStateAction } from 'react';
-import { HeadersEditor } from '../headers-editor';
 import { HeaderType, HttpMethod } from '@/types';
 import { useTranslations } from 'next-intl';
 import styles from './rest-client-tabs.module.css';
-
-const BodyEditor = dynamic(() => import('../body-editor'), {
-  ssr: false,
-});
-const GeneratedCode = dynamic(() => import('../generated-code'), {
-  ssr: false,
-});
+import { getTabs } from '@/helpers/get-tabs';
 
 type Props = {
   headers: HeaderType[];
@@ -34,47 +26,25 @@ const RestClientTabs = ({
   url,
   method,
 }: Props): React.JSX.Element => {
-  const t = useTranslations('RestfulClient');
+  const t = useTranslations('Tabs');
 
-  const tabItems = [
-    {
-      label: t('headers'),
-      key: 'headers',
-      children: (
-        <div className={styles['headers-tab']}>
-          <HeadersEditor
-            headers={headers}
-            addHeader={addHeader}
-            updateHeader={updateHeader}
-            removeHeader={removeHeader}
-          />
-        </div>
-      ),
-    },
-    {
-      label: t('body'),
-      key: 'body',
-      children: (
-        <div className={styles['body-tab']}>
-          <BodyEditor body={body} setBody={setBody} />
-        </div>
-      ),
-    },
-    {
-      label: t('code'),
-      key: 'code',
-      children: (
-        <div className={styles['code-tab']}>
-          <GeneratedCode
-            url={url}
-            method={method}
-            headers={headers}
-            body={body}
-          />
-        </div>
-      ),
-    },
-  ];
+  const tabs = getTabs({
+    t,
+    headers,
+    addHeader,
+    updateHeader,
+    removeHeader,
+    body,
+    setBody,
+    url,
+    method,
+  });
+
+  const tabItems = tabs.map((tab, index) => ({
+    label: tab.label,
+    key: index.toString(),
+    children: <div className={styles.tab}>{tab.component}</div>,
+  }));
 
   return (
     <Tabs
