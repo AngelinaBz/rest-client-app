@@ -4,6 +4,7 @@ export const Routes = {
   SIGN_UP: '/sign-up',
   VARIABLES: '/variables',
   HISTORY: '/history',
+  RESTFUL_CLIENT: (method: HTTPMethod) => `/${method}`,
 } as const;
 
 export type HTTPMethod =
