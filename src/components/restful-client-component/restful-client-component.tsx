@@ -16,7 +16,7 @@ const ResponseViewer = dynamic(() => import('../response-viewer'), {
   ssr: false,
 });
 
-const RestfulClient = () => {
+const RestfulClient = (): React.JSX.Element => {
   const [method, setMethod] = useState<HttpMethod>('GET');
   const [url, setUrl] = useState('');
   const { headers, addHeader, updateHeader, removeHeader } = useHeaders();
@@ -33,7 +33,7 @@ const RestfulClient = () => {
       setRequests(request);
       setHistory((prevHistory) => {
         const newHistory = [...prevHistory, request];
-        return newHistory.slice(-10);
+        return newHistory;
       });
       sendRequest(request);
     }

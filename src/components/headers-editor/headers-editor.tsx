@@ -18,7 +18,7 @@ const HeadersEditor = ({
   addHeader,
   updateHeader,
   removeHeader,
-}: HeadersEditorProps) => {
+}: HeadersEditorProps): React.JSX.Element => {
   const t = useTranslations('RestfulClient');
 
   return (

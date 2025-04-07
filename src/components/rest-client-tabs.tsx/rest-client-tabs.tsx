@@ -33,7 +33,7 @@ const RestClientTabs = ({
   setBody,
   url,
   method,
-}: Props) => {
+}: Props): React.JSX.Element => {
   const t = useTranslations('RestfulClient');
 
   const tabItems = [

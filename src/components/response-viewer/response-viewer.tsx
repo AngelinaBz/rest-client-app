@@ -4,7 +4,11 @@ import { ResponseData } from '@/types';
 import { useTranslations } from 'use-intl';
 import styles from './response-viewer.module.css';
 
-const ResponseViewer = ({ response }: { response: ResponseData | null }) => {
+const ResponseViewer = ({
+  response,
+}: {
+  response: ResponseData | null;
+}): React.JSX.Element => {
   const t = useTranslations('RestfulClient');
 
   if (!response) return <Card title={t('response')}>{t('noResponseYet')}</Card>;
@@ -15,8 +19,6 @@ const ResponseViewer = ({ response }: { response: ResponseData | null }) => {
   } catch (error) {
     if (error instanceof Error) {
       parsedBody = error.message;
-    } else {
-      parsedBody = response.body;
     }
   }
 

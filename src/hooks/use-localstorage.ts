@@ -7,21 +7,18 @@ export const useLocalStorage = (): [
   Dispatch<SetStateAction<RequestParams>>,
 ] => {
   const [requests, setRequests] = useState(() => {
-    if (typeof window !== 'undefined') {
-      try {
-        const item = window.localStorage.getItem(REQUESTS_VALUE);
-        return item ? JSON.parse(item) : null;
-      } catch {
-        return null;
-      }
+    if (typeof window === 'undefined') return [];
+
+    try {
+      const item = window.localStorage.getItem(REQUESTS_VALUE);
+      return item ? JSON.parse(item) : [];
+    } catch {
+      return [];
     }
-    return null;
   });
 
   useEffect(() => {
-    try {
-      window.localStorage.setItem(REQUESTS_VALUE, JSON.stringify(requests));
-    } catch {}
+    window.localStorage.setItem(REQUESTS_VALUE, JSON.stringify(requests));
   }, [requests]);
 
   return [requests, setRequests] as const;
