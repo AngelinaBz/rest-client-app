@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { HISTORY_VALUE } from './constants';
+import { HISTORY_VALUE } from '@/utils/constants';
 import { RequestParams } from '@/types';
 
 export const useHistoryLocalstorage = (): [

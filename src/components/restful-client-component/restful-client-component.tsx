@@ -1,15 +1,15 @@
 import dynamic from 'next/dynamic';
 import { useCallback, useState } from 'react';
 import { Card, Flex, Space } from 'antd';
-import { useRequest } from '@/utils/use-request';
+import { useRequest } from '@/hooks/use-request';
 import { HttpMethod } from '@/types';
 import { MethodSelector } from '../method-selector';
 import { URLInput } from '../url-input';
 import { SubmitButton } from '../submit-button';
 import { useTranslations } from 'next-intl';
-import { useLocalStorage } from '@/utils/use-localstorage';
-import { useHistoryLocalstorage } from '@/utils/use-history-localstorage';
-import { useHeaders } from '@/utils/useHeaders';
+import { useLocalStorage } from '@/hooks/use-localstorage';
+import { useHistoryLocalstorage } from '@/hooks/use-history-localstorage';
+import { useHeaders } from '@/hooks/use-headers';
 import { RestClientTabs } from '../rest-client-tabs.tsx';
 
 const ResponseViewer = dynamic(() => import('../response-viewer'), {
@@ -29,7 +29,6 @@ const RestfulClient = () => {
 
   const handleSubmit = useCallback(() => {
     if (url.trim()) {
-      console.log(url);
       const request = { method, url, headers, body };
       setRequests(request);
       setHistory((prevHistory) => {

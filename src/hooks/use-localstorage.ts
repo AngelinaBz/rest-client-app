@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { REQUESTS_VALUE } from './constants';
+import { REQUESTS_VALUE } from '@/utils/constants';
 import { RequestParams } from '@/types';
 
 export const useLocalStorage = (): [
