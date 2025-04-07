@@ -2,6 +2,7 @@ import dynamic from 'next/dynamic';
 import { HeadersEditor } from '@/components/headers-editor';
 import { HeaderType, HttpMethod } from '@/types';
 import { TabsKeys, TabsKeysType } from '@/types/tabs';
+import { TabsProps } from 'antd';
 
 const BodyEditor = dynamic(() => import('@/components/body-editor'), {
   ssr: false,
@@ -32,11 +33,12 @@ export const getTabs = ({
   setBody,
   url,
   method,
-}: TabsType) => {
+}: TabsType): TabsProps['items'] => {
   return [
     {
+      key: 'headers',
       label: t(TabsKeys.label1),
-      component: (
+      children: (
         <HeadersEditor
           headers={headers}
           addHeader={addHeader}
@@ -46,12 +48,14 @@ export const getTabs = ({
       ),
     },
     {
+      key: 'body',
       label: t(TabsKeys.label2),
-      component: <BodyEditor body={body} setBody={setBody} />,
+      children: <BodyEditor body={body} setBody={setBody} />,
     },
     {
+      key: 'code',
       label: t(TabsKeys.label3),
-      component: (
+      children: (
         <GeneratedCode
           method={method}
           url={url}

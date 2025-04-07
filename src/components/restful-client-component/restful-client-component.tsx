@@ -28,7 +28,7 @@ const RestfulClient = (): React.JSX.Element => {
   const t = useTranslations('RestfulClient');
 
   const handleSubmit = useCallback(() => {
-    if (url.trim()) return;
+    if (!url.trim()) return;
 
     const request = { method, url, headers, body };
     setRequests(request);
