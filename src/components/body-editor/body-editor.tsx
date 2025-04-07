@@ -8,7 +8,7 @@ type BodyEditorProps = {
   setBody: (value: string) => void;
 };
 
-const BodyEditor = ({ body, setBody }: BodyEditorProps) => {
+const BodyEditor = ({ body, setBody }: BodyEditorProps): React.JSX.Element => {
   const [type, setType] = useState('JSON');
   const t = useTranslations('RestfulClient');
   const language = type === 'JSON' ? 'json' : 'plaintext';

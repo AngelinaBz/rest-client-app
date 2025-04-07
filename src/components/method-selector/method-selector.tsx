@@ -7,7 +7,10 @@ type MethodSelectorProps = {
   setMethod: (value: HttpMethod) => void;
 };
 
-const MethodSelector = ({ method, setMethod }: MethodSelectorProps) => {
+const MethodSelector = ({
+  method,
+  setMethod,
+}: MethodSelectorProps): React.JSX.Element => {
   return (
     <Select value={method} onChange={setMethod} style={{ width: 120 }}>
       {HTTP_METHODS.map((method) => (

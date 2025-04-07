@@ -5,7 +5,7 @@ interface SubmitButtonProps {
   onClick: () => void;
 }
 
-const SubmitButton = ({ onClick }: SubmitButtonProps) => {
+const SubmitButton = ({ onClick }: SubmitButtonProps): React.JSX.Element => {
   const t = useTranslations('RestfulClient');
 
   return (

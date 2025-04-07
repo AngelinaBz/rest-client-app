@@ -5,7 +5,12 @@ import styles from './generated-code.module.css';
 
 const { Paragraph } = Typography;
 
-const GeneratedCode = ({ method, url, headers, body }: RequestParams) => {
+const GeneratedCode = ({
+  method,
+  url,
+  headers,
+  body,
+}: RequestParams): React.JSX.Element => {
   const code = fetchGeneratedCode({ method, url, headers, body });
 
   return (
