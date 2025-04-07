@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 
 type Props = { children: ReactNode };
 
-const FormWrapper = ({ children }: Props) => {
+const FormWrapper = ({ children }: Props): React.JSX.Element => {
   return (
     <Flex
       vertical

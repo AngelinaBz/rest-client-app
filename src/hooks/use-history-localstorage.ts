@@ -7,21 +7,18 @@ export const useHistoryLocalstorage = (): [
   Dispatch<SetStateAction<RequestParams[]>>,
 ] => {
   const [history, setHistory] = useState(() => {
-    if (typeof window !== 'undefined') {
-      try {
-        const item = window.localStorage.getItem(HISTORY_VALUE);
-        return item ? JSON.parse(item) : [];
-      } catch {
-        return [];
-      }
+    if (typeof window === 'undefined') return null;
+
+    try {
+      const item = window.localStorage.getItem(HISTORY_VALUE);
+      return item ? JSON.parse(item) : [];
+    } catch {
+      return [];
     }
-    return [];
   });
 
   useEffect(() => {
-    try {
-      window.localStorage.setItem(HISTORY_VALUE, JSON.stringify(history));
-    } catch {}
+    window.localStorage.setItem(HISTORY_VALUE, JSON.stringify(history));
   }, [history]);
 
   return [history, setHistory] as const;

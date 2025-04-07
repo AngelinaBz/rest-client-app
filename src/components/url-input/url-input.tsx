@@ -6,7 +6,7 @@ interface URLInputProps {
   setUrl: (url: string) => void;
 }
 
-const URLInput = ({ url, setUrl }: URLInputProps) => {
+const URLInput = ({ url, setUrl }: URLInputProps): React.JSX.Element => {
   const t = useTranslations('RestfulClient');
 
   return (
