@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { RequestParams, ResponseData } from '@/types';
 import { useTranslations } from 'next-intl';
-import { isJSON, isValidUrl } from './request-validation';
+import { isJSON, isValidUrl } from '../utils/request-validation';
 
 export const useRequest = () => {
   const [response, setResponse] = useState<ResponseData | null>(null);
@@ -16,7 +16,7 @@ export const useRequest = () => {
       setResponse({
         status: 0,
         headers: [],
-        body: t('invalidUrlMessage'),
+        body: JSON.stringify({ message: t('invalidUrlMessage') }),
       });
       return;
     }
@@ -55,13 +55,13 @@ export const useRequest = () => {
         setResponse({
           status: 500,
           headers: [],
-          body: error.message,
+          body: JSON.stringify({ message: error.message }),
         });
       } else {
         setResponse({
           status: 500,
           headers: [],
-          body: t('unknownErrorMessage'),
+          body: JSON.stringify({ message: t('unknownErrorMessage') }),
         });
       }
     }
