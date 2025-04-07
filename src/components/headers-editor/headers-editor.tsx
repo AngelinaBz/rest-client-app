@@ -21,6 +21,11 @@ const HeadersEditor = ({
 }: HeadersEditorProps): React.JSX.Element => {
   const t = useTranslations('RestfulClient');
 
+  const fiterOption = (inputValue: string, option?: { value?: string }) => {
+    if (!option || !option.value) return false;
+    return option.value.toLowerCase().includes(inputValue.toLowerCase());
+  };
+
   return (
     <Flex vertical style={{ width: '98%' }} gap="small">
       <Flex align="baseline" justify="space-between">
@@ -39,14 +44,7 @@ const HeadersEditor = ({
             options={Object.keys(headersMap).map((key) => ({ value: key }))}
             style={{ width: '90%' }}
             onChange={(value) => updateHeader(index, value, header.value)}
-            filterOption={(inputValue, option) => {
-              if (!option) {
-                return false;
-              }
-              return option.value
-                .toLowerCase()
-                .includes(inputValue.toLowerCase());
-            }}
+            filterOption={fiterOption}
           />
           <AutoComplete
             placeholder={t('headerValuePlaceholder')}
@@ -58,14 +56,7 @@ const HeadersEditor = ({
             }
             style={{ width: '90%' }}
             onChange={(value) => updateHeader(index, header.key, value)}
-            filterOption={(inputValue, option) => {
-              if (!option) {
-                return false;
-              }
-              return option.value
-                .toLowerCase()
-                .includes(inputValue.toLowerCase());
-            }}
+            filterOption={fiterOption}
           />
           <Tooltip title={t('deleteHeader')}>
             {headers.length > 1 ? (
