@@ -1,8 +1,9 @@
 import React from 'react';
 
-export type Tabs = {
-  label: string;
-  component: React.JSX.Element;
+export type TabsItem = {
+  key: string;
+  label: React.ReactNode;
+  children: React.ReactNode;
 };
 
 export const TabsKeys = {
