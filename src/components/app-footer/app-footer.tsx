@@ -18,8 +18,12 @@ const AppFooter = (): React.JSX.Element => {
   const gitHubMenuLinks = teamMembers.map((member, index) => ({
     key: index.toString(),
     label: (
-      <a href={member.github} target="_blank" rel="noopener noreferrer">
-        {member.name}
+      <a
+        href={`https://github.com/${member.github}`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {`@${member.github}`}
       </a>
     ),
   }));
