@@ -22,7 +22,7 @@ const HeadersEditor = ({
   const t = useTranslations('RestfulClient');
 
   return (
-    <Flex vertical gap="small">
+    <Flex vertical style={{ width: '98%' }} gap="small">
       <Flex align="baseline" justify="space-between">
         <Title level={5} style={{ margin: '0' }}>
           {t('headers')}
@@ -67,11 +67,13 @@ const HeadersEditor = ({
                 .includes(inputValue.toLowerCase());
             }}
           />
-          {headers.length > 1 && (
-            <Tooltip title={t('deleteHeader')}>
+          <Tooltip title={t('deleteHeader')}>
+            {headers.length > 1 ? (
               <DeleteOutlined onClick={() => removeHeader(index)} />
-            </Tooltip>
-          )}
+            ) : (
+              <DeleteOutlined style={{ opacity: 0.3, pointerEvents: 'none' }} />
+            )}
+          </Tooltip>
         </Flex>
       ))}
     </Flex>
