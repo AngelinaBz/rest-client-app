@@ -28,15 +28,12 @@ const RestfulClient = (): React.JSX.Element => {
   const t = useTranslations('RestfulClient');
 
   const handleSubmit = useCallback(() => {
-    if (url.trim()) {
-      const request = { method, url, headers, body };
-      setRequests(request);
-      setHistory((prevHistory) => {
-        const newHistory = [...prevHistory, request];
-        return newHistory;
-      });
-      sendRequest(request);
-    }
+    if (url.trim()) return;
+
+    const request = { method, url, headers, body };
+    setRequests(request);
+    setHistory((prevHistory) => [...prevHistory, request]);
+    sendRequest(request);
   }, [method, url, headers, body, sendRequest, setRequests, setHistory]);
 
   return (

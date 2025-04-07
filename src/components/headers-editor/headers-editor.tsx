@@ -44,7 +44,9 @@ const HeadersEditor = ({
             options={Object.keys(headersMap).map((key) => ({ value: key }))}
             style={{ width: '90%' }}
             onChange={(value) => updateHeader(index, value, header.value)}
-            filterOption={fiterOption}
+            filterOption={(inputValue, option) =>
+              fiterOption(inputValue, option)
+            }
           />
           <AutoComplete
             placeholder={t('headerValuePlaceholder')}
