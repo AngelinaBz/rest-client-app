@@ -2,7 +2,6 @@ import dynamic from 'next/dynamic';
 import { useCallback, useState } from 'react';
 import { Card, Flex, Space } from 'antd';
 import { useRequest } from '@/hooks/use-request';
-import { HttpMethod } from '@/types';
 import { MethodSelector } from '../method-selector';
 import { URLInput } from '../url-input';
 import { SubmitButton } from '../submit-button';
@@ -10,6 +9,7 @@ import { useTranslations } from 'next-intl';
 import { useLocalStorage } from '@/hooks/use-localstorage';
 import { useHistoryLocalstorage } from '@/hooks/use-history-localstorage';
 import { useHeaders } from '@/hooks/use-headers';
+import { HttpMethod } from '@/types';
 import { RestClientTabs } from '../rest-client-tabs';
 
 const ResponseViewer = dynamic(() => import('../response-viewer'), {
