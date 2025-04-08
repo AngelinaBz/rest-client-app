@@ -10,7 +10,7 @@ import { useTranslations } from 'next-intl';
 import { useLocalStorage } from '@/hooks/use-localstorage';
 import { useHistoryLocalstorage } from '@/hooks/use-history-localstorage';
 import { useHeaders } from '@/hooks/use-headers';
-import { RestClientTabs } from '../rest-client-tabs.tsx';
+import { RestClientTabs } from '../rest-client-tabs';
 
 const ResponseViewer = dynamic(() => import('../response-viewer'), {
   ssr: false,

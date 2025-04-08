@@ -1,4 +1,3 @@
-// hooks/useHeaders.ts
 import { useState } from 'react';
 import type { HeaderType } from '@/types';
 

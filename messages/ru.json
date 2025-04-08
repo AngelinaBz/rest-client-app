@@ -55,7 +55,7 @@
     "button": "Начать"
   },
   "RestfulClient": {
-    "title": "REST-клиент",
+    "title": "RESTFUL-клиент",
     "urlInputPlaceholder": "Введите URL запроса",
     "headers": "Заголовки: ",
     "addHeader": "Добавить заголовок",
