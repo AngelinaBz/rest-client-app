@@ -48,5 +48,10 @@
       "minLength": "Minimal password length is {length} characters",
       "charError": "Password should include:"
     }
+  },
+  "History": {
+    "title": "History",
+    "message": "You haven't sent any requests. Send your first request:",
+    "button": "Start Now"
   }
 }
