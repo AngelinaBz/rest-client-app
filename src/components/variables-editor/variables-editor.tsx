@@ -1,29 +1,19 @@
 'use client';
 
-import { useState } from 'react';
 import { DeleteOutlined } from '@ant-design/icons';
 import { Button, Flex, Tooltip, Input, Empty } from 'antd';
 import { useTranslations } from 'use-intl';
-import { VariableType } from '@/types';
+import { useObjectList } from '@/hooks/use-oblect-list';
 
 const VariablesEditor = () => {
   const t = useTranslations('Variables');
 
-  const [variables, setVariables] = useState<VariableType[]>([]);
-
-  const addVariable = () => {
-    setVariables((prev) => [...prev, { key: '', value: '' }]);
-  };
-
-  const updateVariable = (index: number, key: string, value: string) => {
-    setVariables((prev) =>
-      prev.map((variable, i) => (i === index ? { key, value } : variable))
-    );
-  };
-
-  const deleteVariable = (index: number) => {
-    setVariables((prev) => prev.filter((_, i) => i !== index));
-  };
+  const {
+    list: variables,
+    addItem: addVariable,
+    updateItem: updateVariable,
+    removeItem: deleteVariable,
+  } = useObjectList([]);
 
   return (
     <Flex vertical style={{ padding: '10px' }} gap="small">
