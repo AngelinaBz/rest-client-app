@@ -6,10 +6,9 @@ import { MethodSelector } from '../method-selector';
 import { URLInput } from '../url-input';
 import { SubmitButton } from '../submit-button';
 import { useTranslations } from 'next-intl';
-import { useLocalStorage } from '@/hooks/use-localstorage';
-import { useHistoryLocalstorage } from '@/hooks/use-history-localstorage';
+import { useHistoryLocalStorage } from '@/hooks/use-history-localstorage';
 import { useHeaders } from '@/hooks/use-headers';
-import { HttpMethod } from '@/types';
+import { HttpMethod, RequestHistoryParams } from '@/types';
 import { RestClientTabs } from '../rest-client-tabs';
 
 const ResponseViewer = dynamic(() => import('../response-viewer'), {
@@ -22,8 +21,7 @@ const RestfulClient = (): React.JSX.Element => {
   const { headers, addHeader, updateHeader, removeHeader } = useHeaders();
   const [body, setBody] = useState('');
   const { response, sendRequest } = useRequest();
-  const [, setRequests] = useLocalStorage();
-  const [, setHistory] = useHistoryLocalstorage();
+  const [, setHistory] = useHistoryLocalStorage();
 
   const t = useTranslations('RestfulClient');
 
@@ -31,10 +29,11 @@ const RestfulClient = (): React.JSX.Element => {
     if (!url.trim()) return;
 
     const request = { method, url, headers, body };
-    setRequests(request);
-    setHistory((prevHistory) => [...prevHistory, request]);
+    const timestamp = new Date().toString();
+    const requestHistory: RequestHistoryParams = { ...request, timestamp };
+    setHistory((prevHistory = []) => [...prevHistory, requestHistory]);
     sendRequest(request);
-  }, [method, url, headers, body, sendRequest, setRequests, setHistory]);
+  }, [method, url, headers, body, sendRequest, setHistory]);
 
   return (
     <Space

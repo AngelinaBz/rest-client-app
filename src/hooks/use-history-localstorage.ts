@@ -1,13 +1,13 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { HISTORY_VALUE } from '@/utils/constants';
-import { RequestParams } from '@/types';
+import { RequestHistoryParams } from '@/types';
 
-export const useHistoryLocalstorage = (): [
-  RequestParams[],
-  Dispatch<SetStateAction<RequestParams[]>>,
+export const useHistoryLocalStorage = (): [
+  RequestHistoryParams,
+  Dispatch<SetStateAction<RequestHistoryParams[]>>,
 ] => {
   const [history, setHistory] = useState(() => {
-    if (typeof window === 'undefined') return null;
+    if (typeof window === 'undefined') return [];
 
     try {
       const item = window.localStorage.getItem(HISTORY_VALUE);
