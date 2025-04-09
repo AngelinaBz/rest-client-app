@@ -14,6 +14,8 @@ export type ObjectType = {
   value: string;
 };
 
+export type HeaderType = ObjectType;
+
 export { ERROR_MAP, Status } from './error-page-status-types';
 
 export const HTTP_METHODS = [
