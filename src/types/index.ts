@@ -14,6 +14,8 @@ export type HeaderType = {
   value: string;
 };
 
+export type VariableType = HeaderType;
+
 export { ERROR_MAP, Status } from './error-page-status-types';
 
 export const HTTP_METHODS = [
