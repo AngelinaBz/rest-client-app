@@ -7,6 +7,7 @@ import { Link } from '@/i18n/navigation';
 import { Routes } from '@/types/routes';
 import { useHistoryLocalStorage } from '@/hooks/use-history-localstorage';
 import { RequestHistoryParams } from '@/types';
+import { DownOutlined, UpOutlined } from '@ant-design/icons';
 
 const { Text } = Typography;
 
@@ -16,6 +17,7 @@ const HistoryList = () => {
   const [sortedHistory, setSortedHistory] = useState<RequestHistoryParams[]>(
     []
   );
+  const [isAscending, setIsAscending] = useState(false);
 
   useEffect(() => {
     if (!history) return;
@@ -23,31 +25,39 @@ const HistoryList = () => {
     const sorted = [...history].sort((a, b) => {
       const timeA = new Date(a.timestamp).getTime();
       const timeB = new Date(b.timestamp).getTime();
-      return timeB - timeA;
+      return isAscending ? timeA - timeB : timeB - timeA;
     });
 
     setSortedHistory(sorted);
-  }, [history]);
+  }, [history, isAscending]);
+
+  const toggleSortOrder = () => {
+    setIsAscending((prev) => !prev);
+  };
 
   return (
     <Flex vertical style={{ padding: '10px' }} gap="small">
+      <Flex gap="small">
+        <Button onClick={toggleSortOrder}>
+          {isAscending ? <DownOutlined /> : <UpOutlined />}
+        </Button>
+      </Flex>
       {sortedHistory.length > 0 ? (
         <List
           pagination={{
             align: 'center',
             pageSize: 10,
           }}
+          style={{ cursor: 'pointer' }}
           dataSource={sortedHistory}
           bordered
           renderItem={(item, index) => (
             <List.Item key={index}>
               <List.Item.Meta
                 title={
-                  <>
-                    <Text>
-                      {item.method} {item.url}
-                    </Text>
-                  </>
+                  <Text>
+                    {item.method} {item.url}
+                  </Text>
                 }
                 description={new Date(item.timestamp).toLocaleString()}
               />
