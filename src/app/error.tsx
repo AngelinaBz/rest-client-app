@@ -1,7 +1,8 @@
 'use client';
 
 import { Result, Button } from 'antd';
-import { ERROR_MAP, Status } from '@/types';
+import { Status } from '@/types';
+import { useErrorMeta } from '@/hooks/useErrorMeta';
 
 type ErrorPageProps = {
   reset: () => void;
@@ -9,7 +10,7 @@ type ErrorPageProps = {
 
 export default function ErrorPage({ reset }: ErrorPageProps) {
   const status = Status[500];
-  const meta = ERROR_MAP[status];
+  const meta = useErrorMeta(status);
 
   return (
     <Result
@@ -18,7 +19,7 @@ export default function ErrorPage({ reset }: ErrorPageProps) {
       subTitle={meta.subTitle}
       extra={
         <Button type="primary" onClick={() => reset()}>
-          Try Again
+          {meta.buttonText}
         </Button>
       }
     />
