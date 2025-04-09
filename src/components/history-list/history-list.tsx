@@ -7,13 +7,13 @@ import { Link } from '@/i18n/navigation';
 import { Routes } from '@/types/routes';
 import { useHistoryLocalStorage } from '@/hooks/use-history-localstorage';
 import { RequestHistoryParams } from '@/types';
-import { DownOutlined, UpOutlined } from '@ant-design/icons';
+import { ClearOutlined, DownOutlined, UpOutlined } from '@ant-design/icons';
 
 const { Text } = Typography;
 
 const HistoryList = () => {
   const t = useTranslations('History');
-  const [history] = useHistoryLocalStorage();
+  const [history, setHistory] = useHistoryLocalStorage();
   const [sortedHistory, setSortedHistory] = useState<RequestHistoryParams[]>(
     []
   );
@@ -35,35 +35,44 @@ const HistoryList = () => {
     setIsAscending((prev) => !prev);
   };
 
+  const clearHistory = () => {
+    setHistory([]);
+  };
+
   return (
     <Flex vertical style={{ padding: '10px' }} gap="small">
-      <Flex gap="small">
-        <Button onClick={toggleSortOrder}>
-          {isAscending ? <DownOutlined /> : <UpOutlined />}
-        </Button>
-      </Flex>
       {sortedHistory.length > 0 ? (
-        <List
-          pagination={{
-            align: 'center',
-            pageSize: 10,
-          }}
-          style={{ cursor: 'pointer' }}
-          dataSource={sortedHistory}
-          bordered
-          renderItem={(item, index) => (
-            <List.Item key={index}>
-              <List.Item.Meta
-                title={
-                  <Text>
-                    {item.method} {item.url}
-                  </Text>
-                }
-                description={new Date(item.timestamp).toLocaleString()}
-              />
-            </List.Item>
-          )}
-        />
+        <>
+          <Flex gap="small">
+            <Button onClick={toggleSortOrder}>
+              {isAscending ? <DownOutlined /> : <UpOutlined />}
+            </Button>
+            <Button onClick={clearHistory}>
+              <ClearOutlined />
+            </Button>
+          </Flex>
+          <List
+            pagination={{
+              align: 'center',
+              pageSize: 10,
+            }}
+            style={{ cursor: 'pointer' }}
+            dataSource={sortedHistory}
+            bordered
+            renderItem={(item, index) => (
+              <List.Item key={index}>
+                <List.Item.Meta
+                  title={
+                    <Text>
+                      {item.method} {item.url}
+                    </Text>
+                  }
+                  description={new Date(item.timestamp).toLocaleString()}
+                />
+              </List.Item>
+            )}
+          />
+        </>
       ) : (
         <Empty description={t('message')}>
           <Link href={Routes.RESTFUL_CLIENT('GET')}>
