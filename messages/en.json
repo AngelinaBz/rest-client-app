@@ -53,5 +53,31 @@
     "title": "History",
     "message": "You haven't sent any requests. Send your first request:",
     "button": "Start Now"
+  },
+  "RestfulClient": {
+    "title": "Restful Client",
+    "urlInputPlaceholder": "Enter request URL",
+    "headers": "Headers: ",
+    "addHeader": "Add Header",
+    "deleteHeader": "Delete Header",
+    "headerKeyPlaceholder": "Header Key",
+    "headerValuePlaceholder": "Header Value",
+    "plainText": "Plain Text",
+    "requestBody": "Request Body: ",
+    "requestBodyPlaceholder": "Enter request body...",
+    "generatedCode": "Generated Code",
+    "body": "Body",
+    "code": "Code",
+    "send": "Send",
+    "sendRequest": "Send Request",
+    "response": "Response: ",
+    "noResponseYet": "No response yet.",
+    "invalidUrlMessage": "Invalid URL. Please enter a valid HTTP or HTTPS address.",
+    "unknownErrorMessage": "An unknown error occurred."
+  },
+  "Tabs": {
+    "label1": "Headers",
+    "label2": "Body",
+    "label3": "Code"
   }
 }

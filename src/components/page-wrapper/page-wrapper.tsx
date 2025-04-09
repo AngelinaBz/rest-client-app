@@ -6,11 +6,12 @@ type Props = { children: ReactNode };
 const FormWrapper = ({ children }: Props): React.JSX.Element => {
   return (
     <Flex
+      vertical
       style={{
         width: '100%',
-        maxWidth: '600px',
-        minWidth: '320px',
-        borderRadius: '8px',
+        maxWidth: '800px',
+        minWidth: '360px',
+        margin: '0 auto',
       }}
     >
       {children}

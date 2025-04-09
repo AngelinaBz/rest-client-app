@@ -53,5 +53,31 @@
     "title": "История запросов",
     "message": "У вас нет выполненных запросов. Отправьте свой первый запрос:",
     "button": "Начать"
+  },
+  "RestfulClient": {
+    "title": "RESTFUL-клиент",
+    "urlInputPlaceholder": "Введите URL запроса",
+    "headers": "Заголовки: ",
+    "addHeader": "Добавить заголовок",
+    "deleteHeader": "Удалить заголовок",
+    "headerKeyPlaceholder": "Ключ заголовка",
+    "headerValuePlaceholder": "Значение заголовка",
+    "plainText": "Обычный текст",
+    "requestBody": "Тело запроса: ",
+    "requestBodyPlaceholder": "Введите тело запроса...",
+    "generatedCode": "Сгенерированный код",
+    "body": "Тело запроса",
+    "code": "Код",
+    "send": "Отправить",
+    "sendRequest": "Отправить запрос",
+    "response": "Ответ: ",
+    "noResponseYet": "Ответ пока не получен.",
+    "invalidUrlMessage": "Неверный URL. Пожалуйста, введите корректный адрес HTTP или HTTPS.",
+    "unknownErrorMessage": "Произошла неизвестная ошибка."
+  },
+  "Tabs": {
+    "label1": "Заголовки",
+    "label2": "Тело запроса",
+    "label3": "Код"
   }
 }
