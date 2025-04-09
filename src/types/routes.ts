@@ -6,5 +6,5 @@ export const Routes = {
   SIGN_UP: '/sign-up',
   VARIABLES: '/variables',
   HISTORY: '/history',
-  RESTFUL_CLIENT: (method: HttpMethod) => `/${method}`,
+  RESTFUL_CLIENT: (method: HttpMethod) => `restful-client/${method}`,
 } as const;
