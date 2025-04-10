@@ -52,7 +52,13 @@
   "History": {
     "title": "History",
     "message": "You haven't sent any requests. Send your first request:",
-    "button": "Start Now"
+    "button": "Start Now",
+    "confirmation": {
+      "title": "Clear History?",
+      "description": "Are you sure you want to clear your history? This action cannot be undone.",
+      "ok": "Yes, clear",
+      "no": "Cancel"
+    }
   },
   "RestfulClient": {
     "title": "Restful Client",

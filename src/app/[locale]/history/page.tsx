@@ -3,7 +3,7 @@
 import { Typography } from 'antd';
 import { useTranslations } from 'use-intl';
 import { PageWrapper } from '@/components/page-wrapper';
-import { HistoryList } from '@/components/history-list';
+import HistoryComponent from '@/components/history-component/history-component';
 
 const { Title } = Typography;
 
@@ -15,7 +15,7 @@ const HistoryPage = () => {
       <Title level={2} style={{ textAlign: 'center' }}>
         {t('title')}
       </Title>
-      <HistoryList />
+      <HistoryComponent />
     </PageWrapper>
   );
 };
