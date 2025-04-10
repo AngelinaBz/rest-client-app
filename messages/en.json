@@ -32,6 +32,11 @@
     "accountAction": {
       "signIn": "Sign Up",
       "signUp": "Sign In"
+    },
+    "message": {
+      "accountCreated": "Account is succeccsully created",
+      "invalidCredential": "Incorrect email or password",
+      "somethingWrong": "Something went wrong"
     }
   },
   "Validation": {

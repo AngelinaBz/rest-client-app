@@ -6,6 +6,7 @@ import { AntdRegistry } from '@ant-design/nextjs-registry';
 import { routing } from '@/i18n/routing';
 import { RootLayoutProps } from '@/types';
 import { AppFooter } from '@/components/app-footer';
+import UserProvider from '@/providers/user-provider';
 import '@ant-design/v5-patch-for-react-19';
 import '../global.css';
 
@@ -30,9 +31,11 @@ const RootLayout = async ({ children, params }: RootLayoutProps) => {
       <body className={inter.className}>
         <AntdRegistry>
           <NextIntlClientProvider>
-            <header>Header here</header>
-            <main className="main">{children}</main>
-            <AppFooter />
+            <UserProvider>
+              <header>Header here</header>
+              <main className="main">{children}</main>
+              <AppFooter />
+            </UserProvider>
           </NextIntlClientProvider>
         </AntdRegistry>
       </body>
