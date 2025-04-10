@@ -42,37 +42,36 @@ const HistoryList = () => {
   return (
     <Flex vertical style={{ padding: '10px' }} gap="small">
       {sortedHistory.length > 0 ? (
-        <>
-          <Flex gap="small">
-            <Button onClick={toggleSortOrder}>
-              {isAscending ? <DownOutlined /> : <UpOutlined />}
-            </Button>
-            <Button onClick={clearHistory}>
-              <ClearOutlined />
-            </Button>
-          </Flex>
-          <List
-            pagination={{
-              align: 'center',
-              pageSize: 10,
-            }}
-            style={{ cursor: 'pointer' }}
-            dataSource={sortedHistory}
-            bordered
-            renderItem={(item, index) => (
-              <List.Item key={index}>
-                <List.Item.Meta
-                  title={
-                    <Text>
-                      {item.method} {item.url}
-                    </Text>
-                  }
-                  description={new Date(item.timestamp).toLocaleString()}
-                />
-              </List.Item>
-            )}
-          />
-        </>
+        <List
+          pagination={{
+            align: 'center',
+            pageSize: 10,
+          }}
+          dataSource={sortedHistory}
+          bordered
+          header={
+            <Flex gap="small">
+              <Button onClick={toggleSortOrder}>
+                {isAscending ? <DownOutlined /> : <UpOutlined />}
+              </Button>
+              <Button onClick={clearHistory}>
+                <ClearOutlined />
+              </Button>
+            </Flex>
+          }
+          renderItem={(item, index) => (
+            <List.Item key={index}>
+              <List.Item.Meta
+                title={
+                  <Text>
+                    {item.method} {item.url}
+                  </Text>
+                }
+                description={new Date(item.timestamp).toLocaleString()}
+              />
+            </List.Item>
+          )}
+        />
       ) : (
         <Empty description={t('message')}>
           <Link href={Routes.RESTFUL_CLIENT('GET')}>
