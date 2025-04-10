@@ -56,7 +56,7 @@
     "confirmation": {
       "title": "Clear History?",
       "description": "Are you sure you want to clear your history? This action cannot be undone.",
-      "ok": "Yes, clear",
+      "ok": "OK",
       "no": "Cancel"
     }
   },

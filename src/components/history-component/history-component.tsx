@@ -19,7 +19,6 @@ const HistoryComponent = () => {
   );
   const [isAscending, setIsAscending] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     if (!history) {
@@ -39,10 +38,7 @@ const HistoryComponent = () => {
   }, [history, isAscending]);
 
   const toggleSortOrder = () => setIsAscending((prev) => !prev);
-  const confirmClearHistory = () => {
-    setHistory([]);
-    setIsModalOpen(false);
-  };
+  const clearHistory = () => setHistory([]);
 
   if (isLoading) {
     return (
@@ -54,16 +50,6 @@ const HistoryComponent = () => {
 
   return (
     <Flex vertical style={{ padding: '10px' }} gap="small">
-      <Modal
-        title={t('confirmation.title')}
-        open={isModalOpen}
-        onOk={confirmClearHistory}
-        onCancel={() => setIsModalOpen(false)}
-        okText={t('confirmation.ok')}
-        cancelText={t('confirmation.no')}
-      >
-        <p>{t('confirmation.description')}</p>
-      </Modal>
       {sortedHistory.length > 0 ? (
         <List
           pagination={{
@@ -77,7 +63,23 @@ const HistoryComponent = () => {
               <Button onClick={toggleSortOrder}>
                 {isAscending ? <DownOutlined /> : <UpOutlined />}
               </Button>
-              <Button onClick={() => setIsModalOpen(true)}>
+              <Button
+                onClick={() => {
+                  Modal.confirm({
+                    title: t('confirmation.title'),
+                    content: t('confirmation.description'),
+                    okText: t('confirmation.ok'),
+                    cancelText: t('confirmation.no'),
+                    onOk: clearHistory,
+                    footer: (_, { OkBtn, CancelBtn }) => (
+                      <>
+                        <CancelBtn />
+                        <OkBtn />
+                      </>
+                    ),
+                  });
+                }}
+              >
                 <ClearOutlined />
               </Button>
             </Flex>
