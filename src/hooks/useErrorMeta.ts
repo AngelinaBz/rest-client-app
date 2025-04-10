@@ -5,9 +5,8 @@ export function useErrorMeta(status: StatusType): ErrorMeta {
   const t = useTranslations('ErrorPage');
 
   return {
-    title: status === '404' ? t('default.title') : t(`${status}.title`),
-    subTitle:
-      status === '404' ? t('default.subTitle') : t(`${status}.subTitle`),
+    title: t(`${status}.title`),
+    subTitle: t(`${status}.subTitle`),
     buttonText:
       status === '404' ? t(`${status}.buttonText`) : t('default.buttonText'),
   };

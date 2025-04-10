@@ -82,11 +82,11 @@
   },
   "ErrorPage": {
     "default": {
-      "title": "404",
-      "subTitle": "Sorry, the page you visited does not exist.",
       "buttonText": "Try Again"
     },
     "404": {
+      "title": "404",
+      "subTitle": "Sorry, the page you visited does not exist.",
       "buttonText": "Back Home"
     },
     "500": {
