@@ -54,6 +54,14 @@
     "message": "You haven't sent any requests. Send your first request:",
     "button": "Start Now"
   },
+  "Variables": {
+    "title": "Variables",
+    "message": "No available variables",
+    "addVariable": "Add Variable",
+    "deleteVariable": "Delete Variable",
+    "variableKeyPlaceholder": "Variable Key",
+    "variableValuePlaceholder": "Variable Value"
+  },
   "RestfulClient": {
     "title": "Restful Client",
     "urlInputPlaceholder": "Enter request URL",

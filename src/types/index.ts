@@ -9,10 +9,12 @@ export type Params = {
   locale: string;
 };
 
-export type HeaderType = {
+export type ObjectType = {
   key: string;
   value: string;
 };
+
+export type HeaderType = ObjectType;
 
 export { ERROR_MAP, Status } from './error-page-status-types';
 

@@ -54,6 +54,14 @@
     "message": "У вас нет выполненных запросов. Отправьте свой первый запрос:",
     "button": "Начать"
   },
+  "Variables": {
+    "title": "Переменные",
+    "message": "Нет доступных переменных",
+    "addVariable": "Добавить переменную",
+    "deleteVariable": "Удалить переменную",
+    "variableKeyPlaceholder": "Ключ переменной",
+    "variableValuePlaceholder": "Значение переменной"
+  },
   "RestfulClient": {
     "title": "RESTFUL-клиент",
     "urlInputPlaceholder": "Введите URL запроса",
