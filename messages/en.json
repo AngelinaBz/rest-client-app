@@ -54,8 +54,8 @@
     "message": "You haven't sent any requests. Send your first request:",
     "button": "Start Now",
     "confirmation": {
-      "title": "Clear History?",
-      "description": "Are you sure you want to clear your history? This action cannot be undone.",
+      "title": "Clear History",
+      "description": "Are you sure you want to clear your history?",
       "ok": "OK",
       "no": "Cancel"
     }

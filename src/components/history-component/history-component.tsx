@@ -7,7 +7,11 @@ import { Link } from '@/i18n/navigation';
 import { Routes } from '@/types/routes';
 import { useHistoryLocalStorage } from '@/hooks/use-history-localstorage';
 import { RequestHistoryParams } from '@/types';
-import { ClearOutlined, DownOutlined, UpOutlined } from '@ant-design/icons';
+import {
+  ClearOutlined,
+  SortAscendingOutlined,
+  SortDescendingOutlined,
+} from '@ant-design/icons';
 
 const { Text } = Typography;
 
@@ -61,7 +65,11 @@ const HistoryComponent = () => {
           header={
             <Flex gap="small">
               <Button onClick={toggleSortOrder}>
-                {isAscending ? <DownOutlined /> : <UpOutlined />}
+                {isAscending ? (
+                  <SortAscendingOutlined />
+                ) : (
+                  <SortDescendingOutlined />
+                )}
               </Button>
               <Button
                 onClick={() => {
