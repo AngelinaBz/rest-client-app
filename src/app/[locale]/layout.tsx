@@ -8,6 +8,8 @@ import { RootLayoutProps } from '@/types';
 import { AppFooter } from '@/components/app-footer';
 import '@ant-design/v5-patch-for-react-19';
 import '../global.css';
+import { AppHeader } from '@/components/app-header';
+import '../global.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -30,7 +32,7 @@ const RootLayout = async ({ children, params }: RootLayoutProps) => {
       <body className={inter.className}>
         <AntdRegistry>
           <NextIntlClientProvider>
-            <header>Header here</header>
+            <AppHeader />
             <main className="main">{children}</main>
             <AppFooter />
           </NextIntlClientProvider>
