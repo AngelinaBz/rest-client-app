@@ -13,6 +13,7 @@ import {
 } from '@ant-design/icons';
 import { formatDate } from '@/utils/format-date';
 import Loader from '../loader';
+import { ITEMS_PER_PAGE } from '@/utils/constants';
 
 const { Text } = Typography;
 
@@ -65,7 +66,7 @@ const HistoryComponent = () => {
         <List
           pagination={{
             align: 'center',
-            pageSize: 10,
+            pageSize: ITEMS_PER_PAGE,
           }}
           dataSource={sortedHistory}
           bordered
