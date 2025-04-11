@@ -1,1 +1,1 @@
-export { default as HistoryComponent } from './history-component';
+export { default } from './history-component';

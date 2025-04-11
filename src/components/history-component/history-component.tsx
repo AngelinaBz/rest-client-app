@@ -1,48 +1,58 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Button, Typography, Empty, List, Flex, Spin, Modal } from 'antd';
 import { useTranslations } from 'use-intl';
 import { Link } from '@/i18n/navigation';
 import { Routes } from '@/types/routes';
 import { useHistoryLocalStorage } from '@/hooks/use-history-localstorage';
-import { RequestHistoryParams } from '@/types';
 import {
   ClearOutlined,
   SortAscendingOutlined,
   SortDescendingOutlined,
 } from '@ant-design/icons';
+import { formatDate } from '@/utils/format-date';
 
 const { Text } = Typography;
 
 const HistoryComponent = () => {
   const t = useTranslations('History');
   const [history, setHistory] = useHistoryLocalStorage();
-  const [sortedHistory, setSortedHistory] = useState<RequestHistoryParams[]>(
-    []
-  );
   const [isAscending, setIsAscending] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    if (!history) {
-      setSortedHistory([]);
-      setIsLoading(false);
-      return;
-    }
-
-    const sorted = [...history].sort((a, b) => {
+  const sortedHistory = useMemo(() => {
+    if (!history) return [];
+    return [...history].sort((a, b) => {
       const timeA = new Date(a.timestamp).getTime();
       const timeB = new Date(b.timestamp).getTime();
       return isAscending ? timeA - timeB : timeB - timeA;
     });
-
-    setSortedHistory(sorted);
-    setIsLoading(false);
   }, [history, isAscending]);
+
+  useEffect(() => {
+    if (history !== undefined) {
+      setIsLoading(false);
+    }
+  }, [history]);
 
   const toggleSortOrder = () => setIsAscending((prev) => !prev);
   const clearHistory = () => setHistory([]);
+  const showModal = () => {
+    Modal.confirm({
+      title: t('confirmation.title'),
+      content: t('confirmation.description'),
+      okText: t('confirmation.ok'),
+      cancelText: t('confirmation.no'),
+      onOk: clearHistory,
+      footer: (_, { OkBtn, CancelBtn }) => (
+        <>
+          <CancelBtn />
+          <OkBtn />
+        </>
+      ),
+    });
+  };
 
   if (isLoading) {
     return (
@@ -71,23 +81,7 @@ const HistoryComponent = () => {
                   <SortDescendingOutlined />
                 )}
               </Button>
-              <Button
-                onClick={() => {
-                  Modal.confirm({
-                    title: t('confirmation.title'),
-                    content: t('confirmation.description'),
-                    okText: t('confirmation.ok'),
-                    cancelText: t('confirmation.no'),
-                    onOk: clearHistory,
-                    footer: (_, { OkBtn, CancelBtn }) => (
-                      <>
-                        <CancelBtn />
-                        <OkBtn />
-                      </>
-                    ),
-                  });
-                }}
-              >
+              <Button onClick={showModal}>
                 <ClearOutlined />
               </Button>
             </Flex>
@@ -100,7 +94,7 @@ const HistoryComponent = () => {
                     {item.method} {item.url}
                   </Text>
                 }
-                description={new Date(item.timestamp).toLocaleString()}
+                description={formatDate(item.timestamp)}
               />
             </List.Item>
           )}

@@ -3,7 +3,7 @@
 import { Typography } from 'antd';
 import { useTranslations } from 'use-intl';
 import { PageWrapper } from '@/components/page-wrapper';
-import HistoryComponent from '@/components/history-component/history-component';
+import HistoryComponent from '@/components/history-component';
 
 const { Title } = Typography;
 
