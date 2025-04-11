@@ -3,22 +3,23 @@
 import { DeleteOutlined } from '@ant-design/icons';
 import { Button, Flex, Tooltip, Input, Empty } from 'antd';
 import { useTranslations } from 'use-intl';
-import { useObjectList } from '@/hooks/use-oblect-list';
+import useEditorItems from '@/hooks/use-editor-items';
 
 const VariablesEditor = () => {
   const t = useTranslations('Variables');
 
-  const {
-    list: variables,
-    addItem: addVariable,
-    updateItem: updateVariable,
-    removeItem: deleteVariable,
-  } = useObjectList([]);
+  const [variables, setVariables] = useEditorItems();
+
+  const updateVariables = (index: number, key: string, value: string) =>
+    setVariables({
+      type: 'update',
+      payload: { index, key, value },
+    });
 
   return (
     <Flex vertical style={{ padding: '10px' }} gap="small">
       <Flex align="baseline" justify="flex-end">
-        <Button onClick={addVariable} type="dashed">
+        <Button onClick={() => setVariables({ type: 'add' })} type="dashed">
           + {t('addVariable')}
         </Button>
       </Flex>
@@ -32,18 +33,22 @@ const VariablesEditor = () => {
               placeholder={t('variableKeyPlaceholder')}
               value={variable.key}
               onChange={(e) =>
-                updateVariable(index, e.target.value, variable.value)
+                updateVariables(index, e.target.value, variable.value)
               }
             />
             <Input
               placeholder={t('variableValuePlaceholder')}
               value={variable.value}
               onChange={(e) =>
-                updateVariable(index, e.target.value, variable.key)
+                updateVariables(index, variable.key, e.target.value)
               }
             />
             <Tooltip title={t('deleteVariable')}>
-              <DeleteOutlined onClick={() => deleteVariable(index)} />
+              <DeleteOutlined
+                onClick={() =>
+                  setVariables({ type: 'remove', payload: { index } })
+                }
+              />
             </Tooltip>
           </Flex>
         ))
