@@ -3,12 +3,12 @@
 import { DeleteOutlined } from '@ant-design/icons';
 import { Button, Flex, Tooltip, Input, Empty } from 'antd';
 import { useTranslations } from 'use-intl';
-import useHeaders from '@/hooks/use-headers';
+import useEditorItems from '@/hooks/use-editor-items';
 
 const VariablesEditor = () => {
   const t = useTranslations('Variables');
 
-  const [variables, setVariables] = useHeaders();
+  const [variables, setVariables] = useEditorItems();
 
   const updateVariables = (index: number, key: string, value: string) =>
     setVariables({

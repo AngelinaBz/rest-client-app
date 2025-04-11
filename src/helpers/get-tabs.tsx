@@ -1,9 +1,9 @@
 import dynamic from 'next/dynamic';
 import { HeadersEditor } from '@/components/headers-editor';
-import { HeaderType, HttpMethod } from '@/types';
+import { EditorItem, HttpMethod } from '@/types';
 import { TabsKeys, TabsKeysType } from '@/types/tabs';
 import { TabsProps } from 'antd';
-import { HeadersAction } from '@/hooks/use-headers';
+import { EditorItemAction } from '@/hooks/use-editor-items';
 import { ActionDispatch } from 'react';
 
 const BodyEditor = dynamic(() => import('@/components/body-editor'), {
@@ -16,10 +16,10 @@ const GeneratedCode = dynamic(() => import('@/components/generated-code'), {
 type TabsType = {
   t: (key: TabsKeysType) => string;
   url: string;
-  headers: HeaderType[];
+  headers: EditorItem[];
   body: string;
   method: HttpMethod;
-  setHeaders: ActionDispatch<[action: HeadersAction]>;
+  setHeaders: ActionDispatch<[action: EditorItemAction]>;
   setBody: (value: string) => void;
 };
 

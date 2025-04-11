@@ -8,7 +8,7 @@ import { SubmitButton } from '../submit-button';
 import { useTranslations } from 'next-intl';
 import { useHistoryLocalStorage } from '@/hooks/use-history-localstorage';
 import { HttpMethod, RequestHistoryParams } from '@/types';
-import useHeaders from '@/hooks/use-headers';
+import useEditorItems from '@/hooks/use-editor-items';
 import { getTabs } from '@/helpers/get-tabs';
 
 const ResponseViewer = dynamic(() => import('../response-viewer'), {
@@ -18,7 +18,7 @@ const ResponseViewer = dynamic(() => import('../response-viewer'), {
 const RestfulClient = (): React.JSX.Element => {
   const [method, setMethod] = useState<HttpMethod>('GET');
   const [url, setUrl] = useState('');
-  const [headers, setHeaders] = useHeaders();
+  const [headers, setHeaders] = useEditorItems();
   const [body, setBody] = useState('');
   const { response, sendRequest } = useRequest();
   const [, setHistory] = useHistoryLocalStorage();

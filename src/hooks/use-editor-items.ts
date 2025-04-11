@@ -1,12 +1,12 @@
 import { useReducer } from 'react';
-import type { HeaderType } from '@/types';
+import type { EditorItem } from '@/types';
 
-export type HeadersAction =
+export type EditorItemAction =
   | { type: 'add' }
   | { type: 'update'; payload: { index: number; key: string; value: string } }
   | { type: 'remove'; payload: { index: number } };
 
-const reducer = (state: HeaderType[], action: HeadersAction) => {
+const reducer = (state: EditorItem[], action: EditorItemAction) => {
   switch (action.type) {
     case 'add':
       return [...state, { key: '', value: '' }];
@@ -20,8 +20,8 @@ const reducer = (state: HeaderType[], action: HeadersAction) => {
   }
 };
 
-const initialState: HeaderType[] = [{ key: '', value: '' }];
+const initialState: EditorItem[] = [{ key: '', value: '' }];
 
-const useHeaders = () => useReducer(reducer, initialState);
+const useEditorItems = () => useReducer(reducer, initialState);
 
-export default useHeaders;
+export default useEditorItems;

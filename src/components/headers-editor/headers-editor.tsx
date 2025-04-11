@@ -2,15 +2,15 @@ import { DeleteOutlined } from '@ant-design/icons';
 import { Button, Typography, Flex, Tooltip, AutoComplete } from 'antd';
 import { useTranslations } from 'use-intl';
 import { headersMap } from '@/utils/headers-map-data';
-import { HeadersAction } from '@/hooks/use-headers';
-import { HeaderType } from '@/types';
+import { EditorItemAction } from '@/hooks/use-editor-items';
+import { EditorItem } from '@/types';
 import { ActionDispatch } from 'react';
 
 const { Title } = Typography;
 
 type HeadersEditorProps = {
-  headers: HeaderType[];
-  setHeaders: ActionDispatch<[action: HeadersAction]>;
+  headers: EditorItem[];
+  setHeaders: ActionDispatch<[action: EditorItemAction]>;
 };
 const HeadersEditor = ({
   headers,
