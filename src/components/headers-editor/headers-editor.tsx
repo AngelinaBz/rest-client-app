@@ -1,23 +1,20 @@
 import { DeleteOutlined } from '@ant-design/icons';
 import { Button, Typography, Flex, Tooltip, AutoComplete } from 'antd';
 import { useTranslations } from 'use-intl';
-import type { HeaderType } from '@/types';
 import { headersMap } from '@/utils/headers-map-data';
+import { HeadersAction } from '@/hooks/use-headers';
+import { HeaderType } from '@/types';
+import { ActionDispatch } from 'react';
 
 const { Title } = Typography;
 
 type HeadersEditorProps = {
   headers: HeaderType[];
-  addHeader: () => void;
-  updateHeader: (index: number, key: string, value: string) => void;
-  removeHeader: (index: number) => void;
+  setHeaders: ActionDispatch<[action: HeadersAction]>;
 };
-
 const HeadersEditor = ({
   headers,
-  addHeader,
-  updateHeader,
-  removeHeader,
+  setHeaders,
 }: HeadersEditorProps): React.JSX.Element => {
   const t = useTranslations('RestfulClient');
 
@@ -26,13 +23,19 @@ const HeadersEditor = ({
     return option.value.toLowerCase().includes(inputValue.toLowerCase());
   };
 
+  const updateHeaders = (index: number, key: string, value: string) =>
+    setHeaders({
+      type: 'update',
+      payload: { index, key, value },
+    });
+
   return (
     <Flex vertical style={{ width: '98%' }} gap="small">
       <Flex align="baseline" justify="space-between">
         <Title level={5} style={{ margin: '0' }}>
           {t('headers')}
         </Title>
-        <Button onClick={addHeader} type="dashed">
+        <Button onClick={() => setHeaders({ type: 'add' })} type="dashed">
           + {t('addHeader')}
         </Button>
       </Flex>
@@ -43,7 +46,7 @@ const HeadersEditor = ({
             value={header.key}
             options={Object.keys(headersMap).map((key) => ({ value: key }))}
             style={{ width: '90%' }}
-            onChange={(value) => updateHeader(index, value, header.value)}
+            onChange={(value) => updateHeaders(index, value, header.value)}
             filterOption={(inputValue, option) =>
               fiterOption(inputValue, option)
             }
@@ -57,12 +60,16 @@ const HeadersEditor = ({
                 : []
             }
             style={{ width: '90%' }}
-            onChange={(value) => updateHeader(index, header.key, value)}
+            onChange={(value) => updateHeaders(index, header.key, value)}
             filterOption={fiterOption}
           />
           <Tooltip title={t('deleteHeader')}>
             {headers.length > 1 ? (
-              <DeleteOutlined onClick={() => removeHeader(index)} />
+              <DeleteOutlined
+                onClick={() =>
+                  setHeaders({ type: 'remove', payload: { index } })
+                }
+              />
             ) : (
               <DeleteOutlined style={{ opacity: 0.3, pointerEvents: 'none' }} />
             )}

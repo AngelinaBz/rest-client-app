@@ -3,6 +3,8 @@ import { HeadersEditor } from '@/components/headers-editor';
 import { HeaderType, HttpMethod } from '@/types';
 import { TabsKeys, TabsKeysType } from '@/types/tabs';
 import { TabsProps } from 'antd';
+import { HeadersAction } from '@/hooks/use-headers';
+import { ActionDispatch } from 'react';
 
 const BodyEditor = dynamic(() => import('@/components/body-editor'), {
   ssr: false,
@@ -17,18 +19,14 @@ type TabsType = {
   headers: HeaderType[];
   body: string;
   method: HttpMethod;
-  addHeader: () => void;
-  updateHeader: (index: number, key: string, value: string) => void;
-  removeHeader: (index: number) => void;
+  setHeaders: ActionDispatch<[action: HeadersAction]>;
   setBody: (value: string) => void;
 };
 
 export const getTabs = ({
   t,
   headers,
-  addHeader,
-  updateHeader,
-  removeHeader,
+  setHeaders,
   body,
   setBody,
   url,
@@ -38,14 +36,7 @@ export const getTabs = ({
     {
       key: 'headers',
       label: t(TabsKeys.label1),
-      children: (
-        <HeadersEditor
-          headers={headers}
-          addHeader={addHeader}
-          updateHeader={updateHeader}
-          removeHeader={removeHeader}
-        />
-      ),
+      children: <HeadersEditor headers={headers} setHeaders={setHeaders} />,
     },
     {
       key: 'body',
