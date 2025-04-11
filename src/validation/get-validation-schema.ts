@@ -9,7 +9,7 @@ const getValidationSchema = (
   const userSchema = Yup.object().shape({
     [USER.email]: Yup.string()
       .required(t('email.required'))
-      .email(t('email.valid')),
+      .matches(/^[\w-.]+@([\w-]+\.)+[\w-]{2,}$/, t('email.valid')),
     [USER.password]: Yup.string()
       .required(t('password.required'))
       .test({

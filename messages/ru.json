@@ -32,6 +32,11 @@
     "accountAction": {
       "signIn": "Зарегистрироваться",
       "signUp": "Войти"
+    },
+    "message": {
+      "accountCreated": "Учётная запись успешно создана",
+      "invalidCredential": "Неправльный адрес эл. почты или пароль",
+      "somethingWrong": "Что-то пошло не так"
     }
   },
   "Validation": {

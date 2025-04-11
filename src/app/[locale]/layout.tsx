@@ -6,10 +6,10 @@ import { AntdRegistry } from '@ant-design/nextjs-registry';
 import { routing } from '@/i18n/routing';
 import { RootLayoutProps } from '@/types';
 import { AppFooter } from '@/components/app-footer';
+import UserProvider from '@/providers/user-provider';
 import '@ant-design/v5-patch-for-react-19';
 import '../global.css';
 import { AppHeader } from '@/components/app-header';
-import '../global.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -32,9 +32,11 @@ const RootLayout = async ({ children, params }: RootLayoutProps) => {
       <body className={inter.className}>
         <AntdRegistry>
           <NextIntlClientProvider>
-            <AppHeader />
-            <main className="main">{children}</main>
-            <AppFooter />
+            <UserProvider>
+              <AppHeader />
+              <main className="main">{children}</main>
+              <AppFooter />
+            </UserProvider>
           </NextIntlClientProvider>
         </AntdRegistry>
       </body>
