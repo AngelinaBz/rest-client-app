@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { Button, Typography, Empty, List, Flex, Spin, Modal } from 'antd';
+import { Button, Typography, Empty, List, Flex, Modal } from 'antd';
 import { useTranslations } from 'use-intl';
 import { Link } from '@/i18n/navigation';
 import { Routes } from '@/types/routes';
@@ -12,6 +12,7 @@ import {
   SortDescendingOutlined,
 } from '@ant-design/icons';
 import { formatDate } from '@/utils/format-date';
+import Loader from '../loader';
 
 const { Text } = Typography;
 
@@ -55,11 +56,7 @@ const HistoryComponent = () => {
   };
 
   if (isLoading) {
-    return (
-      <Flex justify="center" align="center">
-        <Spin size="large" />
-      </Flex>
-    );
+    return <Loader />;
   }
 
   return (
