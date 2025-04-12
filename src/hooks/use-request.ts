@@ -2,9 +2,13 @@ import { useState } from 'react';
 import type { RequestParams, ResponseData } from '@/types';
 import { useTranslations } from 'next-intl';
 import { isJSON, isValidUrl } from '../utils/request-validation';
+import { base64UrlEncode } from '@/utils/code64';
+import { Routes } from '@/types/routes';
+import { useRouter } from '@/i18n/navigation';
 
 export const useRequest = () => {
   const [response, setResponse] = useState<ResponseData | null>(null);
+  const router = useRouter();
   const t = useTranslations('RestfulClient');
 
   const sendRequest = async ({ method, url, headers, body }: RequestParams) => {
@@ -50,20 +54,38 @@ export const useRequest = () => {
       };
 
       setResponse(formattedResponse);
-    } catch (error) {
-      if (error instanceof Error) {
-        setResponse({
-          status: 500,
-          headers: [],
-          body: JSON.stringify({ message: error.message }),
-        });
-      } else {
-        setResponse({
-          status: 500,
-          headers: [],
-          body: JSON.stringify({ message: t('unknownErrorMessage') }),
-        });
+
+      const headerParams = headers.reduce(
+        (acc, { key, value }) => {
+          if (key.trim()) acc[key] = value;
+          return acc;
+        },
+        {} as Record<string, string>
+      );
+
+      let encodedBody: string | undefined;
+      try {
+        const parsed = JSON.parse(body);
+        const normalized = JSON.stringify(parsed);
+        encodedBody = base64UrlEncode(normalized);
+      } catch {
+        encodedBody = body ? base64UrlEncode(body) : undefined;
       }
+
+      const newPath = Routes.REST_CLIENT_REQUEST(
+        method,
+        base64UrlEncode(url),
+        encodedBody,
+        headerParams
+      );
+
+      router.replace(newPath, { scroll: false });
+    } catch {
+      setResponse({
+        status: 500,
+        headers: [],
+        body: JSON.stringify({ message: t('unknownErrorMessage') }),
+      });
     }
   };
 

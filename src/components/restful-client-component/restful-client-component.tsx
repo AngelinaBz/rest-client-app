@@ -8,31 +8,46 @@ import { SubmitButton } from '../submit-button';
 import { useTranslations } from 'next-intl';
 import { useHistoryLocalStorage } from '@/hooks/use-history-localstorage';
 import { useHeaders } from '@/hooks/use-headers';
-import { HttpMethod, RequestHistoryParams } from '@/types';
+import { HeaderType, HttpMethod, RequestHistoryParams } from '@/types';
 import { RestClientTabs } from '../rest-client-tabs';
+import { base64UrlDecode } from '@/utils/code64';
 
 const ResponseViewer = dynamic(() => import('../response-viewer'), {
   ssr: false,
 });
 
-const RestfulClient = (): React.JSX.Element => {
-  const [method, setMethod] = useState<HttpMethod>('GET');
-  const [url, setUrl] = useState('');
-  const { headers, addHeader, updateHeader, removeHeader } = useHeaders();
-  const [body, setBody] = useState('');
+type RestfulClientProps = {
+  initialMethod: HttpMethod;
+  initialUrl?: string;
+  initialBody?: string;
+  initialHeaders?: HeaderType[];
+};
+
+const RestfulClient = ({
+  initialMethod,
+  initialUrl,
+  initialBody,
+  initialHeaders,
+}: RestfulClientProps): React.JSX.Element => {
+  const [method, setMethod] = useState<HttpMethod>(initialMethod || 'GET');
+  const [url, setUrl] = useState(base64UrlDecode(initialUrl as string));
+  const { headers, addHeader, updateHeader, removeHeader } = useHeaders(
+    initialHeaders || []
+  );
+  const [body, setBody] = useState(base64UrlDecode(initialBody as string));
   const { response, sendRequest } = useRequest();
   const [, setHistory] = useHistoryLocalStorage();
 
   const t = useTranslations('RestfulClient');
 
-  const handleSubmit = useCallback(() => {
+  const handleSubmit = useCallback(async () => {
     if (!url.trim()) return;
 
     const request = { method, url, headers, body };
     const timestamp = new Date().toString();
     const requestHistory: RequestHistoryParams = { ...request, timestamp };
     setHistory((prevHistory = []) => [...prevHistory, requestHistory]);
-    sendRequest(request);
+    await sendRequest(request);
   }, [method, url, headers, body, sendRequest, setHistory]);
 
   return (
