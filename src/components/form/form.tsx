@@ -5,16 +5,15 @@ import { Button, Flex, Form, Input, message, Typography } from 'antd';
 import { useTranslations } from 'next-intl';
 import { ReactNode } from 'react';
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
-import { Link } from '@/i18n/navigation';
+import { Link, useRouter } from '@/i18n/navigation';
 import { Routes } from '@/types/routes';
 import { FORM, FormType, USER, User } from '@/types/form';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import getValidationSchema from '@/validation/get-validation-schema';
-import { useParams, useRouter } from 'next/navigation';
 import useAuth from '@/hooks/use-auth';
 import authAction from '@/firebase/auth-action';
-import { MESSAGE_DURATION } from '@/utils/constants';
+import { MESSAGE_DURATION, TEST_ID } from '@/utils/constants';
 
 const { Text } = Typography;
 
@@ -24,7 +23,6 @@ const FormComponent = ({ formType }: FormComponentProps): ReactNode => {
   const t = useTranslations('Form');
   const tMessages = useTranslations('Form.message');
   const router = useRouter();
-  const params = useParams();
   const [messageApi, contextHolder] = message.useMessage();
   const { setIsUser } = useAuth();
 
@@ -45,7 +43,7 @@ const FormComponent = ({ formType }: FormComponentProps): ReactNode => {
     if (isUser) {
       if (formType === FORM.signUp)
         messageApi.success(t('message.accountCreated'), MESSAGE_DURATION);
-      router.push(`/${params.locale}`);
+      router.push(Routes.MAIN);
     } else messageApi.error(message, MESSAGE_DURATION);
   };
 
@@ -105,6 +103,7 @@ const FormComponent = ({ formType }: FormComponentProps): ReactNode => {
                   )
                 }
                 autoComplete="off"
+                data-testid={TEST_ID.passwordInput}
               />
               <Typography.Paragraph style={{ height: '2rem' }}>
                 {errors[USER.password] && (
