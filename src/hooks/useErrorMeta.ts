@@ -1,5 +1,5 @@
 import { useTranslations } from 'next-intl';
-import { ErrorMeta, StatusType } from '@/types';
+import { ErrorMeta, Status, StatusType } from '@/types';
 
 export function useErrorMeta(status: StatusType): ErrorMeta {
   const t = useTranslations('ErrorPage');
@@ -8,6 +8,8 @@ export function useErrorMeta(status: StatusType): ErrorMeta {
     title: t(`${status}.title`),
     subTitle: t(`${status}.subTitle`),
     buttonText:
-      status === '404' ? t(`${status}.buttonText`) : t('default.buttonText'),
+      status === Status[404]
+        ? t(`${status}.buttonText`)
+        : t('default.buttonText'),
   };
 }
