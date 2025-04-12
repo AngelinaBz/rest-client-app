@@ -24,18 +24,15 @@ const HistoryComponent = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const sortedHistory = useMemo(() => {
-    if (history.length >= 0) {
-      return [...history].sort((a, b) => {
-        const timeA = new Date(a.timestamp).getTime();
-        const timeB = new Date(b.timestamp).getTime();
-        return isAscending ? timeA - timeB : timeB - timeA;
-      });
-    }
-    return [];
+    return [...history].sort((a, b) => {
+      const timeA = new Date(a.timestamp).getTime();
+      const timeB = new Date(b.timestamp).getTime();
+      return isAscending ? timeA - timeB : timeB - timeA;
+    });
   }, [history, isAscending]);
 
   useEffect(() => {
-    if (history !== undefined) {
+    if (history.length >= 0) {
       setIsLoading(false);
     }
   }, [history]);
