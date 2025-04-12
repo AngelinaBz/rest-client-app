@@ -29,7 +29,7 @@ describe('Sign In Form test', () => {
     ).toBeTruthy();
   });
 
-  it('Render password visibility icon correctly', async () => {
+  it('Render password visibility icon correctly', () => {
     let passwordIcon = screen.getByRole('img');
     expect(passwordIcon.title).toBe(messages.Form.showPassword);
 
