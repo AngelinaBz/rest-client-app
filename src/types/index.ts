@@ -9,7 +9,7 @@ export type Params = {
   locale: string;
 };
 
-export type HeaderType = {
+export type EditorItem = {
   key: string;
   value: string;
 };
