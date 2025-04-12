@@ -12,14 +12,13 @@ export type Params = {
   locale: string;
 };
 
-export type ObjectType = {
+export type EditorItem = {
   key: string;
   value: string;
 };
 
-export type HeaderType = ObjectType;
-
-export { ERROR_MAP, Status } from './error-page-status-types';
+export { Status } from './error-page-status-types';
+export type { StatusType, ErrorMeta } from './error-page-status-types';
 
 export const HTTP_METHODS = [
   'GET',
