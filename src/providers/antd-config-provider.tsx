@@ -1,24 +1,19 @@
-import { ConfigProvider } from 'antd';
-import { ReactNode } from 'react';
+import { ChildrenProps } from '@/types';
+import { ConfigProvider, ThemeConfig } from 'antd';
 
-type AntdConfigProviderProps = { children: ReactNode };
+const themeConfig: ThemeConfig = {
+  token: {
+    colorPrimary: '#1E7497',
+    colorPrimaryBg: '#DEEBEE',
+    colorTextHeading: '#043857',
+    colorLink: '#1E7497',
+    colorLinkActive: '#F2843A',
+    colorLinkHover: '#EE6B11',
+  },
+};
 
-const AntdConfigProvider = ({ children }: AntdConfigProviderProps) => {
-  return (
-    <ConfigProvider
-      theme={{
-        token: {
-          colorPrimary: '#1E7497',
-          colorTextHeading: '#043857',
-          colorLink: '#1E7497',
-          colorLinkActive: '#F2843A',
-          colorLinkHover: '#EE6B11',
-        },
-      }}
-    >
-      {children}
-    </ConfigProvider>
-  );
+const AntdConfigProvider = ({ children }: ChildrenProps) => {
+  return <ConfigProvider theme={themeConfig}>{children}</ConfigProvider>;
 };
 
 export default AntdConfigProvider;
