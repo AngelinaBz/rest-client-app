@@ -92,5 +92,27 @@
     "label1": "Headers",
     "label2": "Body",
     "label3": "Code"
+  },
+  "ErrorPage": {
+    "default": {
+      "buttonText": "Try Again"
+    },
+    "404": {
+      "title": "404",
+      "subTitle": "Sorry, the page you visited does not exist.",
+      "buttonText": "Back Home"
+    },
+    "500": {
+      "title": "500",
+      "subTitle": "Sorry, something went wrong."
+    },
+    "403": {
+      "title": "403",
+      "subTitle": "Sorry, you are not authorized to access this page."
+    },
+    "error": {
+      "title": "Error",
+      "subTitle": "An unexpected error occurred."
+    }
   }
 }
