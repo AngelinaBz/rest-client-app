@@ -3,7 +3,7 @@ import { VARIABLES_VALUE } from '@/utils/constants';
 import { reducer } from './use-editor-items';
 
 const useVariablesLocalStorage = () => {
-  const [hasMounted, setHasMounted] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   const [variables, setVariables] = useReducer(reducer, [], () => {
     if (typeof window === 'undefined') return [];
@@ -17,16 +17,18 @@ const useVariablesLocalStorage = () => {
   });
 
   useEffect(() => {
-    setHasMounted(true);
+    if (typeof window !== 'undefined') {
+      setIsClient(true);
+    }
   }, []);
 
   useEffect(() => {
-    if (hasMounted) {
+    if (isClient) {
       window.localStorage.setItem(VARIABLES_VALUE, JSON.stringify(variables));
     }
-  }, [variables, hasMounted]);
+  }, [variables, isClient]);
 
-  return hasMounted
+  return isClient
     ? ([variables, setVariables] as const)
     : ([null, null] as const);
 };
