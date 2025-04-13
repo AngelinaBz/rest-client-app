@@ -1,9 +1,12 @@
 import { ReactNode } from 'react';
 
-export type RootLayoutProps = {
+export interface ChildrenProps {
   children: ReactNode;
+}
+
+export interface RootLayoutProps extends ChildrenProps {
   params: Promise<Params>;
-};
+}
 
 export type Params = {
   locale: string;
