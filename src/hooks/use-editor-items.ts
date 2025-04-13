@@ -6,7 +6,7 @@ export type EditorItemAction =
   | { type: 'update'; payload: { index: number; key: string; value: string } }
   | { type: 'remove'; payload: { index: number } };
 
-const reducer = (state: EditorItem[], action: EditorItemAction) => {
+export const reducer = (state: EditorItem[], action: EditorItemAction) => {
   switch (action.type) {
     case 'add':
       return [...state, { key: '', value: '' }];

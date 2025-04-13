@@ -3,12 +3,13 @@
 import { DeleteOutlined } from '@ant-design/icons';
 import { Button, Flex, Tooltip, Input, Empty } from 'antd';
 import { useTranslations } from 'use-intl';
-import useEditorItems from '@/hooks/use-editor-items';
+import useVariablesLocalStorage from '@/hooks/use-variables-localstorage';
 
 const VariablesEditor = () => {
   const t = useTranslations('Variables');
 
-  const [variables, setVariables] = useEditorItems();
+  const [variables, setVariables] = useVariablesLocalStorage();
+  if (!variables || !setVariables) return null;
 
   const updateVariables = (index: number, key: string, value: string) =>
     setVariables({
