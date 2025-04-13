@@ -11,7 +11,7 @@ const VariablesEditor = () => {
   const [variables, setVariables] = useVariablesLocalStorage();
   if (!variables || !setVariables) return null;
 
-  const isKeyUnique = (key: string, index?: number) => {
+  const isKeyUnique = (key: string, index: number) => {
     if (key.trim() === '') {
       return true;
     }
