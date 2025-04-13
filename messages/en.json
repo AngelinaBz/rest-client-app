@@ -1,4 +1,11 @@
 {
+  "Header": {
+    "client": "REST Client",
+    "toMain": "To the main page",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "signOut": "Sign Out"
+  },
   "MainPage": {
     "title": "Effective application for working with APIs",
     "description": "Restful Client provides an interface for working with API, which includes the ability to create, modify parameters and execute requests. With a strong focus on simplicity and usability, our application supports various HTTP methods. You can easily save and manage your request history while ensuring security through authentication.",
@@ -35,6 +42,7 @@
     },
     "message": {
       "accountCreated": "Account is succeccsully created",
+      "emailAlreadyInUse": "This email is already in use",
       "invalidCredential": "Incorrect email or password",
       "somethingWrong": "Something went wrong"
     }

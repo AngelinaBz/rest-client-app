@@ -12,8 +12,8 @@ import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import getValidationSchema from '@/validation/get-validation-schema';
 import useAuth from '@/hooks/use-auth';
-import authAction from '@/firebase/auth-action';
 import { MESSAGE_DURATION, TEST_ID } from '@/utils/constants';
+import { UserResponse } from '@/types/firebase';
 
 const { Text } = Typography;
 
@@ -21,7 +21,6 @@ type FormComponentProps = { formType: FormType };
 
 const FormComponent = ({ formType }: FormComponentProps): ReactNode => {
   const t = useTranslations('Form');
-  const tMessages = useTranslations('Form.message');
   const router = useRouter();
   const [messageApi, contextHolder] = message.useMessage();
   const { setIsUser } = useAuth();
@@ -36,15 +35,28 @@ const FormComponent = ({ formType }: FormComponentProps): ReactNode => {
   });
 
   const onSubmit = async () => {
-    const { isUser, message } = await authAction(formType, watch(), tMessages);
+    const endpoint = formType === FORM.signIn ? '/api/sign-in' : '/api/sign-up';
 
-    setIsUser(isUser);
+    try {
+      const { isUser, message }: UserResponse = await fetch(endpoint, {
+        method: 'POST',
+        body: JSON.stringify(watch()),
+        headers: { 'Content-Type': 'application/json' },
+      }).then((res) => {
+        console.log(res);
+        return res.json();
+      });
 
-    if (isUser) {
-      if (formType === FORM.signUp)
-        messageApi.success(t('message.accountCreated'), MESSAGE_DURATION);
-      router.push(Routes.MAIN);
-    } else messageApi.error(message, MESSAGE_DURATION);
+      setIsUser(isUser);
+
+      if (isUser) {
+        if (formType === FORM.signUp)
+          messageApi.success(t('message.accountCreated'), MESSAGE_DURATION);
+        router.replace(Routes.MAIN);
+      } else messageApi.error(message, MESSAGE_DURATION);
+    } catch {
+      messageApi.error(t('message.somethingWrong'), MESSAGE_DURATION);
+    }
   };
 
   const wrapperColSpan = 19;
