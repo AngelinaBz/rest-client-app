@@ -24,7 +24,16 @@ const useVariablesLocalStorage = () => {
 
   useEffect(() => {
     if (isClient) {
-      window.localStorage.setItem(VARIABLES_VALUE, JSON.stringify(variables));
+      const nonEmptyVariables = variables
+        .map((item) => ({
+          key: item.key.trim(),
+          value: item.value.trim(),
+        }))
+        .filter((item) => item.key && item.value);
+      window.localStorage.setItem(
+        VARIABLES_VALUE,
+        JSON.stringify(nonEmptyVariables)
+      );
     }
   }, [variables, isClient]);
 
