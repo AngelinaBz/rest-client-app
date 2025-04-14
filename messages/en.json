@@ -82,7 +82,7 @@
     "variableValuePlaceholder": "Variable Value"
   },
   "RestfulClient": {
-    "title": "Restful Client",
+    "title": "RESTful Client",
     "urlInputPlaceholder": "Enter request URL",
     "headers": "Headers: ",
     "addHeader": "Add Header",

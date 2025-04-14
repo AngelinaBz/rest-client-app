@@ -82,7 +82,7 @@
     "variableValuePlaceholder": "Значение переменной"
   },
   "RestfulClient": {
-    "title": "RESTFUL-клиент",
+    "title": "RESTful клиент",
     "urlInputPlaceholder": "Введите URL запроса",
     "headers": "Заголовки: ",
     "addHeader": "Добавить заголовок",
