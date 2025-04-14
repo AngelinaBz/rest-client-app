@@ -31,10 +31,8 @@ const HistoryComponent = () => {
   }, [history, isAscending]);
 
   const toggleSortOrder = () => setIsAscending((prev) => !prev);
-  const clearHistory = () => setHistory([]);
-  const showModal = () => setIsModalShow(true);
   const handleOk = () => {
-    clearHistory();
+    setHistory([]);
     setIsModalShow(false);
   };
 
@@ -67,7 +65,7 @@ const HistoryComponent = () => {
                   <SortDescendingOutlined />
                 )}
               </Button>
-              <Button onClick={showModal}>
+              <Button onClick={() => setIsModalShow(true)}>
                 <ClearOutlined />
               </Button>
             </Flex>
