@@ -20,6 +20,7 @@ const HistoryComponent = () => {
   const t = useTranslations('History');
   const [history, setHistory] = useHistoryLocalStorage();
   const [isAscending, setIsAscending] = useState(false);
+  const [isModalShow, setIsModalShow] = useState(false);
 
   const sortedHistory = useMemo(() => {
     return [...history].sort((a, b) => {
@@ -31,24 +32,24 @@ const HistoryComponent = () => {
 
   const toggleSortOrder = () => setIsAscending((prev) => !prev);
   const clearHistory = () => setHistory([]);
-  const showModal = () => {
-    Modal.confirm({
-      title: t('confirmation.title'),
-      content: t('confirmation.description'),
-      okText: t('confirmation.ok'),
-      cancelText: t('confirmation.no'),
-      onOk: clearHistory,
-      footer: (_, { OkBtn, CancelBtn }) => (
-        <>
-          <CancelBtn />
-          <OkBtn />
-        </>
-      ),
-    });
+  const showModal = () => setIsModalShow(true);
+  const handleOk = () => {
+    clearHistory();
+    setIsModalShow(false);
   };
 
   return (
     <Flex vertical style={{ padding: '10px' }} gap="small">
+      <Modal
+        open={isModalShow}
+        title={t('confirmation.title')}
+        okText={t('confirmation.ok')}
+        cancelText={t('confirmation.no')}
+        onOk={handleOk}
+        onCancel={() => setIsModalShow(false)}
+      >
+        {t('confirmation.description')}
+      </Modal>
       {sortedHistory.length > 0 ? (
         <List
           pagination={{
