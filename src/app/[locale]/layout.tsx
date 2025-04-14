@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
-import { notFound } from 'next/navigation';
 import { Inter } from 'next/font/google';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import { routing } from '@/i18n/routing';
@@ -11,6 +10,7 @@ import UserProvider from '@/providers/user-provider';
 import '@ant-design/v5-patch-for-react-19';
 import '../global.css';
 import { AppHeader } from '@/components/app-header';
+import NotFoundPage from './[not-found]/page';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -24,9 +24,8 @@ export const metadata: Metadata = {
 
 const RootLayout = async ({ children, params }: RootLayoutProps) => {
   const { locale } = await params;
-  if (!hasLocale(routing.locales, locale)) {
-    notFound();
-  }
+
+  const isCorrectLocale = hasLocale(routing.locales, locale);
 
   return (
     <html lang={locale}>
@@ -36,7 +35,12 @@ const RootLayout = async ({ children, params }: RootLayoutProps) => {
             <NextIntlClientProvider>
               <UserProvider>
                 <AppHeader />
-                <main className="main">{children}</main>
+                {isCorrectLocale ? (
+                  <main className="main">{children}</main>
+                ) : (
+                  <NotFoundPage />
+                )}
+
                 <AppFooter />
               </UserProvider>
             </NextIntlClientProvider>
