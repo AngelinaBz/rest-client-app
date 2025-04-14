@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Button, Typography, Empty, List, Flex, Modal } from 'antd';
 import { useTranslations } from 'use-intl';
 import { Link } from '@/i18n/navigation';
@@ -12,7 +12,6 @@ import {
   SortDescendingOutlined,
 } from '@ant-design/icons';
 import { formatDate } from '@/utils/format-date';
-import Loader from '../loader';
 import { ITEMS_PER_PAGE } from '@/utils/constants';
 
 const { Text } = Typography;
@@ -21,7 +20,6 @@ const HistoryComponent = () => {
   const t = useTranslations('History');
   const [history, setHistory] = useHistoryLocalStorage();
   const [isAscending, setIsAscending] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
 
   const sortedHistory = useMemo(() => {
     return [...history].sort((a, b) => {
@@ -30,12 +28,6 @@ const HistoryComponent = () => {
       return isAscending ? timeA - timeB : timeB - timeA;
     });
   }, [history, isAscending]);
-
-  useEffect(() => {
-    if (history.length >= 0) {
-      setIsLoading(false);
-    }
-  }, [history]);
 
   const toggleSortOrder = () => setIsAscending((prev) => !prev);
   const clearHistory = () => setHistory([]);
@@ -54,10 +46,6 @@ const HistoryComponent = () => {
       ),
     });
   };
-
-  if (isLoading) {
-    return <Loader />;
-  }
 
   return (
     <Flex vertical style={{ padding: '10px' }} gap="small">
