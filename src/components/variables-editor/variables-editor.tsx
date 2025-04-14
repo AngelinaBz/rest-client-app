@@ -9,7 +9,6 @@ const VariablesEditor = () => {
   const t = useTranslations('Variables');
 
   const [variables, setVariables] = useVariablesLocalStorage();
-  if (!variables || !setVariables) return null;
 
   const isKeyUnique = (key: string, index: number) => {
     if (key.trim() === '') {
