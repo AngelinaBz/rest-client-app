@@ -75,7 +75,8 @@
     "addVariable": "Add Variable",
     "deleteVariable": "Delete Variable",
     "variableKeyPlaceholder": "Variable Key",
-    "variableValuePlaceholder": "Variable Value"
+    "variableValuePlaceholder": "Variable Value",
+    "keyUniqueError": "A variable with this key already exists"
   },
   "RestfulClient": {
     "title": "Restful Client",

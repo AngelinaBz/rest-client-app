@@ -75,7 +75,8 @@
     "addVariable": "Добавить переменную",
     "deleteVariable": "Удалить переменную",
     "variableKeyPlaceholder": "Ключ переменной",
-    "variableValuePlaceholder": "Значение переменной"
+    "variableValuePlaceholder": "Значение переменной",
+    "keyUniqueError": "Переменная с таким ключом уже существует"
   },
   "RestfulClient": {
     "title": "RESTFUL-клиент",
