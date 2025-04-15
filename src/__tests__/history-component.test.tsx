@@ -2,6 +2,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import HistoryComponent from '@/components/history-component';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { RequestHistoryParams } from '@/types';
+import { mockGetRequest, mockPostRequest } from './__mocks__/mock-history';
 
 vi.mock('use-intl', () => ({
   useTranslations: () => (key: string) => key,
@@ -31,17 +32,12 @@ describe('HistoryComponent', () => {
   });
 
   it('renders history list', async () => {
-    mockHistory.push({
-      method: 'GET',
-      url: '/test',
-      timestamp: '2025-01-01',
-      headers: [],
-      body: '',
-    });
+    mockHistory.push(mockGetRequest);
 
     render(<HistoryComponent />);
-
-    expect(screen.getByText('GET /test')).toBeInTheDocument();
+    expect(
+      screen.getByText(`${mockGetRequest.method} ${mockGetRequest.url}`)
+    ).toBeInTheDocument();
   });
 
   it('shows empty message', async () => {
@@ -50,29 +46,18 @@ describe('HistoryComponent', () => {
   });
 
   it('toggles sort order', async () => {
-    mockHistory.push(
-      {
-        method: 'GET',
-        url: '/test/1',
-        timestamp: '2025-01-01',
-        headers: [],
-        body: '',
-      },
-      {
-        method: 'POST',
-        url: '/test/2',
-        timestamp: '2024-01-01',
-        headers: [],
-        body: '',
-      }
-    );
+    mockHistory.push(mockGetRequest, mockPostRequest);
 
     render(<HistoryComponent />);
 
     await waitFor(() => {
       const items = screen.getAllByRole('listitem');
-      expect(items[0]).toHaveTextContent('GET /test/1');
-      expect(items[1]).toHaveTextContent('POST /test/2');
+      expect(items[0]).toHaveTextContent(
+        `${mockGetRequest.method} ${mockGetRequest.url}`
+      );
+      expect(items[1]).toHaveTextContent(
+        `${mockPostRequest.method} ${mockPostRequest.url}`
+      );
     });
 
     const sortBtn = screen.getAllByRole('button')[0];
@@ -80,8 +65,12 @@ describe('HistoryComponent', () => {
 
     await waitFor(() => {
       const items = screen.getAllByRole('listitem');
-      expect(items[0]).toHaveTextContent('POST /test/2');
-      expect(items[1]).toHaveTextContent('GET /test/1');
+      expect(items[0]).toHaveTextContent(
+        `${mockPostRequest.method} ${mockPostRequest.url}`
+      );
+      expect(items[1]).toHaveTextContent(
+        `${mockGetRequest.method} ${mockGetRequest.url}`
+      );
     });
   });
 });

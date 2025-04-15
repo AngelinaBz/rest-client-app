@@ -22,7 +22,7 @@ vi.mock('next/dynamic', async () => {
 });
 
 describe('History Page', () => {
-  it('renders Variables Page correctly', () => {
+  it('renders History Page correctly', () => {
     render(<HistoryPage />);
 
     const title = screen.getByText(historyMessages.title);
