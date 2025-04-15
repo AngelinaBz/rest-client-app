@@ -1,4 +1,8 @@
 {
+  "Metadata": {
+    "title": "REST Client App",
+    "description": "A modern RESTful API client"
+  },
   "Header": {
     "client": "REST Client",
     "toMain": "To the main page",

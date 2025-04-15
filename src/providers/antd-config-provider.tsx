@@ -3,6 +3,7 @@ import { ConfigProvider, ThemeConfig } from 'antd';
 
 const themeConfig: ThemeConfig = {
   token: {
+    fontFamily: 'Inter',
     colorPrimary: '#1E7497',
     colorPrimaryBg: '#DEEBEE',
     colorTextHeading: '#043857',

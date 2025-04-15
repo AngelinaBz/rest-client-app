@@ -1,9 +1,17 @@
 'use client';
 
-import { Typography } from 'antd';
+import dynamic from 'next/dynamic';
+import { Spin, Typography } from 'antd';
 import { useTranslations } from 'use-intl';
 import { PageWrapper } from '@/components/page-wrapper';
-import HistoryComponent from '@/components/history-component';
+
+const HistoryComponent = dynamic(
+  () => import('@/components/history-component'),
+  {
+    ssr: false,
+    loading: () => <Spin></Spin>,
+  }
+);
 
 const { Title } = Typography;
 
