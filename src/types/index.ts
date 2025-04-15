@@ -1,3 +1,4 @@
+import { Locale } from 'next-intl';
 import { ReactNode } from 'react';
 
 export interface ChildrenProps {
@@ -9,7 +10,7 @@ export interface RootLayoutProps extends ChildrenProps {
 }
 
 export type Params = {
-  locale: string;
+  locale: Locale;
 };
 
 export type EditorItem = {
