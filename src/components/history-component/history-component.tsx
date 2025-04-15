@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Button, Typography, Empty, List, Flex, Modal } from 'antd';
 import { useTranslations } from 'use-intl';
 import { Link } from '@/i18n/navigation';
@@ -12,7 +12,6 @@ import {
   SortDescendingOutlined,
 } from '@ant-design/icons';
 import { formatDate } from '@/utils/format-date';
-import Loader from '../loader';
 import { ITEMS_PER_PAGE } from '@/utils/constants';
 
 const { Text } = Typography;
@@ -21,7 +20,7 @@ const HistoryComponent = () => {
   const t = useTranslations('History');
   const [history, setHistory] = useHistoryLocalStorage();
   const [isAscending, setIsAscending] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isModalShow, setIsModalShow] = useState(false);
 
   const sortedHistory = useMemo(() => {
     return [...history].sort((a, b) => {
@@ -31,36 +30,24 @@ const HistoryComponent = () => {
     });
   }, [history, isAscending]);
 
-  useEffect(() => {
-    if (history.length >= 0) {
-      setIsLoading(false);
-    }
-  }, [history]);
-
   const toggleSortOrder = () => setIsAscending((prev) => !prev);
-  const clearHistory = () => setHistory([]);
-  const showModal = () => {
-    Modal.confirm({
-      title: t('confirmation.title'),
-      content: t('confirmation.description'),
-      okText: t('confirmation.ok'),
-      cancelText: t('confirmation.no'),
-      onOk: clearHistory,
-      footer: (_, { OkBtn, CancelBtn }) => (
-        <>
-          <CancelBtn />
-          <OkBtn />
-        </>
-      ),
-    });
+  const handleOk = () => {
+    setHistory([]);
+    setIsModalShow(false);
   };
-
-  if (isLoading) {
-    return <Loader />;
-  }
 
   return (
     <Flex vertical style={{ padding: '10px' }} gap="small">
+      <Modal
+        open={isModalShow}
+        title={t('confirmation.title')}
+        okText={t('confirmation.ok')}
+        cancelText={t('confirmation.no')}
+        onOk={handleOk}
+        onCancel={() => setIsModalShow(false)}
+      >
+        {t('confirmation.description')}
+      </Modal>
       {sortedHistory.length > 0 ? (
         <List
           pagination={{
@@ -78,7 +65,7 @@ const HistoryComponent = () => {
                   <SortDescendingOutlined />
                 )}
               </Button>
-              <Button onClick={showModal}>
+              <Button onClick={() => setIsModalShow(true)}>
                 <ClearOutlined />
               </Button>
             </Flex>
