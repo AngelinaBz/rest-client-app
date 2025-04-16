@@ -2,8 +2,9 @@ import { UserCredential } from 'firebase/auth';
 import { authAdmin } from '../../firebase-admin.config';
 import { cookies } from 'next/headers';
 import { COOKIE_SESSION_KEY } from './const';
+import getValidExpiresIn from './get-valid-expires-in';
 
-const expiresIn = 3600000;
+const expiresIn = getValidExpiresIn();
 
 const saveUserSession = async (userCredential: UserCredential) => {
   const { user } = userCredential;
