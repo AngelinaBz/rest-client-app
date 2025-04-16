@@ -6,7 +6,7 @@ import { NextResponse } from 'next/server';
 
 export const POST = async () => {
   try {
-    signOut(auth);
+    await signOut(auth);
     (await cookies()).delete(COOKIE_SESSION_KEY);
     return NextResponse.json({ isUser: false });
   } catch {

@@ -19,15 +19,11 @@ export async function middleware(request: NextRequest): Promise<NextResponse> {
   const token = (await cookies()).get(COOKIE_SESSION_KEY);
 
   if (!token && PROTECTED_ROUTES.some((route) => url.includes(route))) {
-    return NextResponse.redirect(
-      new URL(`/${locale}${Routes.MAIN}`, request.url)
-    );
+    return NextResponse.redirect(new URL(`/${locale}`, request.url));
   }
 
   if (token && AUTH_ROUTES.some((route) => url.includes(route))) {
-    return NextResponse.redirect(
-      new URL(`/${locale}${Routes.MAIN}`, request.url)
-    );
+    return NextResponse.redirect(new URL(`/${locale}`, request.url));
   }
 
   return intlMiddleware(request);

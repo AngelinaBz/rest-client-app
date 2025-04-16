@@ -43,7 +43,6 @@ const FormComponent = ({ formType }: FormComponentProps): ReactNode => {
         body: JSON.stringify(watch()),
         headers: { 'Content-Type': 'application/json' },
       }).then((res) => {
-        console.log(res);
         return res.json();
       });
 
