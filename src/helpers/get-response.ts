@@ -48,7 +48,33 @@ export const getResponse = async ({
     };
 
     return formattedResponse;
-  } catch {
+  } catch (error: unknown) {
+    const sslRegex =
+      /self signed certificate|certificate|SSL|UNABLE_TO_VERIFY/i;
+
+    if (error instanceof Error) {
+      const causeMessage = (error as Error & { cause?: { message?: string } })
+        .cause?.message;
+
+      if (sslRegex.test(error.message) || sslRegex.test(causeMessage || '')) {
+        return {
+          status: 495,
+          headers: [],
+          body: JSON.stringify({
+            message: causeMessage || 'SSL Certificate Error',
+          }),
+        };
+      }
+
+      return {
+        status: 500,
+        headers: [],
+        body: JSON.stringify({
+          message: error.message || 'Internal Server Error',
+        }),
+      };
+    }
+
     return {
       status: 500,
       headers: [],

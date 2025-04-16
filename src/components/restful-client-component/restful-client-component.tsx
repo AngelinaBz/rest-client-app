@@ -64,7 +64,7 @@ const RestfulClient = ({
       type: 'addAll',
       payload: request.headers,
     });
-  }, [request]);
+  }, [request, setHeaders]);
 
   const handleSubmit = useCallback(async () => {
     if (!url.trim()) return;
@@ -75,18 +75,6 @@ const RestfulClient = ({
     setHistory((prevHistory = []) => [...prevHistory, requestHistory]);
     navigateToRequestURL(request);
   }, [method, url, headers, body, setHistory, navigateToRequestURL]);
-
-  if (response?.status === 0) {
-    response = {
-      ...response,
-      body: JSON.stringify({ message: t('invalidUrlMessage') }),
-    };
-  } else if (response?.status === 500) {
-    response = {
-      ...response,
-      body: JSON.stringify({ message: t('unknownErrorMessage') }),
-    };
-  }
 
   const items = getTabs({
     t: tTabs,
