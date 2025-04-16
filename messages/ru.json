@@ -97,7 +97,8 @@
     "response": "Ответ: ",
     "noResponseYet": "Ответ пока не получен.",
     "invalidUrlMessage": "Неверный URL. Пожалуйста, введите корректный адрес HTTP или HTTPS.",
-    "unknownErrorMessage": "Произошла неизвестная ошибка."
+    "unknownErrorMessage": "Произошла неизвестная ошибка.",
+    "codeGenerationFailed": "Не удалось сгенерировать код"
   },
   "Tabs": {
     "label1": "Заголовки",
