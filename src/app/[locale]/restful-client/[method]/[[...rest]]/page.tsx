@@ -1,46 +1,57 @@
-'use client';
-
-import dynamic from 'next/dynamic';
-import { Suspense, use } from 'react';
+import React from 'react';
 import { PageWrapper } from '@/components/page-wrapper';
-import { Spin } from 'antd';
+import { LazyClientComponent } from '@/components/restful-client-component';
 import { redirect } from '@/i18n/navigation';
-import { HTTP_METHODS, HttpMethod } from '@/types';
+import { HTTP_METHODS, HttpMethod, RequestParams } from '@/types';
 import { Routes } from '@/types/routes';
+import { getResponse } from '@/helpers/get-response';
+import { base64UrlDecode } from '@/utils/code64';
+import { Locale } from 'next-intl';
 
-const RestfulClientComponent = dynamic(
-  () => import('@/components/restful-client-component'),
-  { ssr: false }
-);
-
-type RestClientPageProps = {
-  params: Promise<{ locale: 'en' | 'ru'; method: HttpMethod; rest?: string[] }>;
+type PageProps = {
+  params: Promise<{ locale: Locale; method: HttpMethod; rest?: string[] }>;
+  searchParams?: Promise<{ [key: string]: string | string[] }>;
 };
 
-export default function RestClientPage({
+export default async function RestClientPage({
   params,
-}: RestClientPageProps): React.JSX.Element {
-  const { locale, method } = use(params);
+  searchParams,
+}: PageProps) {
+  const { locale, method, rest } = await params;
+  const resolvedSearchParams = await searchParams;
+
+  const [encodedUrl, encodedBody] = rest ?? [];
+  const decodedUrl = encodedUrl ? base64UrlDecode(encodedUrl) : '';
+  const decodedBody = encodedBody ? base64UrlDecode(encodedBody) : '';
 
   if (!HTTP_METHODS.includes(method)) {
     redirect({
       href: Routes.NOT_FOUND,
-      locale: locale,
+      locale,
     });
   }
 
+  const headers = resolvedSearchParams
+    ? Object.entries(resolvedSearchParams)
+        .filter(([key]) => key !== 'body')
+        .map(([key, value]) => ({
+          key,
+          value: Array.isArray(value) ? value[0] : value,
+        }))
+    : [];
+
+  const requestParams: RequestParams = {
+    method,
+    url: decodedUrl,
+    body: decodedBody,
+    headers,
+  };
+
+  const response = decodedUrl ? await getResponse(requestParams) : null;
+
   return (
     <PageWrapper>
-      <Suspense
-        fallback={
-          <Spin
-            size="large"
-            style={{ display: 'block', margin: '50px auto' }}
-          />
-        }
-      >
-        <RestfulClientComponent />
-      </Suspense>
+      <LazyClientComponent response={response} request={requestParams} />
     </PageWrapper>
   );
 }

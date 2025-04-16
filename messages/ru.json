@@ -82,6 +82,7 @@
     "title": "RESTFUL-клиент",
     "urlInputPlaceholder": "Введите URL запроса",
     "headers": "Заголовки: ",
+    "noHeaders": "Нет заголовков.",
     "addHeader": "Добавить заголовок",
     "deleteHeader": "Удалить заголовок",
     "headerKeyPlaceholder": "Ключ заголовка",
@@ -95,6 +96,7 @@
     "send": "Отправить",
     "sendRequest": "Отправить запрос",
     "response": "Ответ: ",
+    "status": "Статус",
     "noResponseYet": "Ответ пока не получен.",
     "invalidUrlMessage": "Неверный URL. Пожалуйста, введите корректный адрес HTTP или HTTPS.",
     "unknownErrorMessage": "Произошла неизвестная ошибка."

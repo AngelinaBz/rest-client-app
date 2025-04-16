@@ -82,6 +82,7 @@
     "title": "Restful Client",
     "urlInputPlaceholder": "Enter request URL",
     "headers": "Headers: ",
+    "noHeaders": "No headers",
     "addHeader": "Add Header",
     "deleteHeader": "Delete Header",
     "headerKeyPlaceholder": "Header Key",
@@ -95,6 +96,7 @@
     "send": "Send",
     "sendRequest": "Send Request",
     "response": "Response: ",
+    "status": "Status",
     "noResponseYet": "No response yet.",
     "invalidUrlMessage": "Invalid URL. Please enter a valid HTTP or HTTPS address.",
     "unknownErrorMessage": "An unknown error occurred."

@@ -1,30 +1,70 @@
+'use client';
+
 import dynamic from 'next/dynamic';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Card, Flex, Space, Tabs } from 'antd';
-import { useRequest } from '@/hooks/use-request';
 import { MethodSelector } from '../method-selector';
 import { URLInput } from '../url-input';
 import { SubmitButton } from '../submit-button';
 import { useTranslations } from 'next-intl';
 import { useHistoryLocalStorage } from '@/hooks/use-history-localstorage';
-import { HttpMethod, RequestHistoryParams } from '@/types';
+import {
+  HttpMethod,
+  RequestHistoryParams,
+  RequestParams,
+  ResponseData,
+} from '@/types';
 import useEditorItems from '@/hooks/use-editor-items';
 import { getTabs } from '@/helpers/get-tabs';
+import { useNavigateToRequestURL } from '@/hooks/use-navigate-to-request-url';
+import { Loader } from '@/components/loader';
 
 const ResponseViewer = dynamic(() => import('../response-viewer'), {
   ssr: false,
+  loading: () => <Loader />,
 });
 
-const RestfulClient = (): React.JSX.Element => {
+type RestfulClientProps = {
+  response: ResponseData | null;
+  request: RequestParams;
+};
+
+const RestfulClient = ({
+  response,
+  request,
+}: RestfulClientProps): React.JSX.Element => {
   const [method, setMethod] = useState<HttpMethod>('GET');
   const [url, setUrl] = useState('');
   const [headers, setHeaders] = useEditorItems();
   const [body, setBody] = useState('');
-  const { response, sendRequest } = useRequest();
   const [, setHistory] = useHistoryLocalStorage();
+  const navigateToRequestURL = useNavigateToRequestURL();
 
   const t = useTranslations('RestfulClient');
   const tTabs = useTranslations('Tabs');
+
+  useEffect(() => {
+    setMethod(request.method || 'GET');
+    const decodedUrl = request.url;
+    if (decodedUrl) setUrl(decodedUrl);
+
+    const decodedBody = request.body;
+    if (decodedBody && decodedBody.trim() !== '') {
+      const formattedBody = (() => {
+        try {
+          const parsed = JSON.parse(decodedBody);
+          return JSON.stringify(parsed, null, 2);
+        } catch {
+          return decodedBody;
+        }
+      })();
+      setBody(formattedBody);
+    }
+    setHeaders({
+      type: 'addAll',
+      payload: request.headers,
+    });
+  }, [request]);
 
   const handleSubmit = useCallback(async () => {
     if (!url.trim()) return;
@@ -33,8 +73,20 @@ const RestfulClient = (): React.JSX.Element => {
     const timestamp = new Date().toString();
     const requestHistory: RequestHistoryParams = { ...request, timestamp };
     setHistory((prevHistory = []) => [...prevHistory, requestHistory]);
-    await sendRequest(request);
-  }, [method, url, headers, body, sendRequest, setHistory]);
+    navigateToRequestURL(request);
+  }, [method, url, headers, body, setHistory, navigateToRequestURL]);
+
+  if (response?.status === 0) {
+    response = {
+      ...response,
+      body: JSON.stringify({ message: t('invalidUrlMessage') }),
+    };
+  } else if (response?.status === 500) {
+    response = {
+      ...response,
+      body: JSON.stringify({ message: t('unknownErrorMessage') }),
+    };
+  }
 
   const items = getTabs({
     t: tTabs,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from 'antd';
+import { Card, Descriptions, Tabs, Tag } from 'antd';
 import { ResponseData } from '@/types';
 import { useTranslations } from 'use-intl';
 import styles from './response-viewer.module.css';
@@ -13,9 +13,11 @@ const ResponseViewer = ({
 
   if (!response) return <Card title={t('response')}>{t('noResponseYet')}</Card>;
 
-  let parsedBody: unknown = response.body;
+  const { status, body, headers } = response;
+
+  let parsedBody: unknown = body;
   try {
-    parsedBody = JSON.parse(response.body);
+    parsedBody = JSON.parse(body);
   } catch (error) {
     if (error instanceof Error) {
       parsedBody = error.message;
@@ -23,12 +25,62 @@ const ResponseViewer = ({
   }
 
   return (
-    <Card title={t('response')} style={{ width: '100%', overflow: 'auto' }}>
-      <pre className={styles['response-pre']}>
-        {JSON.stringify({ ...response, body: parsedBody }, null, 2)}
-      </pre>
+    <Card
+      title={
+        <>
+          {t('response')}
+          <Tag
+            color={
+              status === 0
+                ? 'gray'
+                : status < 400
+                  ? 'green'
+                  : status < 500
+                    ? 'orange'
+                    : 'red'
+            }
+            style={{ marginLeft: '1rem', fontSize: '14px' }}
+          >
+            {t('status')}: {status}
+          </Tag>
+        </>
+      }
+      style={{ width: '100%', overflowY: 'auto', overflowX: 'hidden' }}
+    >
+      <Tabs
+        defaultActiveKey="body"
+        items={[
+          {
+            key: 'body',
+            label: t('body'),
+            children: (
+              <pre className={styles['response-pre']}>
+                {typeof parsedBody === 'string'
+                  ? parsedBody
+                  : JSON.stringify(parsedBody, null, 2)}
+              </pre>
+            ),
+          },
+          {
+            key: 'headers',
+            label: t('headers'),
+            children:
+              headers.length > 0 ? (
+                <Descriptions column={1}>
+                  {headers.map(({ key, value }) => (
+                    <Descriptions.Item key={key} label={key}>
+                      {value}
+                    </Descriptions.Item>
+                  ))}
+                </Descriptions>
+              ) : (
+                <p>{t('noHeaders')}</p>
+              ),
+          },
+        ]}
+      ></Tabs>
     </Card>
   );
 };
 
-export default React.memo(ResponseViewer);
+export default ResponseViewer;
