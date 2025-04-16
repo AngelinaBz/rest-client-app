@@ -1,7 +1,7 @@
 import { FormComponent } from '@/components/form';
 import { FORM, USER } from '@/types/form';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, Mock, vi } from 'vitest';
 import { NextIntlClientProvider } from 'next-intl';
 import { Routes } from '@/types/routes';
 import messages from '@/../messages/en.json' with { type: 'json' };
@@ -10,6 +10,12 @@ import { TEST_ID } from '@/utils/constants';
 const locale = 'en';
 const validEmail = 'email@domain.com';
 const validPassword = '12345Qq!';
+
+global.fetch = vi.fn(() =>
+  Promise.resolve({
+    json: () => Promise.resolve({ isUser: true, message: '' }),
+  })
+) as Mock;
 
 vi.mock('@/firebase/auth-action', () => ({
   default: () => ({ isUser: true, message: '' }),

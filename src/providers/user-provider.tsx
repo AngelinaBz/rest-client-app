@@ -1,16 +1,34 @@
 'use client';
 
-import { createContext, ReactNode, useState } from 'react';
+import { ChildrenProps } from '@/types';
+import { AuthStatus } from '@/types/firebase';
+import { createContext, ReactNode, useEffect, useState } from 'react';
 
-export const UserContext = createContext({
-  isUser: false,
+type UserContextType = {
+  isUser: boolean | null;
+  setIsUser: (_isUser: boolean) => void;
+};
+
+export const UserContext = createContext<UserContextType>({
+  isUser: null,
   setIsUser: (_isUser: boolean) => {},
 });
 
-type UserProviderProps = { children: ReactNode };
+const UserProvider = ({ children }: ChildrenProps): ReactNode => {
+  const [isUser, setIsUser] = useState<boolean | null>(null);
 
-const UserProvider = ({ children }: UserProviderProps): ReactNode => {
-  const [isUser, setIsUser] = useState(false);
+  useEffect(() => {
+    const checkAuthStatus = async () => {
+      const { isSessionActive }: AuthStatus = await fetch('/api/auth-status', {
+        method: 'GET',
+      }).then((res) => {
+        return res.json();
+      });
+      setIsUser(isSessionActive);
+    };
+
+    checkAuthStatus();
+  }, []);
 
   return (
     <UserContext.Provider value={{ isUser, setIsUser }}>
