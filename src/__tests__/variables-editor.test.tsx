@@ -2,6 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { EditorItem } from '@/types';
 import VariablesEditor from '@/components/variables-editor';
+import { mockVariablesData } from './__mocks__/mock-variables';
 
 vi.mock('use-intl', () => ({
   useTranslations: () => (key: string) => key,
@@ -38,11 +39,11 @@ describe('VariablesEditor', () => {
   });
 
   it('displays variables and changes them', () => {
-    mockVariables.push({ key: 'id', value: '1' });
+    mockVariables.push(mockVariablesData[0]);
     render(<VariablesEditor />);
 
-    const keyInput = screen.getByDisplayValue('id');
-    const valueInput = screen.getByDisplayValue('1');
+    const keyInput = screen.getByDisplayValue(mockVariablesData[0].key);
+    const valueInput = screen.getByDisplayValue(mockVariablesData[0].value);
 
     fireEvent.change(keyInput, { target: { value: 'name' } });
     fireEvent.change(valueInput, { target: { value: '2' } });
@@ -59,13 +60,13 @@ describe('VariablesEditor', () => {
   });
 
   it('shows error if a key is not unique', () => {
-    mockVariables.push({ key: 'id', value: '1' }, { key: 'id', value: '2' });
+    mockVariables.push(...mockVariablesData);
     render(<VariablesEditor />);
     expect(screen.getAllByText('keyUniqueError').length).toBeGreaterThan(0);
   });
 
   it('removes a variable when delete icon is clicked', () => {
-    mockVariables.push({ key: 'id', value: '1' });
+    mockVariables.push(mockVariablesData[0]);
     render(<VariablesEditor />);
 
     const deleteIcon = screen.getByRole('img');

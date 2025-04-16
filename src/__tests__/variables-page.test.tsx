@@ -1,10 +1,11 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { ReactNode } from 'react';
 import messages from '@/../messages/en.json';
 import VariablesPage from '@/app/[locale]/variables/page';
+import { ChildrenProps } from '@/types';
 
 const variablesMessages = messages.Variables;
+const VariablesEditorText = 'Variables Editor';
 
 vi.mock('use-intl', () => ({
   useTranslations: () => (key: keyof typeof variablesMessages) =>
@@ -12,12 +13,12 @@ vi.mock('use-intl', () => ({
 }));
 
 vi.mock('@/components/page-wrapper', () => ({
-  PageWrapper: ({ children }: { children: ReactNode }) => <div>{children}</div>,
+  PageWrapper: ({ children }: ChildrenProps) => <div>{children}</div>,
 }));
 
 vi.mock('next/dynamic', async () => {
   return {
-    default: () => () => <div>Variables Editor</div>,
+    default: () => () => <div>{VariablesEditorText}</div>,
   };
 });
 
@@ -28,7 +29,7 @@ describe('Variables Page', () => {
     const title = screen.getByText(variablesMessages.title);
     expect(title).toBeInstanceOf(HTMLHeadingElement);
 
-    const editor = screen.getByText('Variables Editor');
+    const editor = screen.getByText(VariablesEditorText);
     expect(editor).toBeInTheDocument();
   });
 });
