@@ -1,44 +1,30 @@
 import dynamic from 'next/dynamic';
 import { useCallback, useState } from 'react';
-import { Card, Flex, Space } from 'antd';
+import { Card, Flex, Space, Tabs } from 'antd';
 import { useRequest } from '@/hooks/use-request';
 import { MethodSelector } from '../method-selector';
 import { URLInput } from '../url-input';
 import { SubmitButton } from '../submit-button';
 import { useTranslations } from 'next-intl';
 import { useHistoryLocalStorage } from '@/hooks/use-history-localstorage';
-import { useHeaders } from '@/hooks/use-headers';
-import { HeaderType, HttpMethod, RequestHistoryParams } from '@/types';
-import { RestClientTabs } from '../rest-client-tabs';
-import { base64UrlDecode } from '@/utils/code64';
+import { HttpMethod, RequestHistoryParams } from '@/types';
+import useEditorItems from '@/hooks/use-editor-items';
+import { getTabs } from '@/helpers/get-tabs';
 
 const ResponseViewer = dynamic(() => import('../response-viewer'), {
   ssr: false,
 });
 
-type RestfulClientProps = {
-  initialMethod: HttpMethod;
-  initialUrl?: string;
-  initialBody?: string;
-  initialHeaders?: HeaderType[];
-};
-
-const RestfulClient = ({
-  initialMethod,
-  initialUrl,
-  initialBody,
-  initialHeaders,
-}: RestfulClientProps): React.JSX.Element => {
-  const [method, setMethod] = useState<HttpMethod>(initialMethod || 'GET');
-  const [url, setUrl] = useState(base64UrlDecode(initialUrl as string));
-  const { headers, addHeader, updateHeader, removeHeader } = useHeaders(
-    initialHeaders || []
-  );
-  const [body, setBody] = useState(base64UrlDecode(initialBody as string));
+const RestfulClient = (): React.JSX.Element => {
+  const [method, setMethod] = useState<HttpMethod>('GET');
+  const [url, setUrl] = useState('');
+  const [headers, setHeaders] = useEditorItems();
+  const [body, setBody] = useState('');
   const { response, sendRequest } = useRequest();
   const [, setHistory] = useHistoryLocalStorage();
 
   const t = useTranslations('RestfulClient');
+  const tTabs = useTranslations('Tabs');
 
   const handleSubmit = useCallback(async () => {
     if (!url.trim()) return;
@@ -49,6 +35,16 @@ const RestfulClient = ({
     setHistory((prevHistory = []) => [...prevHistory, requestHistory]);
     await sendRequest(request);
   }, [method, url, headers, body, sendRequest, setHistory]);
+
+  const items = getTabs({
+    t: tTabs,
+    headers,
+    setHeaders,
+    body,
+    setBody,
+    url,
+    method,
+  });
 
   return (
     <Space
@@ -65,15 +61,12 @@ const RestfulClient = ({
       </Card>
 
       <Card size="small">
-        <RestClientTabs
-          headers={headers}
-          addHeader={addHeader}
-          updateHeader={updateHeader}
-          removeHeader={removeHeader}
-          body={body}
-          setBody={setBody}
-          url={url}
-          method={method}
+        <Tabs
+          defaultActiveKey="headers"
+          type="card"
+          size="small"
+          items={items}
+          style={{ height: 240, overflowY: 'auto' }}
         />
       </Card>
 

@@ -7,7 +7,6 @@ import { Spin } from 'antd';
 import { redirect } from '@/i18n/navigation';
 import { HTTP_METHODS, HttpMethod } from '@/types';
 import { Routes } from '@/types/routes';
-import { useSearchParams } from 'next/navigation';
 
 const RestfulClientComponent = dynamic(
   () => import('@/components/restful-client-component'),
@@ -21,12 +20,7 @@ type RestClientPageProps = {
 export default function RestClientPage({
   params,
 }: RestClientPageProps): React.JSX.Element {
-  const { locale, method, rest } = use(params);
-  const searchParams = useSearchParams();
-
-  const initialHeaders = Array.from(searchParams.entries())
-    .filter(([key]) => key !== 'body')
-    .map(([key, value]) => ({ key, value }));
+  const { locale, method } = use(params);
 
   if (!HTTP_METHODS.includes(method)) {
     redirect({
@@ -34,6 +28,7 @@ export default function RestClientPage({
       locale: locale,
     });
   }
+
   return (
     <PageWrapper>
       <Suspense
@@ -44,12 +39,7 @@ export default function RestClientPage({
           />
         }
       >
-        <RestfulClientComponent
-          initialMethod={method}
-          initialUrl={rest?.[0]}
-          initialBody={rest?.[1]}
-          initialHeaders={initialHeaders}
-        />
+        <RestfulClientComponent />
       </Suspense>
     </PageWrapper>
   );

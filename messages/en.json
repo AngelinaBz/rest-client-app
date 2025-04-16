@@ -1,4 +1,8 @@
 {
+  "Metadata": {
+    "title": "REST Client App",
+    "description": "A modern RESTful API client"
+  },
   "MainPage": {
     "title": "Effective application for working with APIs",
     "description": "Restful Client provides an interface for working with API, which includes the ability to create, modify parameters and execute requests. With a strong focus on simplicity and usability, our application supports various HTTP methods. You can easily save and manage your request history while ensuring security through authentication.",
@@ -32,6 +36,11 @@
     "accountAction": {
       "signIn": "Sign Up",
       "signUp": "Sign In"
+    },
+    "message": {
+      "accountCreated": "Account is succeccsully created",
+      "invalidCredential": "Incorrect email or password",
+      "somethingWrong": "Something went wrong"
     }
   },
   "Validation": {
@@ -52,7 +61,22 @@
   "History": {
     "title": "History",
     "message": "You haven't sent any requests. Send your first request:",
-    "button": "Start Now"
+    "button": "Start Now",
+    "confirmation": {
+      "title": "Clear History",
+      "description": "Are you sure you want to clear your history?",
+      "ok": "OK",
+      "no": "Cancel"
+    }
+  },
+  "Variables": {
+    "title": "Variables",
+    "message": "No available variables",
+    "addVariable": "Add Variable",
+    "deleteVariable": "Delete Variable",
+    "variableKeyPlaceholder": "Variable Key",
+    "variableValuePlaceholder": "Variable Value",
+    "keyUniqueError": "A variable with this key already exists"
   },
   "RestfulClient": {
     "title": "Restful Client",
@@ -79,5 +103,27 @@
     "label1": "Headers",
     "label2": "Body",
     "label3": "Code"
+  },
+  "ErrorPage": {
+    "default": {
+      "buttonText": "Try Again"
+    },
+    "404": {
+      "title": "404",
+      "subTitle": "Sorry, the page you visited does not exist.",
+      "buttonText": "Back Home"
+    },
+    "500": {
+      "title": "500",
+      "subTitle": "Sorry, something went wrong."
+    },
+    "403": {
+      "title": "403",
+      "subTitle": "Sorry, you are not authorized to access this page."
+    },
+    "error": {
+      "title": "Error",
+      "subTitle": "An unexpected error occurred."
+    }
   }
 }

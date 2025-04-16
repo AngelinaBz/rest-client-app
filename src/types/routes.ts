@@ -7,7 +7,7 @@ export const Routes = {
   VARIABLES: '/variables',
   HISTORY: '/history',
   NOT_FOUND: '/not-found',
-  REST_CLIENT: (method: HttpMethod) => `restful-client/${method}`,
+  RESTFUL_CLIENT: (method: HttpMethod) => `restful-client/${method}`,
   REST_CLIENT_REQUEST: (
     method: HttpMethod,
     encodedUrl: string,

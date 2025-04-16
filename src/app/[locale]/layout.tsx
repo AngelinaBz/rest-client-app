@@ -1,39 +1,67 @@
 import { Metadata } from 'next';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
-import { notFound } from 'next/navigation';
 import { Inter } from 'next/font/google';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import { routing } from '@/i18n/routing';
-import { RootLayoutProps } from '@/types';
+import { Params, RootLayoutProps } from '@/types';
 import { AppFooter } from '@/components/app-footer';
+import AntdConfigProvider from '@/providers/antd-config-provider';
+import UserProvider from '@/providers/user-provider';
 import '@ant-design/v5-patch-for-react-19';
 import '../global.css';
+import { AppHeader } from '@/components/app-header';
+import NotFoundPage from './[not-found]/page';
+import { DEFAULT_LOCALE } from '@/utils/constants';
+import { getTranslations } from 'next-intl/server';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export const metadata: Metadata = {
-  title: 'REST Client App',
-  description: 'A modern RESTful API client',
-  icons: {
-    icon: 'icon.png',
-  },
+type MetadataProps = { params: Promise<Params> };
+
+export const generateMetadata = async ({
+  params,
+}: MetadataProps): Promise<Metadata> => {
+  const { locale } = await params;
+  const correctLocale = hasLocale(routing.locales, locale)
+    ? locale
+    : DEFAULT_LOCALE;
+  const t = await getTranslations({
+    locale: correctLocale,
+    namespace: 'Metadata',
+  });
+
+  return {
+    title: t('title'),
+    description: t('description'),
+    icons: {
+      icon: 'icon.png',
+    },
+  };
 };
 
 const RootLayout = async ({ children, params }: RootLayoutProps) => {
   const { locale } = await params;
-  if (!hasLocale(routing.locales, locale)) {
-    notFound();
-  }
+
+  const isCorrectLocale = hasLocale(routing.locales, locale);
 
   return (
     <html lang={locale}>
       <body className={inter.className}>
         <AntdRegistry>
-          <NextIntlClientProvider>
-            <header>Header here</header>
-            <main className="main">{children}</main>
-            <AppFooter />
-          </NextIntlClientProvider>
+          <AntdConfigProvider>
+            <NextIntlClientProvider>
+              <UserProvider>
+                <AppHeader />
+                {isCorrectLocale ? (
+                  <main className="main">{children}</main>
+                ) : (
+                  <NotFoundPage />
+                )}
+
+                <AppFooter />
+              </UserProvider>
+            </NextIntlClientProvider>
+          </AntdConfigProvider>
         </AntdRegistry>
       </body>
     </html>

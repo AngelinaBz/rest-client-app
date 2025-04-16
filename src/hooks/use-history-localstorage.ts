@@ -3,7 +3,7 @@ import { HISTORY_VALUE } from '@/utils/constants';
 import { RequestHistoryParams } from '@/types';
 
 export const useHistoryLocalStorage = (): [
-  RequestHistoryParams,
+  RequestHistoryParams[],
   Dispatch<SetStateAction<RequestHistoryParams[]>>,
 ] => {
   const [history, setHistory] = useState(() => {

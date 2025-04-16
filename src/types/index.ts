@@ -1,20 +1,25 @@
+import { Locale } from 'next-intl';
 import { ReactNode } from 'react';
 
-export type RootLayoutProps = {
+export interface ChildrenProps {
   children: ReactNode;
+}
+
+export interface RootLayoutProps extends ChildrenProps {
   params: Promise<Params>;
-};
+}
 
 export type Params = {
-  locale: string;
+  locale: Locale;
 };
 
-export type HeaderType = {
+export type EditorItem = {
   key: string;
   value: string;
 };
 
-export { ERROR_MAP, Status } from './error-page-status-types';
+export { Status } from './error-page-status-types';
+export type { StatusType, ErrorMeta } from './error-page-status-types';
 
 export const HTTP_METHODS = [
   'GET',
