@@ -19,11 +19,21 @@ export const getResponse = async ({
     };
   }
 
+  const hasBody = method !== 'GET' && method !== 'HEAD';
+  const shouldAddJsonHeader =
+    Object.keys(validHeaders).length === 0 &&
+    hasBody &&
+    typeof body === 'string' &&
+    body.trim().length > 0;
+
+  if (shouldAddJsonHeader && !('Content-Type' in validHeaders)) {
+    validHeaders['Content-Type'] = 'application/json';
+  }
   try {
     const response = await fetch(url, {
       method,
       headers: validHeaders,
-      body: method !== 'GET' ? body : undefined,
+      body: hasBody ? body : undefined,
     });
 
     const responseBody = await response.text();
@@ -61,7 +71,9 @@ export const getResponse = async ({
           status: 495,
           headers: [],
           body: JSON.stringify({
-            message: causeMessage || 'SSL Certificate Error',
+            message: causeMessage?.trim().length
+              ? causeMessage
+              : 'SSL Certificate Error',
           }),
         };
       }
@@ -78,7 +90,7 @@ export const getResponse = async ({
     return {
       status: 500,
       headers: [],
-      body: JSON.stringify({ message: 'Unknown Error' }),
+      body: JSON.stringify({ message: 'An unknown error occurred.' }),
     };
   }
 };
