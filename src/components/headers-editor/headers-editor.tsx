@@ -1,5 +1,5 @@
 import { DeleteOutlined } from '@ant-design/icons';
-import { Button, Typography, Flex, Tooltip, AutoComplete } from 'antd';
+import { Button, Typography, Flex, Tooltip, AutoComplete, Empty } from 'antd';
 import { useTranslations } from 'use-intl';
 import { headersMap } from '@/utils/headers-map-data';
 import { EditorItemAction } from '@/hooks/use-editor-items';
@@ -39,43 +39,43 @@ const HeadersEditor = ({
           + {t('addHeader')}
         </Button>
       </Flex>
-      {headers.map((header, index) => (
-        <Flex key={index} gap="small">
-          <AutoComplete
-            placeholder={t('headerKeyPlaceholder')}
-            value={header.key}
-            options={Object.keys(headersMap).map((key) => ({ value: key }))}
-            style={{ width: '90%' }}
-            onChange={(value) => updateHeaders(index, value, header.value)}
-            filterOption={(inputValue, option) =>
-              fiterOption(inputValue, option)
-            }
-          />
-          <AutoComplete
-            placeholder={t('headerValuePlaceholder')}
-            value={header.value}
-            options={
-              headersMap[header.key]
-                ? headersMap[header.key].map((value) => ({ value }))
-                : []
-            }
-            style={{ width: '90%' }}
-            onChange={(value) => updateHeaders(index, header.key, value)}
-            filterOption={fiterOption}
-          />
-          <Tooltip title={t('deleteHeader')}>
-            {headers.length > 1 ? (
+      {headers.length === 0 ? (
+        <Empty description={t('noHeaders')} />
+      ) : (
+        headers.map((header, index) => (
+          <Flex key={index} gap="small">
+            <AutoComplete
+              placeholder={t('headerKeyPlaceholder')}
+              value={header.key}
+              options={Object.keys(headersMap).map((key) => ({ value: key }))}
+              style={{ width: '90%' }}
+              onChange={(value) => updateHeaders(index, value, header.value)}
+              filterOption={(inputValue, option) =>
+                fiterOption(inputValue, option)
+              }
+            />
+            <AutoComplete
+              placeholder={t('headerValuePlaceholder')}
+              value={header.value}
+              options={
+                headersMap[header.key]
+                  ? headersMap[header.key].map((value) => ({ value }))
+                  : []
+              }
+              style={{ width: '90%' }}
+              onChange={(value) => updateHeaders(index, header.key, value)}
+              filterOption={fiterOption}
+            />
+            <Tooltip title={t('deleteHeader')}>
               <DeleteOutlined
                 onClick={() =>
                   setHeaders({ type: 'remove', payload: { index } })
                 }
               />
-            ) : (
-              <DeleteOutlined style={{ opacity: 0.3, pointerEvents: 'none' }} />
-            )}
-          </Tooltip>
-        </Flex>
-      ))}
+            </Tooltip>
+          </Flex>
+        ))
+      )}
     </Flex>
   );
 };
