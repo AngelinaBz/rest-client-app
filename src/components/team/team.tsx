@@ -38,7 +38,12 @@ const Team = () => {
             ]}
           >
             <Card.Meta
-              avatar={<Avatar size="large">{member.name.charAt(0)}</Avatar>}
+              avatar={
+                <Avatar
+                  size="large"
+                  src={`https://github.com/${member.github}.png`}
+                />
+              }
               title={member.name}
               description={member.role}
             />
