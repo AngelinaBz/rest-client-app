@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { Button, Typography, Empty, List, Flex, Modal } from 'antd';
+import { Button, Empty, List, Flex, Modal } from 'antd';
 import { useTranslations } from 'use-intl';
 import { Link } from '@/i18n/navigation';
 import { Routes } from '@/types/routes';
@@ -11,10 +11,8 @@ import {
   SortAscendingOutlined,
   SortDescendingOutlined,
 } from '@ant-design/icons';
-import { formatDate } from '@/utils/format-date';
 import { ITEMS_PER_PAGE } from '@/utils/constants';
-
-const { Text } = Typography;
+import HistoryItem from '../history-item';
 
 const HistoryComponent = () => {
   const t = useTranslations('History');
@@ -70,18 +68,7 @@ const HistoryComponent = () => {
               </Button>
             </Flex>
           }
-          renderItem={(item, index) => (
-            <List.Item key={index}>
-              <List.Item.Meta
-                title={
-                  <Text style={{ cursor: 'pointer' }}>
-                    {item.method} {item.url}
-                  </Text>
-                }
-                description={formatDate(item.timestamp)}
-              />
-            </List.Item>
-          )}
+          renderItem={(item, index) => <HistoryItem key={index} item={item} />}
         />
       ) : (
         <Empty description={t('message')}>

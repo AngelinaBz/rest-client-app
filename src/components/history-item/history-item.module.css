@@ -1,0 +1,10 @@
+.link {
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+
+.link:hover {
+  transform: scale(1.02);
+  color: #1e7497;
+  text-decoration: underline;
+}
