@@ -135,5 +135,9 @@
       "title": "Ошибка",
       "subTitle": "Произошла непредвиденная ошибка."
     }
+  },
+  "Footer": {
+    "githubLogo": "Логотип github",
+    "rssLogo": "Логотип RS School школы"
   }
 }

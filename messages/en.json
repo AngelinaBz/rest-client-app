@@ -135,5 +135,9 @@
       "title": "Error",
       "subTitle": "An unexpected error occurred."
     }
+  },
+  "Footer": {
+    "githubLogo": "Github logo",
+    "rssLogo": "RS School logo"
   }
 }

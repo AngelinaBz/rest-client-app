@@ -15,6 +15,7 @@
 img.footer-logo {
   width: 2rem;
   border-radius: 50%;
+  display: block;
 }
 
 .footer-logo:hover,
