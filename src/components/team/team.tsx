@@ -2,9 +2,10 @@
 
 import { useTranslations } from 'next-intl';
 import { Avatar, Card, Col, Row } from 'antd';
-import { UserOutlined, GithubOutlined, MailOutlined } from '@ant-design/icons';
+import { GithubOutlined, MailOutlined } from '@ant-design/icons';
 import { TeamMember } from '@/types/team';
 import { getTeamMembers } from '@/helpers/getTeamMember';
+import styles from './team.module.css';
 
 const Team = () => {
   const t = useTranslations('Team');
@@ -15,6 +16,7 @@ const Team = () => {
       {teamMembers.map((member, index) => (
         <Col span={6} key={index}>
           <Card
+            className={styles.team}
             hoverable
             actions={[
               <a
@@ -36,7 +38,7 @@ const Team = () => {
             ]}
           >
             <Card.Meta
-              avatar={<Avatar size="large" icon={<UserOutlined />} />}
+              avatar={<Avatar size="large">{member.name.charAt(0)}</Avatar>}
               title={member.name}
               description={member.role}
             />
