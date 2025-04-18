@@ -38,7 +38,7 @@ const GeneratedCode = ({
   }, [url, method, headers, body, language]);
 
   return (
-    <Card title="Generated Code" size="small">
+    <Card title={t('generatedCode')} size="small">
       <Flex align="content-start" gap=".5rem">
         <Select
           value={language}
