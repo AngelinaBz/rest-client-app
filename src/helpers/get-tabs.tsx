@@ -5,12 +5,15 @@ import { TabsKeys, TabsKeysType } from '@/types/tabs';
 import { TabsProps } from 'antd';
 import { EditorItemAction } from '@/hooks/use-editor-items';
 import { ActionDispatch } from 'react';
+import { Loader } from '@/components/loader';
 
 const BodyEditor = dynamic(() => import('@/components/body-editor'), {
   ssr: false,
+  loading: () => <Loader />,
 });
 const GeneratedCode = dynamic(() => import('@/components/generated-code'), {
   ssr: false,
+  loading: () => <Loader />,
 });
 
 type TabsType = {
