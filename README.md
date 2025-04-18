@@ -2,11 +2,10 @@
 
 Welcome to the APICraft Application!
 
-APICraft is a lightweight and intuitive REST API client that allows users to send HTTP requests, configure methods, URLs, headers and more. It also supports secure access through user authentication and request history management.
+APICraft is a lightweight and intuitive REST API client that allows users to send HTTP requests, configure methods, URLs, headers and more. It also supports secure access through user authentication, request history and variables management.
 
-## Overview
+## Features
 
-Core features include:
 - **User authentication** to keep your data secure.
 - **Multi-language support** for seamless interaction in the preferred language.
 - **Intuitive request interface** with HTTP method selector, URL input, request body editor, headers editor, response viewer and code generation section.
