@@ -12,6 +12,6 @@
 }
 
 :global(.ant-layout-header).sticky {
-  background-color: var(--hover);
+  background-color: var(--secondary-bg-sticky);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }

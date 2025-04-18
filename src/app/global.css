@@ -1,6 +1,7 @@
 :root {
   --primary-bg: #fafafa;
-  --secondary-bg: #f0f0f1;
+  --secondary-bg: #deebee;
+  --secondary-bg-sticky: #d1e3e7;
   --text: #141414;
   --accent: #007aff;
   --hover: #e5e5e5;
@@ -35,4 +36,9 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 2rem 1rem;
+
+  @media screen and (width <= 450px) {
+    align-items: flex-start;
+  }
 }
