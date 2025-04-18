@@ -4,7 +4,7 @@ import { Layout, Space } from 'antd';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { useEffect, useState } from 'react';
-import LocaleSwitcher from '../locale-switcher/locale-switcher';
+import LocaleSwitcher from '../locale-switcher';
 import { Routes } from '@/types/routes';
 import UserButtons from './user-buttons';
 import styles from './app-header.module.css';
