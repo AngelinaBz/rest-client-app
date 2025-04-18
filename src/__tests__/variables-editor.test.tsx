@@ -3,9 +3,13 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { EditorItem } from '@/types';
 import VariablesEditor from '@/components/variables-editor';
 import { mockVariablesData } from './__mocks__/mock-variables';
+import messages from '@/../messages/en.json';
+
+const variablesMessages = messages.Variables;
 
 vi.mock('use-intl', () => ({
-  useTranslations: () => (key: string) => key,
+  useTranslations: () => (key: keyof typeof variablesMessages) =>
+    variablesMessages[key],
 }));
 
 const mockSetVariables = vi.fn();
@@ -23,17 +27,19 @@ describe('VariablesEditor', () => {
 
   it('renders Variables Editor component', () => {
     render(<VariablesEditor />);
-    expect(screen.getByText('+ addVariable')).toBeInTheDocument();
+    expect(
+      screen.getByText(`+ ${variablesMessages.addVariable}`)
+    ).toBeInTheDocument();
   });
 
   it('shows empty message', () => {
     render(<VariablesEditor />);
-    expect(screen.getByText('message')).toBeInTheDocument();
+    expect(screen.getByText(variablesMessages.message)).toBeInTheDocument();
   });
 
   it('adds a new variable when the button is clicked', () => {
     render(<VariablesEditor />);
-    const addButton = screen.getByText('+ addVariable');
+    const addButton = screen.getByText(`+ ${variablesMessages.addVariable}`);
     fireEvent.click(addButton);
     expect(mockSetVariables).toHaveBeenCalledWith({ type: 'add' });
   });
@@ -50,19 +56,21 @@ describe('VariablesEditor', () => {
 
     expect(mockSetVariables).toHaveBeenCalledWith({
       type: 'update',
-      payload: { index: 0, key: 'name', value: '1' },
+      payload: { index: 0, ...mockVariablesData[0], key: 'name' },
     });
 
     expect(mockSetVariables).toHaveBeenCalledWith({
       type: 'update',
-      payload: { index: 0, key: 'id', value: '2' },
+      payload: { index: 0, ...mockVariablesData[0], value: '2' },
     });
   });
 
   it('shows error if a key is not unique', () => {
     mockVariables.push(...mockVariablesData);
     render(<VariablesEditor />);
-    expect(screen.getAllByText('keyUniqueError').length).toBeGreaterThan(0);
+    expect(
+      screen.getAllByText(variablesMessages.keyUniqueError).length
+    ).toBeGreaterThan(0);
   });
 
   it('removes a variable when delete icon is clicked', () => {
