@@ -68,7 +68,9 @@ const HistoryComponent = () => {
               </Button>
             </Flex>
           }
-          renderItem={(item, index) => <HistoryItem key={index} item={item} />}
+          renderItem={(item) => (
+            <HistoryItem key={item.timestamp} item={item} />
+          )}
         />
       ) : (
         <Empty description={t('message')}>
