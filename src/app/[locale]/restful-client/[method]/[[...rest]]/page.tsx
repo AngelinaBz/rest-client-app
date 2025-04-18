@@ -7,6 +7,8 @@ import { Routes } from '@/types/routes';
 import { getResponse } from '@/helpers/get-response';
 import { base64UrlDecode } from '@/utils/code64';
 import { Locale } from 'next-intl';
+import { prepareRequestData } from '@/utils/prepare-request';
+import { getVariablesAsEditorItemsFromCookies } from '@/helpers/get-variables-cookies';
 
 type PageProps = {
   params: Promise<{ locale: Locale; method: HttpMethod; rest?: string[] }>;
@@ -47,7 +49,11 @@ export default async function RestClientPage({
     headers,
   };
 
-  const response = decodedUrl ? await getResponse(requestParams) : null;
+  const variableItems = await getVariablesAsEditorItemsFromCookies();
+
+  const response = decodedUrl
+    ? await getResponse(prepareRequestData(requestParams, variableItems))
+    : null;
 
   return (
     <PageWrapper>
