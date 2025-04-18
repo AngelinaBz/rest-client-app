@@ -6,12 +6,14 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { getTeamMembers } from '@/helpers/getTeamMember';
 import styles from './app-footer.module.css';
+import { GITHUB_LINK } from '@/utils/constants';
 
 const { Footer } = Layout;
 const { Link } = Typography;
 
 const AppFooter = (): React.JSX.Element => {
   const t = useTranslations('Team');
+  const tFooter = useTranslations('Footer');
   const year = new Date().getFullYear().toString();
   const [open, setOpen] = useState(false);
   const teamMembers = getTeamMembers(t);
@@ -19,7 +21,7 @@ const AppFooter = (): React.JSX.Element => {
     key: index.toString(),
     label: (
       <a
-        href={`https://github.com/${member.github}`}
+        href={`${GITHUB_LINK}${member.github}`}
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -37,7 +39,10 @@ const AppFooter = (): React.JSX.Element => {
           open={open}
           onOpenChange={setOpen}
         >
-          <GithubOutlined className={styles['footer-logo']} alt="GitHub logo" />
+          <GithubOutlined
+            className={styles['footer-logo']}
+            alt={tFooter('githubLogo')}
+          />
         </Dropdown>
 
         <span>|</span>
@@ -55,7 +60,7 @@ const AppFooter = (): React.JSX.Element => {
           <img
             className={styles['footer-logo']}
             src="https://raw.githubusercontent.com/rolling-scopes-school/tasks/master/react/assets/rss-logo.svg"
-            alt="RS School Logo"
+            alt={tFooter('rssLogo')}
           />
         </Link>
       </Space>
