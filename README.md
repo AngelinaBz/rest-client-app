@@ -6,7 +6,7 @@ APICraft is a lightweight and intuitive REST API client that allows users to sen
 
 ## Overview
 
-APICraft is a developer-friendly tool for working with REST APIs. Its core features include:
+Core features include:
 - **User authentication** to keep your data secure.
 - **Multi-language support** for seamless interaction in the preferred language.
 - **Intuitive request interface** with HTTP method selector, URL input, request body editor, headers editor, response viewer and code generation section.
