@@ -21,9 +21,7 @@ const GeneratedCode = ({
   const t = useTranslations('RestfulClient');
 
   useEffect(() => {
-    if (!url || !method) {
-      return;
-    }
+    if (!url || !method) return;
 
     setLoading(true);
     try {

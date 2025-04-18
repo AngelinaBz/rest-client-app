@@ -1,6 +1,7 @@
 import HTTPSnippet from 'httpsnippet';
 import { RequestParams, LANGUAGES, LanguageKey } from '@/types';
 import { generateCurlCode } from './generate-curl-codes';
+import { LanguageInfo } from '@/types/code-language-types';
 
 export const fetchGeneratedCode = (
   params: RequestParams,
@@ -33,8 +34,7 @@ export const fetchGeneratedCode = (
   }
 
   const langInfo = LANGUAGES.find(
-    (lang: { key: LanguageKey; target: string; client?: string }) =>
-      lang.key === language
+    (lang: LanguageInfo) => lang.key === language
   );
   if (!langInfo) return 'Unsupported language';
 

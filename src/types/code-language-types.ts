@@ -49,3 +49,4 @@ export const LANGUAGES = [
 ] as const;
 
 export type LanguageKey = (typeof LANGUAGES)[number]['key'];
+export type LanguageInfo = (typeof LANGUAGES)[number];
