@@ -1,11 +1,10 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { Button, Typography, Flex } from 'antd';
+import { Typography, Flex } from 'antd';
 import Team from '../team/team';
 import styles from './main-content.module.css';
-import { Routes } from '@/types/routes';
-import { Link } from '@/i18n/navigation';
+import MainButtons from './main-buttons';
 
 const { Title, Paragraph } = Typography;
 
@@ -25,9 +24,7 @@ const MainContent = () => {
         >
           <Title>{t('title')}</Title>
           <Paragraph>{t('description')}</Paragraph>
-          <Link href={Routes.SIGN_IN}>
-            <Button type="primary">{t('button')}</Button>
-          </Link>
+          <MainButtons />
         </Flex>
         <img
           alt={t('imageAlt')}

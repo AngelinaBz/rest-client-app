@@ -1,5 +1,7 @@
 import { HttpMethod } from '.';
 
+export const RESTFUL_CLIENT = 'restful-client' as const;
+
 export const Routes = {
   MAIN: '/',
   SIGN_IN: '/sign-in',
