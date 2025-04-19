@@ -31,7 +31,9 @@ const FormComponent = ({ formType }: FormComponentProps): ReactNode => {
     watch,
   } = useForm<User>({
     mode: 'onChange',
-    resolver: yupResolver(getValidationSchema(useTranslations('Validation'))),
+    resolver: yupResolver(
+      getValidationSchema(useTranslations('Validation'), formType)
+    ),
   });
 
   const onSubmit = async () => {
