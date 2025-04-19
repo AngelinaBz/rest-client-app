@@ -112,7 +112,8 @@
     "status": "Status",
     "noResponseYet": "No response yet.",
     "invalidUrlMessage": "Invalid URL. Please enter a valid HTTP or HTTPS address.",
-    "unknownErrorMessage": "An unknown error occurred."
+    "unknownErrorMessage": "An unknown error occurred.",
+    "codeGenerationFailed": "Code generation failed"
   },
   "Tabs": {
     "label1": "Headers",

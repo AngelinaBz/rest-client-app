@@ -21,6 +21,7 @@
     "antd": "^5.24.5",
     "firebase": "^11.6.0",
     "firebase-admin": "^13.2.0",
+    "httpsnippet": "^2.0.0",
     "next": "15.2.4",
     "next-intl": "^4.0.2",
     "react": "^19.0.0",
@@ -31,8 +32,8 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@testing-library/dom": "^10.4.0",
-    "@testing-library/react": "^16.2.0",
     "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

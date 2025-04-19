@@ -49,3 +49,6 @@ export interface RequestParams {
 export interface RequestHistoryParams extends RequestParams {
   timestamp: string;
 }
+
+export { LANGUAGES } from './code-language-types';
+export type { LanguageKey } from './code-language-types';
