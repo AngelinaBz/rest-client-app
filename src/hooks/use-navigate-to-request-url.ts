@@ -1,38 +1,32 @@
+'use client';
+
 import { useRouter } from '@/i18n/navigation';
 import { RequestParams } from '@/types';
-import { Routes } from '@/types/routes';
-import { base64UrlEncode } from '@/utils/code64';
+import { prepareRequestData } from '@/utils/prepare-request';
+import useVariablesLocalStorage from './use-variables-localstorage';
+import { useHistoryLocalStorage } from './use-history-localstorage';
+import { addRequestToHistory } from '@/utils/history-utils';
+import { buildRequestPath } from '@/utils/request-path';
+import { setCookie } from 'cookies-next';
 
 export const useNavigateToRequestURL = () => {
   const router = useRouter();
+  const [variables] = useVariablesLocalStorage();
+  const [, setHistory] = useHistoryLocalStorage();
 
-  return (request: RequestParams) => {
-    const { method, url, headers, body } = request;
+  return (originalRequest: RequestParams) => {
+    const finalRequest = prepareRequestData(originalRequest, variables);
 
-    const headerParams = headers.reduce(
-      (acc, { key, value }) => {
-        if (key.trim()) acc[key] = value;
-        return acc;
-      },
-      {} as Record<string, string>
-    );
+    addRequestToHistory(finalRequest, variables, setHistory);
 
-    let encodedBody: string | undefined;
-    try {
-      const parsed = JSON.parse(body);
-      const normalized = JSON.stringify(parsed);
-      encodedBody = base64UrlEncode(normalized);
-    } catch {
-      encodedBody = body ? base64UrlEncode(body) : undefined;
-    }
+    variables.forEach(({ key, value }) => {
+      if (key && value) {
+        setCookie(`rest_var_${key}`, value);
+      }
+    });
 
-    const newPath = Routes.RESTFUL_CLIENT_REQUEST(
-      method,
-      base64UrlEncode(url),
-      encodedBody,
-      headerParams
-    );
+    const path = buildRequestPath(originalRequest);
 
-    router.replace(newPath, { scroll: false });
+    router.replace(path, { scroll: false });
   };
 };

@@ -7,13 +7,7 @@ import { MethodSelector } from '../method-selector';
 import { URLInput } from '../url-input';
 import { SubmitButton } from '../submit-button';
 import { useTranslations } from 'next-intl';
-import { useHistoryLocalStorage } from '@/hooks/use-history-localstorage';
-import {
-  HttpMethod,
-  RequestHistoryParams,
-  RequestParams,
-  ResponseData,
-} from '@/types';
+import { HttpMethod, RequestParams, ResponseData } from '@/types';
 import useEditorItems from '@/hooks/use-editor-items';
 import { getTabs } from '@/helpers/get-tabs';
 import { useNavigateToRequestURL } from '@/hooks/use-navigate-to-request-url';
@@ -37,7 +31,6 @@ const RestfulClient = ({
   const [url, setUrl] = useState('');
   const [headers, setHeaders] = useEditorItems();
   const [body, setBody] = useState('');
-  const [, setHistory] = useHistoryLocalStorage();
   const navigateToRequestURL = useNavigateToRequestURL();
 
   const t = useTranslations('RestfulClient');
@@ -70,11 +63,8 @@ const RestfulClient = ({
     if (!url.trim()) return;
 
     const request = { method, url, headers, body };
-    const timestamp = new Date().toString();
-    const requestHistory: RequestHistoryParams = { ...request, timestamp };
-    setHistory((prevHistory = []) => [...prevHistory, requestHistory]);
     navigateToRequestURL(request);
-  }, [method, url, headers, body, setHistory, navigateToRequestURL]);
+  }, [method, url, headers, body, navigateToRequestURL]);
 
   const items = getTabs({
     t: tTabs,
