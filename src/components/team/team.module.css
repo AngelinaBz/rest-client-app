@@ -1,0 +1,16 @@
+@media (max-width: 750px) {
+  .team :global(.ant-card-meta-detail) {
+    display: none;
+  }
+
+  .team :global(.ant-card-meta) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .team :global(.ant-card-meta-avatar) {
+    margin: 0;
+    padding-inline-end: 0 !important;
+  }
+}
