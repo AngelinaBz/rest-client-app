@@ -33,6 +33,8 @@ export const HTTP_METHODS = [
 
 export type HttpMethod = (typeof HTTP_METHODS)[number];
 
+export const DEFAULT_HTTP_METHOD: HttpMethod = 'GET';
+
 export type ResponseData = {
   status: number;
   headers: { key: string; value: string }[];
