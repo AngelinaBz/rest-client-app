@@ -12,6 +12,7 @@ import useEditorItems from '@/hooks/use-editor-items';
 import { getTabs } from '@/helpers/get-tabs';
 import { useNavigateToRequestURL } from '@/hooks/use-navigate-to-request-url';
 import { Loader } from '@/components/loader';
+import { decodeRouteParams } from '@/utils/decode-route-params';
 
 const ResponseViewer = dynamic(() => import('../response-viewer'), {
   ssr: false,
@@ -35,6 +36,22 @@ const RestfulClient = ({
 
   const t = useTranslations('RestfulClient');
   const tTabs = useTranslations('Tabs');
+
+  useEffect(() => {
+    const { method, url, body, headers } = decodeRouteParams();
+
+    if (method) setMethod(method);
+    if (url) setUrl(url);
+    if (body) setBody(body);
+    if (headers)
+      setHeaders({
+        type: 'addAll',
+        payload: Object.entries(headers).map(([key, value]) => ({
+          key,
+          value,
+        })),
+      });
+  }, []);
 
   useEffect(() => {
     setMethod(request.method || 'GET');

@@ -1,3 +1,4 @@
+import { updateEncodedUrlInPath } from '@/utils/update-encoded-url-path';
 import { Input } from 'antd';
 import { useTranslations } from 'use-intl';
 
@@ -9,11 +10,17 @@ interface URLInputProps {
 const URLInput = ({ url, setUrl }: URLInputProps): React.JSX.Element => {
   const t = useTranslations('RestfulClient');
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newUrl = e.target.value;
+    setUrl(newUrl);
+    updateEncodedUrlInPath(newUrl);
+  };
+
   return (
     <Input
       placeholder={t('urlInputPlaceholder')}
       value={url}
-      onChange={(e) => setUrl(e.target.value)}
+      onChange={handleChange}
       width={'100%'}
     />
   );
