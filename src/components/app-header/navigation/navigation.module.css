@@ -1,0 +1,16 @@
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.link {
+  font-size: 0.9rem;
+  line-height: normal;
+}
+
+.link-active {
+  cursor: default;
+  pointer-events: none;
+  color: #f2843a;
+}
