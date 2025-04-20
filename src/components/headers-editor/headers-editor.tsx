@@ -4,7 +4,8 @@ import { useTranslations } from 'use-intl';
 import { headersMap } from '@/utils/headers-map-data';
 import { EditorItemAction } from '@/hooks/use-editor-items';
 import { EditorItem } from '@/types';
-import { ActionDispatch } from 'react';
+import { ActionDispatch, useEffect } from 'react';
+import { updateURLWithHeaders } from '@/utils/update-encoded-headers-params';
 
 const { Title } = Typography;
 
@@ -28,6 +29,10 @@ const HeadersEditor = ({
       type: 'update',
       payload: { index, key, value },
     });
+
+  useEffect(() => {
+    updateURLWithHeaders(headers);
+  }, [headers]);
 
   return (
     <Flex vertical style={{ width: '98%' }} gap="small">
