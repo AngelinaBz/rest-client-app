@@ -15,7 +15,7 @@ export const Routes = {
     encodedBody?: string,
     headers?: Record<string, string>
   ) => {
-    let path = `/restful-client/${method}/${encodedUrl}`;
+    let path = `/${RESTFUL_CLIENT}/${method}/${encodedUrl}`;
     if (encodedBody) {
       path += `/${encodedBody}`;
     }
