@@ -62,9 +62,7 @@ describe('RestfulClient Component', () => {
     );
 
     expect(screen.getByText(messages.RestfulClient.title)).toBeInTheDocument();
-    expect(
-      screen.getByDisplayValue('https://api.example.com')
-    ).toBeInTheDocument();
+    expect(screen.getByDisplayValue(mockRequest.url)).toBeInTheDocument();
   });
 
   it('displays response data correctly', () => {
