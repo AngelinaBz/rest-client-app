@@ -1,5 +1,6 @@
 'use client';
 
+import ButtonWithAuth from '@/components/button-with-auth';
 import useAuth from '@/hooks/use-auth';
 import { Link } from '@/i18n/navigation';
 import { Routes } from '@/types/routes';
@@ -15,7 +16,9 @@ const MainButtons = () => {
       {isUser === null && <Spin></Spin>}
       {!isUser && isUser !== null && (
         <Link href={Routes.SIGN_IN}>
-          <Button type="primary">{t('button.start')}</Button>
+          <ButtonWithAuth>
+            <Button type="primary">{t('button.start')}</Button>
+          </ButtonWithAuth>
         </Link>
       )}
       {isUser && (
@@ -24,14 +27,18 @@ const MainButtons = () => {
             <Button type="primary">{t('button.client')}</Button>
           </Link>
           <Link href={Routes.HISTORY}>
-            <Button variant="outlined" color="primary">
-              {t('button.history')}
-            </Button>
+            <ButtonWithAuth>
+              <Button variant="outlined" color="primary">
+                {t('button.history')}
+              </Button>
+            </ButtonWithAuth>
           </Link>
           <Link href={Routes.VARIABLES}>
-            <Button variant="outlined" color="primary">
-              {t('button.variables')}
-            </Button>
+            <ButtonWithAuth>
+              <Button variant="outlined" color="primary">
+                {t('button.variables')}
+              </Button>
+            </ButtonWithAuth>
           </Link>
         </>
       )}

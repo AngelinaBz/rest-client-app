@@ -27,8 +27,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "vitest.config.mts",
-    "src/components/rest-client-tabs"
+    "vitest.config.mts"
   ],
   "exclude": ["node_modules"]
 }

@@ -3,7 +3,8 @@ const MAX_EXPIRES_IN = 14 * 24 * 60 * 60 * 1000;
 const DEFAULT_EXPIRES_IN = 60 * 60 * 1000;
 
 const getValidExpiresIn = (): number => {
-  const envExpiresIn: string | undefined = process.env.SESSION_EXPIRES_IN;
+  const envExpiresIn: string | undefined =
+    process.env.NEXT_PUBLIC_SESSION_EXPIRES_IN;
 
   if (typeof envExpiresIn !== 'string') return DEFAULT_EXPIRES_IN;
 
