@@ -12,6 +12,10 @@ APICraft is a lightweight and intuitive REST API client that allows users to sen
 - **Variable management** for reusable values.
 - **Request history** to view and re-run previous API calls.
 
+## Overview
+
+You can watch an overview of the application on [Youtube](https://www.youtube.com/watch?v=EGZgosn0y6I)
+
 ## Technology stack
 
 - **Frontend**: Next.js, TypeScript, CSS, Ant Design, React Hook Form with yup validation, Monaco Editor
