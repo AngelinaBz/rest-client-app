@@ -12,7 +12,9 @@ const saveUserSession = async (userCredential: UserCredential) => {
   const token = await user.getIdToken();
 
   const session = await authAdmin.createSessionCookie(token, { expiresIn });
-  (await cookies()).set(COOKIE_SESSION_KEY, session, {});
+  (await cookies()).set(COOKIE_SESSION_KEY, session, {
+    maxAge: expiresIn / 1000,
+  });
 };
 
 export default saveUserSession;
