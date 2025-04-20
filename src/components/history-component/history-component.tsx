@@ -74,7 +74,7 @@ const HistoryComponent = () => {
         />
       ) : (
         <Empty description={t('message')}>
-          <Link href={Routes.RESTFUL_CLIENT_REQUEST('GET')}>
+          <Link href={Routes.RESTFUL_CLIENT_REQUEST('GET', '')}>
             <Button type="primary">{t('button')}</Button>
           </Link>
         </Empty>
