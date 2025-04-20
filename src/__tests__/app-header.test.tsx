@@ -16,6 +16,11 @@ vi.mock('@/components/locale-switcher', () => ({
   default: () => <div>{localeSwitcherText}</div>,
 }));
 
+const navigationText = 'This is a navigation component';
+vi.mock('@/components/app-header/navigation', () => ({
+  default: () => <div>{navigationText}</div>,
+}));
+
 describe('App Header', () => {
   it('Render logo, locale switcher, user buttons', async () => {
     render(
@@ -27,6 +32,9 @@ describe('App Header', () => {
     const logoLink: HTMLAnchorElement = screen.getByRole('link');
     expect(logoLink.title).toBe(messages.Header.toMain);
     expect(logoLink.href.endsWith(locale)).toBeTruthy();
+
+    const navigation = screen.getByText(navigationText);
+    expect(navigation).toBeInTheDocument();
 
     const localeSwitcher = screen.getByText(localeSwitcherText);
     expect(localeSwitcher).toBeInTheDocument();

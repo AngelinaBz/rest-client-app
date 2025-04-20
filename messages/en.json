@@ -1,6 +1,6 @@
 {
   "Metadata": {
-    "title": "REST Client App",
+    "title": "REST Client - APICraft",
     "description": "A modern RESTful API client"
   },
   "Header": {
@@ -12,7 +12,7 @@
   },
   "MainPage": {
     "title": "Effective application for working with APIs",
-    "description": "Restful Client provides an interface for working with API, which includes the ability to create, modify parameters and execute requests. With a strong focus on simplicity and usability, our application supports various HTTP methods. You can easily save and manage your request history while ensuring security through authentication.",
+    "description": "APICraft provides an interface for working with REST API, which includes the ability to create, modify parameters and execute requests. With a strong focus on simplicity and usability, our application supports various HTTP methods. You can easily save and manage your request history while ensuring security through authentication.",
     "teamTitle": "Our Team",
     "teamDescription": "We are a team of developers, who strive to create functional and user-friendly applications. With our diverse backgrounds and experience, we approach problems in a creative way and collaborate effectively to deliver the best solutions for our users.",
     "button": {

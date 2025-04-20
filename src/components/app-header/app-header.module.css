@@ -2,7 +2,7 @@
   background-color: var(--secondary-bg);
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   transition: backgroud-color 0.3s ease;
 }
 
@@ -14,4 +14,19 @@
 :global(.ant-layout-header).sticky {
   background-color: var(--secondary-bg-sticky);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.logo-img {
+  display: grid;
+  place-content: center;
+  width: 50px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 0 rgba(1, 101, 124, 0.13);
+  padding: 5px;
+  transition: transform 1s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 }
