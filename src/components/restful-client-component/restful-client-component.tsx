@@ -13,6 +13,9 @@ import { getTabs } from '@/helpers/get-tabs';
 import { useNavigateToRequestURL } from '@/hooks/use-navigate-to-request-url';
 import { Loader } from '@/components/loader';
 import { decodeRouteParams } from '@/utils/decode-route-params';
+import useAuth from '@/hooks/use-auth';
+import { useRouter } from '@/i18n/navigation';
+import { Routes } from '@/types/routes';
 
 const ResponseViewer = dynamic(() => import('../response-viewer'), {
   ssr: false,
@@ -33,6 +36,8 @@ const RestfulClient = ({
   const [headers, setHeaders] = useEditorItems();
   const [body, setBody] = useState('');
   const navigateToRequestURL = useNavigateToRequestURL();
+  const { isUser } = useAuth();
+  const router = useRouter();
 
   const t = useTranslations('RestfulClient');
   const tTabs = useTranslations('Tabs');
@@ -77,6 +82,7 @@ const RestfulClient = ({
   }, [request, setHeaders]);
 
   const handleSubmit = useCallback(async () => {
+    if (!isUser) router.replace(Routes.MAIN);
     if (!url.trim()) return;
 
     const request = { method, url, headers, body };

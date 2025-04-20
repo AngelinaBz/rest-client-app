@@ -4,6 +4,7 @@ import { describe, expect, it, vi } from 'vitest';
 import messages from '@/../messages/en.json' with { type: 'json' };
 import MainButtons from '@/components/main-content/main-buttons';
 import { RESTFUL_CLIENT, Routes } from '@/types/routes';
+import { ChildrenProps } from '@/types';
 
 const locale: Locale = 'en';
 
@@ -21,6 +22,10 @@ vi.mock('@/hooks/use-auth', () => ({
     setIsUser: vi.fn(),
   }),
 }));
+
+vi.mock('@/components/button-with-auth', () => {
+  return { default: ({ children }: ChildrenProps) => <>{children}</> };
+});
 
 describe('Main buttons (main page)', () => {
   it('(1) Show Start button for an unauthenticated user', async () => {

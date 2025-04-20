@@ -1,5 +1,6 @@
 'use client';
 
+import ButtonWithAuth from '@/components/button-with-auth';
 import useAuth from '@/hooks/use-auth';
 import { Link, useRouter } from '@/i18n/navigation';
 import { UserResponse } from '@/types/firebase';
@@ -56,21 +57,25 @@ const UserButtons = (): ReactNode => {
           <>
             <Link href={Routes.SIGN_IN}>
               <Tooltip title={t('signIn')}>
-                <Button
-                  size="large"
-                  color="primary"
-                  variant="outlined"
-                  icon={<LoginOutlined />}
-                />
+                <ButtonWithAuth>
+                  <Button
+                    size="large"
+                    color="primary"
+                    variant="outlined"
+                    icon={<LoginOutlined />}
+                  />
+                </ButtonWithAuth>
               </Tooltip>
             </Link>
             <Link href={Routes.SIGN_UP}>
               <Tooltip title={t('signUp')}>
-                <Button
-                  size="large"
-                  type="primary"
-                  icon={<UserAddOutlined />}
-                />
+                <ButtonWithAuth>
+                  <Button
+                    size="large"
+                    type="primary"
+                    icon={<UserAddOutlined />}
+                  />
+                </ButtonWithAuth>
               </Tooltip>
             </Link>
           </>

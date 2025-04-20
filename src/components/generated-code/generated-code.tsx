@@ -1,9 +1,12 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { Card, Typography, Select, Spin, Flex } from 'antd';
+import { Card, Typography, Select, Flex } from 'antd';
 import { fetchGeneratedCode } from '@/utils/fetch-generated-code';
 import { RequestParams, LanguageKey, LANGUAGES } from '@/types';
 import { useTranslations } from 'next-intl';
+import { Loader } from '../loader';
+import { getVariablesAsMapFromCookiesClient } from '@/utils/get-variables-map';
+import { replaceVariables } from '@/utils/prepare-request';
 import styles from './generated-code.module.css';
 
 const { Paragraph } = Typography;
@@ -23,13 +26,28 @@ const GeneratedCode = ({
   useEffect(() => {
     if (!url || !method) return;
 
+    const variableMap = getVariablesAsMapFromCookiesClient();
+
+    const replacedUrl = replaceVariables(url, variableMap);
+    const replacedHeaders = headers.map((h) => ({
+      key: replaceVariables(h.key, variableMap),
+      value: replaceVariables(h.value, variableMap),
+    }));
+    const replacedBody = body ? replaceVariables(body, variableMap) : '';
+
     setLoading(true);
     try {
-      const snippet = fetchGeneratedCode(
-        { url, method, headers, body },
+      fetchGeneratedCode(
+        {
+          url: replacedUrl,
+          method,
+          headers: replacedHeaders,
+          body: replacedBody,
+        },
         language
-      );
-      setCode(snippet);
+      )
+        .then((snippet) => setCode(snippet))
+        .catch(() => setCode(t('codeGenerationFailed')));
     } catch {
       setCode(t('codeGenerationFailed'));
     } finally {
@@ -54,7 +72,7 @@ const GeneratedCode = ({
 
         <Paragraph style={{ flex: 1, borderRadius: '.5rem' }}>
           {loading ? (
-            <Spin style={{ display: 'block', margin: '5rem auto auto' }} />
+            <Loader />
           ) : (
             <pre className={styles['code-block']}>{code}</pre>
           )}

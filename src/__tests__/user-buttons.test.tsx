@@ -3,6 +3,7 @@ import { describe, expect, it, Mock, vi } from 'vitest';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { Locale, NextIntlClientProvider } from 'next-intl';
 import { Routes } from '@/types/routes';
+import { ChildrenProps } from '@/types';
 import messages from '@/../messages/en.json' with { type: 'json' };
 
 const locale: Locale = 'en';
@@ -36,6 +37,10 @@ vi.mock('@/i18n/navigation', async (importOriginal) => {
     ...actual,
     useRouter: () => ({ replace: replace }),
   };
+});
+
+vi.mock('@/components/button-with-auth', () => {
+  return { default: ({ children }: ChildrenProps) => <>{children}</> };
 });
 
 describe('User Buttons (header)', () => {
