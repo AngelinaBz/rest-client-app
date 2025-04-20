@@ -12,7 +12,13 @@ const MethodSelector = ({
   setMethod,
 }: MethodSelectorProps): React.JSX.Element => {
   return (
-    <Select value={method} onChange={setMethod} style={{ width: 120 }}>
+    <Select
+      title="method-selector"
+      aria-label="method-selector"
+      value={method}
+      onChange={setMethod}
+      style={{ width: 120 }}
+    >
       {HTTP_METHODS.map((method) => (
         <Select.Option key={method} value={method}>
           {method}
