@@ -22,9 +22,9 @@ APICraft is a lightweight and intuitive REST API client that allows users to sen
 
 ## Team
 
-- [Angelina Bezik](https://github.com/AngelinaBz)
-- [Tatiana Telegina](https://github.com/pambaka)
-- [Hasan Ozbakir](https://github.com/hasanozbakir)
+- [Angelina Bezik](https://github.com/AngelinaBz). Discord: `@angelina_60528`
+- [Tatiana Telegina](https://github.com/pambaka). Discord: `@pambaka`
+- [Hasan Ozbakir](https://github.com/hasanozbakir). Discord: `@hasanozbakir`
 
 ## Getting Started
 
@@ -44,7 +44,7 @@ To run our APICraft Application locally, follow these steps:
   npm install
 ```
 
-3. Add .env file with settings to the project root.
+3. Сontact the [Team](#team) to get the required `.env` file. Add .env file with settings to the project root.
 
 4. Run the app
 
