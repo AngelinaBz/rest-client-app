@@ -1,8 +1,6 @@
 import { HttpMethod } from '@/types';
 
 export const decodeRouteParams = () => {
-  if (typeof window === 'undefined') return {};
-
   const pathname = window.location.pathname;
   const search = window.location.search;
   const segments = pathname.split('/').filter(Boolean);
