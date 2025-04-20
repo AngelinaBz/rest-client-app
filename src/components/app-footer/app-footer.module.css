@@ -1,0 +1,24 @@
+:global(.ant-layout-footer).footer {
+  background-color: var(--secondary-bg);
+  color: var(--text);
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+}
+
+:global(.anticon).footer-logo {
+  font-size: 2rem;
+  color: var(--text);
+  cursor: pointer;
+}
+
+img.footer-logo {
+  width: 2rem;
+  border-radius: 50%;
+  display: block;
+}
+
+.footer-logo:hover,
+.footer-logo:focus {
+  opacity: 0.5;
+}

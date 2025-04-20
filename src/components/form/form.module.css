@@ -1,0 +1,5 @@
+:global(.ant-form).form {
+  width: 100%;
+  padding: 20px;
+  padding-bottom: 0px;
+}

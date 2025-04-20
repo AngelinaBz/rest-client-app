@@ -1,0 +1,149 @@
+{
+  "Metadata": {
+    "title": "REST Client - APICraft",
+    "description": "A modern RESTful API client"
+  },
+  "Header": {
+    "client": "REST Client",
+    "toMain": "To the main page",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "signOut": "Sign Out"
+  },
+  "MainPage": {
+    "title": "Effective application for working with APIs",
+    "description": "APICraft provides an interface for working with REST API, which includes the ability to create, modify parameters and execute requests. With a strong focus on simplicity and usability, our application supports various HTTP methods. You can easily save and manage your request history while ensuring security through authentication.",
+    "teamTitle": "Our Team",
+    "teamDescription": "We are a team of developers, who strive to create functional and user-friendly applications. With our diverse backgrounds and experience, we approach problems in a creative way and collaborate effectively to deliver the best solutions for our users.",
+    "button": {
+      "start": "Get started",
+      "client": "RESTful Client",
+      "history": "History",
+      "variables": "Variables"
+    },
+    "imageAlt": "An image of a computer desktop with 'REST' written on the screen. The computer is surrounded by various icons, folders, and networks.",
+    "schoolTitle": "The Rolling Scopes School",
+    "schoolDescription": "The Rolling Scopes is an independent international community of developers, founded in 2013. Anyone can study at RS School, regardless of age, employment, or location. Developers from various companies and countries contribute to the training. At RS School the principle of PAY IT FORWARD works. RS School shares knowledge with students for free now, hoping that in the future they will return as mentors and pass on their knowledge to the next generation of students in the same way."
+  },
+  "Team": {
+    "name1": "Angelina Bezik",
+    "name2": "Tatiana Telegina",
+    "name3": "Hasan Ozbakir",
+    "role": "Frontend Developer"
+  },
+  "LocaleSwitcher": {
+    "locale": "{locale, select, ru {Russian} en {English} other {Other}}"
+  },
+  "Form": {
+    "hidePassword": "Hide password",
+    "email": "Email",
+    "password": "Password",
+    "showPassword": "Show password",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "accountMessage": {
+      "signIn": "Do not have an account yet?",
+      "signUp": "Already have an account?"
+    },
+    "accountAction": {
+      "signIn": "Sign Up",
+      "signUp": "Sign In"
+    },
+    "message": {
+      "accountCreated": "Account is succeccsully created",
+      "emailAlreadyInUse": "This email is already in use",
+      "invalidCredential": "Incorrect email or password",
+      "somethingWrong": "Something went wrong"
+    }
+  },
+  "Validation": {
+    "email": {
+      "required": "Email is required",
+      "valid": "Please enter a valid email address"
+    },
+    "password": {
+      "required": "Password is required",
+      "digit": "digit",
+      "uppercaseLetter": "uppercase letter",
+      "lowercaseLetter": "lowercase letter",
+      "specialChar": "special character",
+      "minLength": "Minimal password length is {length} characters",
+      "charError": "Password should include:"
+    }
+  },
+  "History": {
+    "title": "History",
+    "message": "You haven't sent any requests. Send your first request:",
+    "button": "Start Now",
+    "confirmation": {
+      "title": "Clear History",
+      "description": "Are you sure you want to clear your history?",
+      "ok": "OK",
+      "no": "Cancel"
+    }
+  },
+  "Variables": {
+    "title": "Variables",
+    "message": "No available variables",
+    "addVariable": "Add Variable",
+    "deleteVariable": "Delete Variable",
+    "variableKeyPlaceholder": "Variable Key",
+    "variableValuePlaceholder": "Variable Value",
+    "keyUniqueError": "A variable with this key already exists"
+  },
+  "RestfulClient": {
+    "title": "RESTful Client",
+    "urlInputPlaceholder": "Enter request URL",
+    "headers": "Headers: ",
+    "noHeaders": "No headers",
+    "addHeader": "Add Header",
+    "deleteHeader": "Delete Header",
+    "headerKeyPlaceholder": "Header Key",
+    "headerValuePlaceholder": "Header Value",
+    "plainText": "Plain Text",
+    "requestBody": "Request Body: ",
+    "requestBodyPlaceholder": "Enter request body...",
+    "generatedCode": "Generated Code",
+    "body": "Body",
+    "code": "Code",
+    "send": "Send",
+    "sendRequest": "Send Request",
+    "response": "Response: ",
+    "status": "Status",
+    "noResponseYet": "No response yet.",
+    "invalidUrlMessage": "Invalid URL. Please enter a valid HTTP or HTTPS address.",
+    "unknownErrorMessage": "An unknown error occurred.",
+    "codeGenerationFailed": "Code generation failed"
+  },
+  "Tabs": {
+    "label1": "Headers",
+    "label2": "Body",
+    "label3": "Code"
+  },
+  "ErrorPage": {
+    "default": {
+      "buttonText": "Try Again"
+    },
+    "404": {
+      "title": "404",
+      "subTitle": "Sorry, the page you visited does not exist.",
+      "buttonText": "Back Home"
+    },
+    "500": {
+      "title": "500",
+      "subTitle": "Sorry, something went wrong."
+    },
+    "403": {
+      "title": "403",
+      "subTitle": "Sorry, you are not authorized to access this page."
+    },
+    "error": {
+      "title": "Error",
+      "subTitle": "An unexpected error occurred."
+    }
+  },
+  "Footer": {
+    "githubLogo": "Github logo",
+    "rssLogo": "RS School logo"
+  }
+}
