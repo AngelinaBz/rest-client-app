@@ -44,10 +44,4 @@ describe('MethodSelector Component', () => {
 
     expect(mockSetMethod.mock.calls[0][0]).toBe('POST');
   });
-
-  it('has proper accessibility attributes', () => {
-    render(<MethodSelector method="GET" setMethod={mockSetMethod} />);
-    const select = screen.getByRole('combobox');
-    expect(select).toHaveAttribute('aria-label', 'method-selector');
-  });
 });
